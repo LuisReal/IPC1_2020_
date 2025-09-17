@@ -23,7 +23,10 @@ body{
     
 }
 
-            
+                                /*AQUI INICIA EL CSS DE ModificarUsuario*/
+
+
+                               /*AQUI FINALIZA EL CSS DE ModificarUsuario*/
 .p-tablacanciones{
     position: absolute;
     left: 50px;
@@ -52,11 +55,6 @@ table{
     padding-left: 10px;
 }
 
-.thead{
-    
-    background-color: white;
-}
-
 th{
     background-color: rgb(255, 69, 0);
     color: white;
@@ -73,7 +71,44 @@ td{
     padding: 10px;
 }
 
-.foto-cliente{
+
+.boton-modificar{
+
+    background-color: rgb(154, 205, 50);
+    outline: none;
+    color: white;
+    border-radius: 3px;
+    height: 30px;
+    width: 80px;
+    padding: 5px;
+    border: 0px;
+}
+
+.boton-eliminar{
+
+    background-color: rgb(255, 0, 0);
+    outline: none;
+    color: white;
+    border-radius: 3px;
+    height: 30px;
+    width: 80px;
+    padding: 5px;
+    border: 0px;
+}
+
+.boton-comentario{
+
+    background-color: black;
+    outline: none;
+    color: white;
+    border-radius: 3px;
+    height: 40px;
+    width: 100px;
+    padding: 5px;
+    border: 0px;
+}
+
+.foto-administrador{
 
     position: absolute;
     border-color: white;
@@ -83,13 +118,13 @@ td{
     left: 80px;
     width: 150px;
     height: 150px;
-    background-image: url('usuario.png');
+    background-image: url('../images/usuario.png');
     background-repeat: no-repeat;
     background-size: 200px;
     background-position: -25px center;
 }
 
-.cliente{
+.administrador{
 
     position: absolute;
     text-align: center;
@@ -114,7 +149,7 @@ td{
     border-style: groove;
     border-radius: 10px;
     height: 40px;
-    background-image: url('pagina-principal.jpg');
+    background-image: url('../images/pagina-principal.jpg');
     background-repeat: no-repeat;
     background-size: 25px;
     background-position: 4px center;
@@ -134,7 +169,83 @@ td{
     border-style: groove;
     border-radius: 10px;
     height: 40px;
-    background-image: url('user.png');
+    background-image: url('../images/user.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+}
+
+.btn-usuarios{
+
+    position: absolute;
+    margin-top: 350px;
+    margin-left: 50px;
+    width: 200px;
+    border-width: 1px;
+    background-color: white;
+    border-color:rgb(255, 255,0);
+    border-style: groove;
+    border-radius: 10px;
+    height: 40px;
+    background-image: url('../images/usuarios.jpg');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+}
+
+.btn-comentarios{
+
+    position: absolute;
+    margin-top: 400px;
+    margin-left: 50px;
+    width: 200px;
+    border-width: 1px;
+    background-color: white;
+    border-color:rgb(255, 0,0);
+    border-style: groove;
+    border-radius: 10px;
+    height: 40px;
+    background-image: url('../images/comentarios.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+}
+
+.btn-cargar-canciones{
+
+    position: absolute;
+    margin-top: 450px;
+    margin-left: 50px;
+    width: 200px;
+    border-width: 1px;
+    background-color: white;
+    border-color:rgb(0, 0,139);
+    border-style: groove;
+    border-radius: 10px;
+    height: 40px;
+    background-image: url('../images/cancion.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+}
+
+.btn-solicitudes{
+
+    position: absolute;
+    margin-top: 500px;
+    margin-left: 50px;
+    width: 200px;
+    border-width: 1px;
+    background-color: white;
+    border-color:rgb(0, 0,139);
+    border-style: groove;
+    border-radius: 10px;
+    height: 40px;
+    background-image: url('../images/cancion.png');
     background-repeat: no-repeat;
     background-size: 25px;
     background-position: 4px center;

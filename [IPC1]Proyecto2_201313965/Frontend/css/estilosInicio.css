@@ -36,7 +36,7 @@ label{
 .sidenav {
 
     
-    background-image: url("fondo.jpg");
+    background-image: url("../images/fondo.jpg");
     
     
     border-style: groove;
@@ -84,7 +84,7 @@ label{
     margin-left: -10px;
     border-radius: 5px 5px 0px 0px;
     
-    background-image: url('laptop.jpg');
+    background-image: url('../images/laptop.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -101,7 +101,7 @@ label{
     height: 40px;
     border-radius: 5px;
 
-    background-image: url('password.png');
+    background-image: url('../images/password.png');
     background-repeat: no-repeat;
     background-size: 25px;
     background-position: 4px center;
@@ -121,7 +121,7 @@ label{
     border-radius: 5px;
     
     height: 40px;
-    background-image: url('user.png');
+    background-image: url('../images/user.png');
     background-repeat: no-repeat;
     background-size: 25px;
     background-position: 4px center;
@@ -221,7 +221,7 @@ h2{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-image: url('logoface.png');
+    background-image: url('../images/logoface.png');
 }
 
 .inst{
@@ -236,7 +236,7 @@ h2{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-image: url('logoinstagram.png');
+    background-image: url('../images/logoinstagram.png');
 }
 
 .twitter{
@@ -251,7 +251,7 @@ h2{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-image: url('logotwitter.png');
+    background-image: url('../images/logotwitter.png');
 }
 
 .contactenos{
