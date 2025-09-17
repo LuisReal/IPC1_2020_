@@ -227,7 +227,7 @@ def crearCanciones():
                     'reason': "Se agrega la cancion"})
 
 
-@app.route('/Canciones/<int:id>', methods=['GET']) #se obtiene solo 1 persona
+@app.route('/Canciones/<int:id>', methods=['GET']) 
 def getCanciones(id): 
     
     global Canciones
@@ -246,7 +246,7 @@ def getCanciones(id):
     respuesta = jsonify(Dato)    
     return(respuesta)
 
-@app.route('/Canciones/<int:id>', methods=['PUT']) #se modifica 1 usuario
+@app.route('/Canciones/<int:id>', methods=['PUT']) 
 def modifyCancion(id): 
     global Canciones
     for i in range(len(Canciones)):
