@@ -1,0 +1,118 @@
+<html>
+    <head>
+        
+        <link href="PlayList.css" rel="stylesheet" >
+        
+    </head>
+
+    <body onload="mostrarCliente(), mostrarPlayList()">
+
+        <div class="banner-izquierdo">
+
+            <label class="foto-cliente"></label>
+            <h1 id="cliente" class="cliente"></h1>
+            <button onclick="Principal()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button onclick="miPerfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
+            <button type="button"  id="playlist" onclick="miPlayList()" class="btn-playlist">Mi PlayList</button>
+            <button type="button"  id="solicitar" onclick="solicitar()" class="btn-solicitar">Solicitar Cancion</button>
+            <button onclick="back()" type="button" class="boton-back">Back</button>
+
+        </div>
+
+        <div id="info-container">
+
+            <button href="javascript:cerrar()" onclick="cerrarSesion()" type="button" class="boton-cerrarSesion">Cerrar Sesion</button>
+            <p class="p-tablacanciones">Mi PlayList</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <script>
+
+            function Principal(){
+                location.href="Cliente.html"
+            }
+
+            function back(){
+                location.href="Cliente.html"
+            }
+
+            function miPerfil(){
+                location.href="ModificarPerfilCliente.html"
+            }
+
+            function cerrarSesion(){
+                
+                location.href="inicio.html"
+            }
+
+            function solicitar(){
+                location.href="Solicitar.html"
+            }
+
+            function miPlayList(){
+                location.href="PlayList.html"
+            }
+
+            function mostrarPlayList(){
+                
+                fetch('http://127.0.0.1:8000/getPlayList',
+
+                ).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res)
+                    
+                    for(i=0; i<(res.length); i++){
+                        console.log(res [i])
+                        var body = document.querySelector('#tbody')
+                        body.innerHTML += 
+                        `
+                        
+                            <td>${res[i].nombre}</td>
+                            <td><iframe src="${res[i].spotify}" width="300" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                            
+                            
+                        
+                        `     
+                    }
+                })
+            }
+            function mostrarCliente(){
+                fetch('http://127.0.0.1:8000/Usuarios',
+
+                ).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res)
+                    
+                    for(i=0; i<(res.length); i++){
+                        console.log(res [i])
+                        var valor = sessionStorage.usuario // .usuario proviene de inicio.html (valor=username)
+                                                        
+                            if(res[i].Usuario==valor){
+                            var h1 = document.querySelector('#cliente')
+                            h1.innerHTML += 
+                            `
+
+                            <h1>${valor}</h1>
+                            ` 
+                            }    
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

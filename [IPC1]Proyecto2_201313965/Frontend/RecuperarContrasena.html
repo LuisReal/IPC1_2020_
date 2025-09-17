@@ -1,0 +1,55 @@
+<html>
+    <head>
+
+        <link href="estilosRecuperarContrasena.css" rel="stylesheet" >
+
+    </head>
+    
+    <body>
+        <div class="main-container">
+            
+            
+            <h1>Recuperar Contrasena</h1>
+            
+            <div class="info">
+
+                <input class="usuario" placeholder="Usuario" id="usuario">
+                <button onclick="recuperar()" type="button" class="boton-recuperar"  id="recuperar">Recuperar Contrasena</button>
+
+            </div>
+
+            <a href="inicio.html">Regresar a Inicio de Sesion</a>
+
+        </div>
+
+        <script>
+            function recuperar(){
+                var usuario = document.querySelector('#usuario').value
+                
+                var objeto = {
+                    'usuario': usuario
+                }
+
+                fetch('http://127.0.0.1:8000/Usuario',{
+
+                method : 'POST',
+                body: JSON.stringify(objeto),
+                headers:{
+                 'Content-Type': 'application/json'   
+                }
+                }).then(response => response.json()
+                     ).catch(err => {
+                      console.log("no se pudo convertir a json")
+                      alert("El usuario no existe")
+                    }).then(res => {
+                      console.log(res)
+                      alert("La contrasena es "+res.contrasena)
+
+                })
+                
+            }
+
+        </script>
+    </body>
+
+</html>

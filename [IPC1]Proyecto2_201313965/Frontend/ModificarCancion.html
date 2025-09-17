@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <link href="ModificarCancion.css" rel="stylesheet" >
+    </head>
+
+    <body onload="cargarInfo()">
+
+        <div class="banner-izquierdo">
+
+            <label class="foto-usuario"></label>
+            
+            <button onclick="usuarios()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button type="button" class="btn-mi-perfil">Mi Perfil</button>
+           
+        
+        </div>
+        
+        <div class="info-container">
+        
+            <p>Datos De La  Cancion Seleccionada</p>
+        
+            <label class="label-nombre">Nombre</label>
+            <input class="input-nombre" id="Nombre">
+        
+            <label class="label-artista">Artista</label>
+            <input class="input-artista" id="Artista">
+        
+            <label class="label-album">Album</label>
+            <input class="input-album" id="Album">
+        
+            <label class="label-fecha">Fecha</label>
+            <input class="input-fecha" id="Fecha">
+
+            <label class="label-imagen">Imagen</label>
+            <input class="input-imagen" id="Imagen">
+
+            <label class="label-spotify">Spotify</label>
+            <input class="input-spotify" id="Spotify">
+
+            <label class="label-youtube">Youtube</label>
+            <input class="input-youtube" id="Youtube">
+        
+            <button type="button" onclick="Modificar()" class="boton-modificar">Modificar</button>
+            <button type="button" onclick="Eliminar()"class="boton-eliminar">Eliminar</button>
+            <button type="button" onclick="back()" class="boton-regresar">Regresar</button>
+            
+        
+        </div>
+        
+        <script>
+            function back(){
+                location.href="administrador.html"
+            }
+        </script>
+        
+            <script>
+        
+                function cargarInfo(){
+                    
+                    var id = sessionStorage.buscar // proviene de administrador.html // mostrarPerfil
+                    
+                    fetch(`http://127.0.0.1:8000/Canciones/${id}`, // proviene de administrador.html
+        
+                    ).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res)
+                        
+                            
+                            document.querySelector('#Nombre').value = res.nombre
+                            document.querySelector('#Artista').value = res.artista
+                            document.querySelector('#Album').value = res.album
+                            document.querySelector('#Fecha').value = res.fecha
+                            document.querySelector('#Imagen').value = res.imagen
+                            document.querySelector('#Spotify').value = res.spotify
+                            document.querySelector('#Youtube').value = res.youtube
+                        
+                    })
+                }
+        
+                function Modificar(){
+                    var id = sessionStorage.buscar
+                    var nombre = document.querySelector('#Nombre').value
+                    var artista = document.querySelector('#Artista').value
+                    var album = document.querySelector('#Album').value 
+                    var fecha = document.querySelector('#Fecha').value
+                    var imagen = document.querySelector('#Imagen').value
+                    var spotify = document.querySelector('#Spotify').value
+                    var youtube = document.querySelector('#Youtube').value 
+                    var objeto={
+                        'nombre' : nombre,
+                        'artista' : artista,
+                        'album' : album,
+                        'fecha' : fecha,
+                        'imagen' : imagen,
+                        'spotify' : spotify,
+                        'youtube' : youtube
+                    }
+                    
+                    fetch(`http://127.0.0.1:8000/Canciones/${id}`,{
+        
+                        
+                        method : 'PUT',
+                        body: JSON.stringify(objeto),
+                        headers:{
+                        'Content-Type': 'application/json'   
+                        }
+                    }).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res.message)
+        
+                        alert("La cancion fue modificada exitosamente")
+                        location.href="administrador.html"
+                        
+                    })
+                }
+        
+                function Eliminar(){
+                    
+                    var nombre = document.querySelector('#Nombre').value
+                    
+        
+                    var objeto={
+                        'nombre' : nombre
+                        
+                    }
+                    
+                    fetch(`http://127.0.0.1:8000/Canciones/${nombre}`,{
+        
+                        
+                        method : 'DELETE',
+                        body: JSON.stringify(objeto),
+                        headers:{
+                        'Content-Type': 'application/json'   
+                        }
+                    }).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res.message)
+        
+                        alert("La Cancion fue eliminada exitosamente")
+                        location.href="administrador.html"
+                        //document.location.reload();
+                    })
+                }
+        
+        
+            </script>
+    </body>
+</html>
+

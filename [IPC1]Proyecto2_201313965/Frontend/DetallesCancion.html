@@ -1,0 +1,192 @@
+<html>
+    <head>
+        
+        <link href="DetallesCancion.css" rel="stylesheet" >
+        
+    </head>
+
+    <body onload="mostrarCliente(), verImagen(), verVideo(), verComentarios()">
+
+        <div class="banner-izquierdo">
+
+            <label class="foto-cliente"></label>
+            <h1 id="cliente" class="cliente"></h1>
+            <button onclick="" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button type="button" class="btn-mi-perfil">Mi Perfil</button>
+            <button type="button"  id="playlist" onclick="" class="btn-playlist">Mi PlayList</button>
+            <button onclick="back()" type="button" class="boton-back">Back</button>
+
+        </div>
+
+        <div id="info-container">
+
+            <p class="p-tablacanciones">Informacion de la Cancion</p>
+
+            <div id="div-imagen" class="div-imagen">
+
+                <label id="etiqueta" for="" class="label-comentario">Comentario:</label>
+                <textarea id="text" class="text-area"></textarea>
+                <button type="button" onclick="crearComentario()" class="btn-comentario">Guardar</button>
+
+            </div>
+            
+            <div id="div-video" class="div-video">
+
+            </div>
+
+            <div id="div-comentarios" class="div-comentarios">
+
+            </div>
+
+        </div>
+
+        <script>
+
+            function back(){
+                location.href="Cliente.html"
+            }
+
+            function verImagen(){
+
+                var detalles = sessionStorage.detalles
+
+                fetch('http://127.0.0.1:8000/Canciones',
+
+                ).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res)
+
+                    for(i=0; i<(res.length); i++){   
+                        if(res[i].id == detalles){
+                            console.log(res [i])
+                            var imagen = document.querySelector('#div-imagen')
+                            imagen.innerHTML += 
+                            `
+                            <img style="margin-left: 45px" src="${res[i].imagen}" width="250" height="240">
+                            <label style="position:absolute; left:10px; top:250px">${res[i].nombre}</label>
+                            `     
+                        }
+                    }
+                })
+            }
+
+            function verVideo(){
+
+                    var detalles = sessionStorage.detalles // contiene el id
+
+                    fetch('http://127.0.0.1:8000/Canciones',
+
+                    ).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res)
+
+                        for(i=0; i<(res.length); i++){   
+                            if(res[i].id == detalles){
+                                console.log(res [i])
+                                var video = document.querySelector('#div-video')
+                                video.innerHTML += 
+                                `
+                                <iframe src="${res[i].youtube}" width="550" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                <label style="position:absolute; left:10px; top:310px">Artista: ${res[i].artista}</label>
+                                <label style="position:absolute; left:10px; top:330px">Album: ${res[i].album}</label>
+                                <label style="position:absolute; left:10px; top:350px">Fecha de Lanzamiento: ${res[i].fecha}</label>
+                                
+                                `     
+                            }
+                        }
+                    })
+            }
+
+            function verComentarios(){
+
+                var detalles = sessionStorage.detalles // contiene el id
+
+                fetch('http://127.0.0.1:8000/Comentarios',
+
+                ).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res)
+                    
+                    for(i=0; i<(res.length); i++){   
+                        
+                            console.log(res [i])
+                            var video = document.querySelector('#div-comentarios')
+                            video.innerHTML += 
+                            `
+                            
+                            <label style="position:absolute; top: ${i*20}px; left: 20px; height:30px; 
+                            width:100px" class="">${res[i].usuario}:</label>
+                            <label style="position:absolute; top: ${i*20}px; left: 120px; height:30px; 
+                            width: 300px" class="">${res[i].comentario}</label>
+                            
+                            `     
+                        
+                    }
+                })
+            }
+                function mostrarCliente(){
+                    fetch('http://127.0.0.1:8000/Usuarios',
+
+                    ).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res)
+                        for(i=0; i<(res.length); i++){
+                            console.log(res [i])
+                            var valor = sessionStorage.usuario // proviene de inicio.html (valor=username)
+                            if(res[i].Usuario==valor){
+                            var h1 = document.querySelector('#cliente')
+                            h1.innerHTML += 
+                            `
+
+                            <h1 >${valor}</h1>
+                            ` 
+                            }    
+                        }
+                    })
+                }
+
+            function crearComentario(){
+                    // se recive el id de la cancion seleccionada
+                    var id = sessionStorage.detalles // proviene de Cliente.html (verDetalles)
+                    var usuario = sessionStorage.mostrar // proviene de inicio.html
+                
+                    var comentario = document.querySelector('#text').value
+                    
+                    var objeto={
+                        'comentario' : comentario,
+                        'usuario' : usuario
+                    }
+                    
+                    fetch(`http://127.0.0.1:8000/Comentarios/${id}`,{
+        
+                        
+                        method : 'POST',
+                        body: JSON.stringify(objeto),
+                        headers:{
+                        'Content-Type': 'application/json'   
+                        }
+                    }).then(response => response.json()
+                    ).catch(err =>{
+                        console.log(err)
+                    }).then(res =>{
+                        console.log(res.message)
+        
+                        alert(res.reason)
+                        document.location.reload();
+                        
+                    })
+
+            }
+
+            
+        </script>
+    </body>
+</html>

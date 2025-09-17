@@ -1,0 +1,157 @@
+<html>
+    <head>
+        
+        <link href="Cliente.css" rel="stylesheet" >
+        
+    </head>
+
+    <body onload="mostrarCliente(), mostrarCanciones()">
+
+        <div class="banner-izquierdo">
+
+            <label class="foto-cliente"></label>
+            <h1 id="cliente" class="cliente"></h1>
+            <button onclick="" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button onclick="miPerfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
+            <button type="button"  id="playlist" onclick="miPlayList()" class="btn-playlist">Mi PlayList</button>
+            <button type="button"  id="solicitar" onclick="solicitar()" class="btn-solicitar">Solicitar Cancion</button>
+            <button onclick="back()" type="button" class="boton-back">Back</button>
+
+        </div>
+
+        <div id="info-container">
+
+            <button href="javascript:cerrar()" onclick="cerrarSesion()" type="button" class="boton-cerrarSesion">Cerrar Sesion</button>
+            <p class="p-tablacanciones">Canciones Disponibles</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <script>
+
+            function back(){
+                location.href="inicio.html"
+            }
+
+            function miPerfil(){
+                location.href="ModificarPerfilCliente.html"
+            }
+
+            function cerrarSesion(){
+                
+                location.href="inicio.html"
+            }
+
+            function solicitar(){
+                location.href="Solicitar.html"
+            }
+
+            function miPlayList(){
+                location.href="PlayList.html"
+            }
+
+            function mostrarCanciones(){
+                fetch('http://127.0.0.1:8000/Canciones',
+
+                ).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res)
+                    
+                    for(i=0; i<(res.length); i++){
+                        console.log(res [i])
+                        var body = document.querySelector('#tbody')
+                        body.innerHTML += 
+                        `
+                        
+                            <!--<td>${res[i].id}</td>-->
+                            <td><iframe src="${res[i].spotify}" width="300" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                            <button onclick="verPortada(this)"  type="button" value="${res[i].id}" class="ver-portada">Ver Portada</button><button type="button" value="${res[i].id}"  onclick="verDetalles(this)" class="ver-detalles">Ver Detalles</button>
+                            <button onclick="addPlayList(this)"  type="button" value="${res[i].id}" class="add-to-playlist">Add to PlayList</button></td>
+                            
+                        
+                        `     
+                    }
+                })
+            }
+
+            function addPlayList(boton){
+                 var id = boton.value // se guarda el id de la cancion seleccionada
+                 sessionStorage.setItem("id", id) // se envia a DetallesCancion.html (guarda el id al presionar boton)
+                 
+                    var objeto={
+                        'id' : id
+                        
+                    }
+                    
+                    fetch(`http://127.0.0.1:8000/CrearPlayList/${id}`,{
+        
+                        
+                        method : 'POST',
+                        body: JSON.stringify(objeto),
+                        headers:{
+                        'Content-Type': 'application/json'   
+                        }
+                    }).then(response => response.json()
+                    ).catch(err =>{
+                        console.error(err)
+                    }).then(res =>{
+                        console.log(res.message)
+        
+                        alert(res.reason)
+                        document.location.reload();
+                        
+                    })
+                 
+                 
+            }
+
+            function verDetalles(boton){
+                 var detalles = boton.value // se guarda el id de la cancion seleccionada
+                 sessionStorage.setItem("detalles", detalles) // se envia a DetallesCancion.html (guarda el id al presionar boton)
+                location.href="DetallesCancion.html"
+            }
+            
+            
+
+        function mostrarCliente(){
+            fetch('http://127.0.0.1:8000/Usuarios',
+
+            ).then(response => response.json()
+            ).catch(err =>{
+                console.log("no se pudo consumir la api")
+            }).then(res =>{
+                console.log(res)
+                
+                for(i=0; i<(res.length); i++){
+                    console.log(res [i])
+                    var valor = sessionStorage.usuario // .usuario proviene de inicio.html (valor=username)
+                                                       
+                        if(res[i].Usuario==valor){
+                        var h1 = document.querySelector('#cliente')
+                        h1.innerHTML += 
+                        `
+
+                        <h1>${valor}</h1>
+                        ` 
+                        }    
+                }
+            })
+          }
+        </script>
+
+        
+
+    </body>
+</html>

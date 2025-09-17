@@ -1,0 +1,116 @@
+<html>
+    <head>
+        
+        <link href="AdminComentarios.css" rel="stylesheet" >
+        
+    </head>
+
+    <body onload="mostrarComentarios(), mostrarPerfil()">
+
+        <div class="banner-izquierdo">
+
+            <label class="foto-cliente"></label>
+            <h1 id="admin" class="cliente"></h1>
+            <button onclick="back()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button onclick="irPerfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
+            <button type="button" onclick="back()" class="boton-back">Back</button>
+
+        </div>
+
+        <div id="info-container">
+
+            <p class="p-tablacanciones">Informacion de los Comentarios</p>
+
+            <table>
+                <thead >
+
+                    <tr id="thead" class="thead">
+                        <!--<th colspan="2" style="background-color: white; height: 100px; color: black;">l</th>
+                        -->
+                    </tr>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Comentario</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <script>
+            function mostrarComentarios(){
+                
+                var id= sessionStorage.id //  proviene de administrador.html
+                fetch(`http://127.0.0.1:8000/Comentarios/${id}`,
+
+                ).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res)
+
+                    var head = document.querySelector('#thead')
+                        head.innerHTML += 
+                        `
+                        <tr >
+                            <th><img src="${res[0].imagen}" height="100" width="100"></th>
+                            
+                        </tr>
+                        `
+
+                    for(i=0; i<(res.length); i++){
+                        console.log(res [i])
+
+                        
+                        
+                        var body = document.querySelector('#tbody')
+                        body.innerHTML += 
+                        `
+                        <tr >
+                            
+                            <td>${res[i].usuario}</td>
+                            <td>${res[i].comentario}</td>
+                            
+                        </tr>
+                        `     
+                    }
+                })
+            }
+
+            function mostrarPerfil(){
+            
+                fetch('http://127.0.0.1:8000/Admin',
+
+                ).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res)
+                    
+                        
+                        var valor = res.admin // Proviene de ModificarPerfilAdministrador.html (Modificar()) 
+                        
+                        var h1 = document.querySelector('#admin')
+                            h1.innerHTML += 
+                            `
+                            <h1>${valor}</h1>
+                            
+                            ` 
+                })
+          
+          }
+
+            function back(){
+                location.href="administrador.html"
+            }
+
+            function irPerfil(){
+                location.href="ModificarPerfilAdministrador.html"
+            }
+        </script>
+
+    </body>
+</html>

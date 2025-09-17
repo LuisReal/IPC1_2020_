@@ -1,0 +1,178 @@
+.perfil-container{
+
+    
+    position: absolute;
+    position: fixed;
+    margin-top: -10px;
+    margin-left: -10px;
+    width: 300px;
+    height: 621px;
+    background-color: rgb(152, 251, 152);
+    
+}
+
+.canciones-container{
+
+    position: absolute;
+    
+    top: -5px;
+    left: 280px;
+    height: 622px;
+    width: 1080px;
+
+}
+
+.foto-usuario{
+
+    position: absolute;
+    border-color: white;
+    border-radius: 50%;
+    border-style: groove;
+    top: 30px;
+    left: 80px;
+    width: 150px;
+    height: 150px;
+    background-image: url('usuario.png');
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-position: -25px center;
+}
+
+h2{
+    position: absolute;
+    left: 50px;
+    font-size: 30px;
+    color: rgb(25, 25, 112);
+    font-weight: bold;
+    border-style: groove;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-color:rgb(154, 205, 50);;
+    border-width: 2px;
+}
+
+
+.boton-cargar{
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    background-color: rgb(50, 205, 50);
+    outline: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 200px;
+    color: white;
+    font-weight: bolder;
+    border: 0px;
+}
+
+.input-file{
+    position: absolute;
+    top: 105px;
+    left: 290px;
+    outline: none;
+    height: 30px;
+    width: 200px;
+}
+
+.usuario{
+
+    position: absolute;
+    text-align: center;
+    margin-top: 180px;
+    margin-left: 0px;
+    font-size: 15px;
+    color: rgb(25, 25, 112);
+    width: 300px;
+    border-color:  rgb(152, 251, 152);
+   
+}
+
+.btn-pagina-principal{
+
+    position: absolute;
+    margin-top: 300px;
+    margin-left: 50px;
+    width: 200px;
+    border-radius: 10px;
+    height: 40px;
+    border-width: 1px;
+    background-color: white;
+    border-color:rgb(0, 255,255);
+    border-style: groove;
+    font-weight: bold;
+    background-image: url('pagina-principal.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+
+}
+
+.btn-mi-perfil{
+
+    position: absolute;
+    margin-top: 350px;
+    margin-left: 50px;
+    width: 200px;
+    border-width: 1px;
+    background-color: white;
+    border-color: rgb(255, 255,0);
+    border-style: groove;
+    border-radius: 10px;
+    height: 40px;
+    font-weight: bold;
+    background-image: url('user.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+}
+
+.btn-usuarios{
+
+    position: absolute;
+    margin-top: 400px;
+    margin-left: 50px;
+    width: 200px;
+    border-width: 1px;
+    background-color: white;
+    border-color: rgb(50, 205, 50);
+    border-style: groove;
+    border-radius: 10px;
+    height: 40px;
+    font-weight: bold;
+    background-image: url('usuarios.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+}
+
+.back{
+
+    position: absolute;
+    margin-top: 500px;
+    margin-left: 80px;
+    color: rgb(0, 128,128);
+
+}
+
+table{
+    text-align: left;
+    position: absolute;
+    border-collapse: collapse;
+    border-bottom: 0px;
+    top: 150px;
+    left: 50px;
+    width: 900px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+th,td{
+    border-bottom: 1px solid rgb(25, 25, 112);
+    width: 100px;
+    padding: 10px;
+}

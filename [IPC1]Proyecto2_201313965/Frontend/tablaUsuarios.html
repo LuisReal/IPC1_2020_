@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <link href="tablaUsuarios.css" rel="stylesheet" >
+    </head>
+    <body onload="mostrarDatos()">
+
+        <div class="banner-izquierdo">
+
+            <label class="foto-usuario"></label>
+            <h1 id="admin" class="administrador"></h1>
+            <button onclick="Back()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button onclick="perfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
+            <button onclick="Back()" type="button" class="boton-back">Back</button>
+
+        </div>
+
+        <div class="info-container">
+
+            <p class="p-tablausuarios">Usuarios Registrados</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Usuario</th>
+                        <th>Modificar</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+
+            function mostrarDatos(){
+            
+                fetch('http://127.0.0.1:8000/Admin',
+
+                ).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res)
+                    
+                        
+                        var valor = res.admin // Proviene de ModificarPerfilAdministrador.html (Modificar()) 
+                        
+                        var h1 = document.querySelector('#admin')
+                            h1.innerHTML += 
+                            `
+                            <h1>${valor}</h1>
+                            
+                            ` 
+                })
+          
+            }
+
+            function Back(){
+                location.href="administrador.html"
+            }
+            function perfil(){
+                location.href="ModificarPerfilAdministrador.html"
+            }
+             fetch('http://127.0.0.1:8000/Usuarios',
+
+                ).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res)
+                    for(i=1; i<(res.length); i++){
+                        console.log(res [i])
+                        var body = document.querySelector('#tbody')
+                        body.innerHTML += 
+                        `
+                        <tr >
+                            <th>${res[i].Nombre}</th>
+                            <th>${res[i].Apellido}</th>
+                            <th>${res[i].Usuario}</th>
+                            <th><button type="button" value="${res[i].Usuario}"  onclick="modificarUsuario(this)" class="boton-modificar">Modificar</button></th>
+                        </tr>
+                        `     
+                    }
+                })
+
+            function modificarUsuario(boton){
+               
+                var usuario = boton.value
+                sessionStorage.setItem("buscar_usuario", usuario) // se envia a ModificarUsuario.html
+
+                location.href="ModificarUsuario.html"
+            }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,117 @@
+<HTML>
+    <head>
+    <link href="estilosInicio.css" rel="stylesheet" >
+    
+    <!------ Include the above in your HEAD tag ---------->
+    </head>
+    
+    <body>
+
+         <audio style="margin-top: -10px; outline: none" autoplay loop controls src="tightrope.mp3"></audio>
+        
+        <div class="sidenav">
+             
+                <h2>Welcome to Modern Music</h2>
+                <img class="image-bird" src="bird.png" width="50" height="50">
+                <img class="image-logo" src="logo.jpg" width="100" height="100">  
+
+             
+        </div>
+          <div class="main">
+             
+                    <form>
+
+                     <div class="banner">
+
+                        
+                     </div>
+
+                     <!---- <img class="image" src="icono.png" width="90" height="90"> --> 
+                      <div class="form-group">
+                         
+                         <input type="text" class="form-user" placeholder="User Name" id="username">
+                      </div>
+                      <div class="form-group">
+                         
+                         <input type="password" class="form-password" placeholder="Password" id="password">
+                      </div>
+
+                      <div class="botones">
+                     
+                        <button onclick="login()" type="button" class="btnL">Login</button>
+                        <button onclick = "location.href='register.html'" type="button" class="btnR">Register</button>
+                        <a class="forgot" href="RecuperarContrasena.html" >Forgot Password?</a>
+                      
+                     </div>
+
+                    </form>
+                
+             
+          </div>
+
+          <p class="contactenos">contactenos</p>
+          <button type="button" onclick="location.href='https://www.facebook.com/LuIzReall/'" class="fb"></button>
+          <button type="button" onclick="location.href='https://www.instagram.com/'" class="inst"></button>
+          <button type="button" onclick="location.href='https://twitter.com/softzone'" class="twitter"></button>
+
+          <p class="acerca">acerca de</p>
+
+          <div class="acerca-de">
+            <a href="inicio.html">Politicas</a>
+            <a href="inicio.html">Privacidad</a>
+            <a href="inicio.html">Cookies</a>
+          </div>
+
+          <script>
+
+             function login(){
+               
+              var username = document.querySelector('#username').value 
+              var password = document.querySelector('#password').value 
+              var objeto ={
+                 'username' : username,
+                 'password' : password
+              }
+              
+              fetch('http://127.0.0.1:8000/Login',{
+
+                 method : 'POST',
+                 body: JSON.stringify(objeto),
+                 headers:{
+                 'Content-Type': 'application/json'   
+                 }
+               }).then(response => response.json()
+                  ).catch(err => {
+                        console.error("Error" , err)
+                        alert("Ocurrio un error ver la consola")
+                  }).then(res => {
+                        
+                        console.log(res.usuario)
+                        var new_admin = sessionStorage.admin // proviene de ModificarPerfilAdministrador (Modificar())
+                        
+
+                     
+                        if(res.usuario == "admin"){
+                           
+                           alert("Accediste como Administrador")
+                           alert(res.message+" "+res.usuario) // Bienvenido (el usuario)
+                           location.href="administrador.html"
+
+                        }else if(res.usuario == new_admin){
+                           
+                           alert(`hola ${new_admin}`)
+                           location.href="administrador.html"
+
+                        }else if(res.usuario == username && res.contrasena == password){
+                           
+                           sessionStorage.setItem('usuario', username)
+                           alert("Accediste como cliente")
+                           location.href="Cliente.html"
+                        }
+                  })
+            }
+          </script>
+    
+      </body>
+
+</HTML>

@@ -1,0 +1,135 @@
+<html>
+    <head>
+        
+        <link href="Solicitar.css" rel="stylesheet" >
+        
+    </head>
+
+    <body onload="mostrarCliente(), mostrarCanciones()">
+
+        <div class="banner-izquierdo">
+
+            <label class="foto-cliente"></label>
+            <h1 id="cliente" class="cliente"></h1>
+            <button onclick="backPrincipal()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button onclick="miPerfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
+            <button type="button"  id="playlist" onclick="" class="btn-playlist">Mi PlayList</button>
+            
+            <button onclick="back()" type="button" class="boton-back">Back</button>
+
+        </div>
+
+        <div id="info-container">
+
+            <p class="p-solicitar">Solicitar Cancion</p>
+
+            
+        
+            <label class="label-nombre">Nombre</label>
+            <input class="input-nombre" id="nombre">
+        
+            <label class="label-artista">Artista</label>
+            <input class="input-artista" id="artista">
+        
+            <label class="label-album">Album</label>
+            <input class="input-album" id="album">
+        
+            <label class="label-fecha">Fecha</label>
+            <input class="input-fecha" id="fecha">
+
+            <label class="label-imagen">Imagen</label>
+            <input class="input-imagen" id="imagen">
+
+            <label class="label-spotify">Spotify</label>
+            <input class="input-spotify" id="spotify">
+
+            <label class="label-youtube">Youtube</label>
+            <input class="input-youtube" id="youtube">
+
+            
+            <button type="button" onclick="Solicitar()" class="boton-solicitar">Solicitar</button>
+            
+            
+
+        </div>
+
+        <script>
+            function back(){
+                location.href="Cliente.html"
+            }
+
+            function backPrincipal(){
+                location.href="Cliente.html"
+            }
+
+            function miPerfil(){
+                location.href="ModificarPerfilCliente.html"
+            }
+
+            function mostrarCliente(){
+                fetch('http://127.0.0.1:8000/Usuarios',
+
+                ).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res)
+                    for(i=0; i<(res.length); i++){
+                        console.log(res [i])
+                        var valor = sessionStorage.mostrar // proviene de inicio.html (valor=username)
+                        if(res[i].Usuario==valor){
+                        var h1 = document.querySelector('#cliente')
+                        h1.innerHTML += 
+                        `
+
+                        <h1>${valor}</h1>
+                        ` 
+                        }    
+                    }
+                })
+            }
+
+            function Solicitar(){
+               
+                    
+                    var nombre = document.querySelector('#nombre').value
+                    var artista = document.querySelector('#artista').value
+                    var album = document.querySelector('#album').value 
+                    var fecha = document.querySelector('#fecha').value
+                    var imagen = document.querySelector('#imagen').value
+                    var spotify = document.querySelector('#spotify').value
+                    var youtube = document.querySelector('#youtube').value 
+                    var objeto={
+                        'nombre' : nombre,
+                        'artista' : artista,
+                        'album' : album,
+                        'fecha' : fecha,
+                        'imagen' : imagen,
+                        'spotify' : spotify,
+                        'youtube' : youtube
+                    }
+                    
+                    fetch('http://127.0.0.1:8000/Solicitud',{
+        
+                        
+                        method : 'POST',
+                        body: JSON.stringify(objeto),
+                        headers:{
+                        'Content-Type': 'application/json'   
+                        }
+                    }).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res.message)
+        
+                        alert(res.reason)
+                        document.location.reload();
+                        
+                    })
+                
+            }
+
+        </script>
+    </body>
+</html>

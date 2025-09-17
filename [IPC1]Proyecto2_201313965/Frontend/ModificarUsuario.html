@@ -1,0 +1,171 @@
+<html>
+    <head>
+        <link href="ModificarUsuario.css" rel="stylesheet" >
+    </head>
+
+    <body onload="cargarInfo(), mostrarDatos()">
+
+        
+        <div class="banner-izquierdo">
+
+            
+            <label class="foto-usuario"></label>
+            <h1 id="admin" class="administrador"></h1>
+            <button onclick="Back()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button onclick="perfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
+            <button onclick="back()" type="button" class="boton-back">Back</button>
+           
+
+        </div>
+
+        <div class="info-container">
+
+            <p>Datos Del Usuario Seleccionado</p>
+
+            <label class="label-nombre">Nombre</label>
+            <input class="input-nombre" id="Nombre">
+
+            <label class="label-apellido">Apellido</label>
+            <input class="input-apellido" id="Apellido">
+
+            <label class="label-usuario">Usuario</label>
+            <input class="input-usuario" id="Usuario">
+
+            <label class="label-contrasena">Contrasena</label>
+            <input class="input-contrasena" id="Contrasena">
+
+            <button type="button" onclick="Modificar()" class="boton-modificar">Modificar</button>
+            <button type="button" onclick="Eliminar()"class="boton-eliminar">Eliminar</button>
+            <button type="button" onclick="back()" class="boton-regresar">Regresar</button>
+            
+
+        </div>
+
+        <script>
+            function Back(){
+                location.href="administrador.html"
+            }
+
+            function back(){
+                location.href="tablaUsuarios.html"
+            }
+
+            function perfil(){
+                location.href="ModificarPerfilAdministrador.html"
+            }
+        </script>
+
+            <script>
+
+                function mostrarDatos(){
+                            
+                    fetch('http://127.0.0.1:8000/Admin',
+
+                    ).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res)
+                                
+                        var valor = res.admin // Proviene de ModificarPerfilAdministrador.html (Modificar()) 
+                                    
+                        var h1 = document.querySelector('#admin')
+                        h1.innerHTML += 
+                        `
+                        <h1>${valor}</h1>
+                                        
+                        ` 
+                        })
+                    
+                }
+
+                function cargarInfo(){
+                    
+                    var cargar = sessionStorage.buscar_usuario // proviene de TablaUsuarios.html mostrarPerfil()
+
+                    fetch(`http://127.0.0.1:8000/Usuarios/${cargar}`, // proviene de administrador.html
+
+                    ).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res)
+                        
+                            
+                            document.querySelector('#Nombre').value = res.Nombre
+                            document.querySelector('#Apellido').value = res.Apellido
+                            document.querySelector('#Usuario').value = res.Usuario
+                            document.querySelector('#Contrasena').value = res.Contrasena
+
+                        
+                    })
+                }
+
+                function Modificar(){
+                    var cargar =sessionStorage.buscar_usuario // proviene de tablaUsuarios.html (modifcarUsuario())
+                    var nombre = document.querySelector('#Nombre').value
+                    var apellido = document.querySelector('#Apellido').value
+                    var usuario = document.querySelector('#Usuario').value 
+                    var contrasena = document.querySelector('#Contrasena').value
+                    var objeto={
+                        'nombre' : nombre,
+                        'apellido' : apellido,
+                        'usuario' : usuario,
+                        'contrasena' : contrasena
+                    }
+                    
+                    fetch(`http://127.0.0.1:8000/Usuarios/${cargar}`,{
+
+                        
+                        method : 'PUT',
+                        body: JSON.stringify(objeto),
+                        headers:{
+                        'Content-Type': 'application/json'   
+                        }
+                    }).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res.message)
+
+                        alert(res.message)
+                        location.href="TablaUsuarios.html"
+                        
+                    })
+                }
+
+                function Eliminar(){
+                    
+                    var nombre = document.querySelector('#Nombre').value
+                    
+
+                    var objeto={
+                        'nombre' : nombre,
+                        
+                    }
+                    
+                    fetch(`http://127.0.0.1:8000/Usuarios/${nombre}`,{
+
+                        
+                        method : 'DELETE',
+                        body: JSON.stringify(objeto),
+                        headers:{
+                        'Content-Type': 'application/json'   
+                        }
+                    }).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res.message)
+
+                        alert("El usuario fue eliminado exitosamente")
+                        location.href="TablaUsuarios.html"
+                        
+                    })
+                }
+
+
+            </script>
+
+    </body>
+</html>

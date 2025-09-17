@@ -1,0 +1,130 @@
+<html>
+    <head>
+        <link href="ModificarPerfilAdministrador.css" rel="stylesheet" >
+    </head>
+
+    <body onload="cargarInfo(), mostrarAdmin()">
+
+        <div class="banner-izquierdo">
+
+            <label class="foto-administrador"></label>
+            <h1 id="admin" class="administrador"></h1>
+            <button onclick="backPaginaPrincipal()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button type="button" class="btn-mi-perfil">Mi Perfil</button>
+            
+         </div>
+
+         <div class="info-container">
+        
+            <p>Datos Del Usuario</p>
+        
+            <label class="label-nombre">Nombre</label>
+            <input class="input-nombre" id="nombre">
+        
+            <label class="label-apellido">Apellido</label>
+            <input class="input-apellido" id="apellido">
+        
+            <label class="label-usuario">Usuario</label>
+            <input class="input-usuario" id="usuario">
+        
+            <label class="label-contrasena">Contrasena</label>
+            <input class="input-contrasena" id="contrasena">
+
+            
+        
+            <button type="button" onclick="Modificar()" class="boton-modificar">Modificar</button>
+            
+            <button type="button" onclick="back()" class="boton-regresar">Regresar</button>
+            
+        
+        </div>
+
+        <script>
+
+            function cargarInfo(){
+                 
+                    var carga = sessionStorage.usuario // proviene de administrador.html (Perfil())
+                    
+                    fetch(`http://127.0.0.1:8000/Usuarios/${carga}`, // proviene de administrador.html (Perfil())
+        
+                    ).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res)
+                        
+                            document.querySelector('#nombre').value = res.Nombre
+                            document.querySelector('#apellido').value = res.Apellido
+                            document.querySelector('#usuario').value = res.Usuario
+                            document.querySelector('#contrasena').value = res.Contrasena
+                            
+                    })
+            }
+
+            function mostrarAdmin(){
+
+                fetch('http://127.0.0.1:8000/Admin',
+
+            ).then(response => response.json()
+            ).catch(err =>{
+                console.log("no se pudo consumir la api")
+            }).then(res =>{
+                console.log(res)
+                
+                    
+                    var valor = res.admin // Proviene de ModificarPerfilAdministrador.html (Modificar()) 
+                    
+                    var h1 = document.querySelector('#admin')
+                        h1.innerHTML += 
+                        `
+                        <h1>${valor}</h1>
+                        
+                        ` 
+            })
+            }
+
+            function Modificar(){
+
+                    //var carga = sessionStorage.usuario
+                    var nombre = document.querySelector('#nombre').value
+                    var apellido = document.querySelector('#apellido').value
+                    var admin = document.querySelector('#usuario').value 
+                    var contrasena = document.querySelector('#contrasena').value
+                    
+                    var objeto={
+                        'nombre' : nombre,
+                        'apellido' : apellido,
+                        'usuario' : admin,
+                        'contrasena' : contrasena
+                        
+                    }
+                    
+                    fetch(`http://127.0.0.1:8000/Admin/${admin}`,{
+        
+                        
+                        method : 'PUT',
+                        body: JSON.stringify(objeto),
+                        headers:{
+                        'Content-Type': 'application/json'   
+                        }
+                    }).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res.message)
+                        sessionStorage.setItem("admin",usuario) // se envia a inicio.html
+                        alert(res.message)
+                        location.href="administrador.html"
+                        
+                    })
+            }
+            function backPaginaPrincipal(){
+                location.href="administrador.html"
+            }
+
+            function back(){
+                location.href="administrador.html"
+            }
+        </script>
+    </body>
+</html>

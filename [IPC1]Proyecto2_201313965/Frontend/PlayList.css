@@ -1,0 +1,194 @@
+body{
+    position: relative;
+}
+
+.banner-izquierdo{
+    position: absolute;
+    position: fixed;
+    margin-top: -10px;
+    margin-left: -10px;
+    width: 300px;
+    height: 625px;
+    background-color: rgb(152, 251, 152);
+}
+
+#info-container{
+
+    
+    position: absolute;
+    margin-top: -10px;
+    margin-left: 290px;
+    width: 1060px;
+    height: 620px;
+    
+}
+
+.p-tablacanciones{
+    position: absolute;
+    left: 50px;
+    font-size: 30px;
+    color: rgb(25, 25, 112);
+    font-weight: bold;
+    border-style: groove;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-color:rgb(154, 205, 50);;
+    border-width: 1px;
+    
+}
+
+.foto-cliente{
+
+    position: absolute;
+    border-color: white;
+    border-radius: 50%;
+    border-style: groove;
+    top: 30px;
+    left: 80px;
+    width: 150px;
+    height: 150px;
+    background-image: url('usuario.png');
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-position: -25px center;
+}
+
+.cliente{
+
+    position: absolute;
+    margin-top: 200px;
+    text-align: center;
+    left: 0px;
+    font-size: 15px;
+    color: rgb(red, green, blue);
+    background-color: red;
+    
+    width: 300px;
+    height: 65px;
+}
+
+.btn-pagina-principal{
+
+    position: absolute;
+    margin-top: 300px;
+    margin-left: 50px;
+    width: 200px;
+    border-width: 1px;
+    background-color: white;
+    border-color:rgb(0, 255,255);
+    border-style: groove;
+    border-radius: 10px;
+    height: 40px;
+    background-image: url('pagina-principal.jpg');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+
+}
+
+.btn-mi-perfil{
+
+    position: absolute;
+    margin-top: 350px;
+    margin-left: 50px;
+    width: 200px;
+    border-width: 1px;
+    background-color: white;
+    border-color:rgb(124, 253,0);
+    border-style: groove;
+    border-radius: 10px;
+    height: 40px;
+    background-image: url('user.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+}
+
+.btn-playlist{
+
+    position: absolute;
+    margin-top: 400px;
+    margin-left: 50px;
+    width: 200px;
+    border-width: 1px;
+    background-color: white;
+    border-color:rgb(255, 255,0);
+    border-style: groove;
+    border-radius: 10px;
+    height: 40px;
+    background-image: url('pagina.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+}
+
+.btn-solicitar{
+
+    position: absolute;
+    margin-top: 450px;
+    margin-left: 50px;
+    width: 200px;
+    border-width: 1px;
+    background-color: white;
+    border-color:rgb(255, 255,0);
+    border-style: groove;
+    border-radius: 10px;
+    height: 40px;
+    background-image: url('pagina.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+}
+
+
+.boton-back{
+    position: absolute;
+    top: 550;
+    left: 100px;
+    width: 100px;
+    height: 30px;
+    border-width: 1px;
+    background-color: white;
+    border-color: rgb(154, 205, 50);
+    color: black;
+    border-radius: 10px;
+    outline: none;
+}
+
+.boton-cerrarSesion{
+    position: absolute;
+    top: 20px;
+    left: 900px;
+    width: 100px;
+    height: 30px;
+    border-width: 1px;
+    background-color: white;
+    border-color: rgb(154, 205, 50);
+    color: black;
+    border-radius: 10px;
+    outline: none;
+}
+
+table{
+    text-align: left;
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    border-collapse: collapse;
+    border-bottom: 0px;
+    top: 100px;
+    left: 50px;
+    width: 900px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+th,td{
+    border-bottom: 1px solid rgb(25, 25, 112);
+    width: 100px;
+    padding: 10px;
+}

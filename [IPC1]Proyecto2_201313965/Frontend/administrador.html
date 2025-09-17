@@ -1,0 +1,186 @@
+<html>
+    <head>
+        
+        <link href="administrador.css" rel="stylesheet" >
+        
+    </head>
+
+    <body onload="mostrarCanciones(), mostrarPerfil()">
+
+        <div class="banner-izquierdo">
+
+            <label class="foto-administrador"></label>
+            <h1 id="admin" class="administrador"></h1>
+            
+            <button onclick="mostrarCanciones()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button type="button" onclick="Perfil()"class="btn-mi-perfil">Mi Perfil</button>
+            <button type="button"  id="lola" onclick="mostrarUsuarios()" class="btn-usuarios">Usuarios</button>
+            <button type="button" onclick="mostrarComentarios()" class="btn-comentarios">Comentarios</button>
+            <button onclick="cargarCanciones()" type="button" class="btn-cargar-canciones">Canciones</button>
+            <button onclick="mostrarSolicitudes()" type="button" class="btn-solicitudes">Solicitudes</button>
+            <button onclick="Back()" type="button" class="boton-back">Back</button>
+
+        </div>
+
+        <div id="info-container">
+
+            <p class="p-tablacanciones">Canciones Disponibles</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Imagen</th>
+                        <th>Modificar</th>
+                        
+                        <th>comentarios</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <script>
+
+          function mostrarPerfil(){
+            
+            fetch('http://127.0.0.1:8000/Admin',
+
+            ).then(response => response.json()
+            ).catch(err =>{
+                console.log("no se pudo consumir la api")
+            }).then(res =>{
+                console.log(res)
+                
+                    
+                    var valor = res.admin // Proviene de ModificarPerfilAdministrador.html (Modificar()) 
+                    
+                    var h1 = document.querySelector('#admin')
+                        h1.innerHTML += 
+                        `
+                        <h1>${valor}</h1>
+                        
+                        ` 
+            })
+          
+          }
+
+          function Perfil(){
+            fetch('http://127.0.0.1:8000/Admin', // proviene de administrador.html
+        
+            ).then(response => response.json()
+            ).catch(err =>{
+                console.log("no se pudo consumir la api")
+            }).then(res =>{
+                console.log(res)
+                
+                    var admi = res.admin // se envia a ModificarPerfilAdministrador
+                    sessionStorage.setItem("usuario", admi) // se envia a ModificarPerfilAdministrador
+                     
+                    location.href="ModificarPerfilAdministrador.html"
+                
+            })
+              
+          }
+          function mostrarCanciones(){
+            fetch('http://127.0.0.1:8000/Canciones',
+
+            ).then(response => response.json()
+            ).catch(err =>{
+                console.log("no se pudo consumir la api")
+            }).then(res =>{
+                console.log(res)
+                for(i=0; i<(res.length); i++){
+                    console.log(res [i])
+                    var body = document.querySelector('#tbody')
+                    body.innerHTML += 
+                    `
+                    <tr >
+                        <td>${res[i].id}</td>
+                        <td>${res[i].nombre}</td>
+                        <td><img src="${res[i].imagen}" height="200" width="200"></td>
+                        <td><button type="button" value="${res[i].id}"  onclick="modificarCancion(this)" class="boton-modificar">Modificar</button></td>
+
+                        <td><button type="button" value="${res[i].id}"  onclick="verComentarios(this)" class="boton-comentario">Ver Comentarios</button></td>
+                    </tr>
+                    `     
+                }
+            })
+          }
+            function cargarCanciones(){
+                location.href="Canciones.html"
+            }
+        </script>
+
+        <script>
+
+            function Back(){
+                location.href="inicio.html"
+            }
+
+            function mostrarSolicitudes(){
+                location.href="MostrarSolicitudes.html"
+            }
+
+            function verComentarios(boton){
+                var id = boton.value
+                sessionStorage.setItem("id", id) // se envia a AdminComentarios.html
+                location.href="AdminComentarios.html"
+            }
+
+            function mostrarComentarios(){
+                location.href="AdminComentarios.html"
+            }
+            
+            function mostrarUsuarios(){
+
+                location.href="tablaUsuarios.html"
+            }
+        </script>
+
+         <script>
+
+                function eliminarCancion(boton){
+                    
+                    var id = boton.value
+                    
+                    var objeto={
+                        'id' : id
+                    }
+                    
+                    fetch(`http://127.0.0.1:8000/Canciones/${id}`,{
+
+                        
+                        method : 'DELETE',
+                        body: JSON.stringify(objeto),
+                        headers:{
+                        'Content-Type': 'application/json'   
+                        }
+                    }).then(response => response.json()
+                    ).catch(err =>{
+                        console.log("no se pudo consumir la api")
+                    }).then(res =>{
+                        console.log(res.message)
+
+                        alert("La cancion fue eliminada exitosamente")
+                       
+                    })     
+                }
+                
+                function modificarCancion(boton){ // proviene de mostrarCanciones()
+                
+                        var id = boton.value // se recibe el id de la cancion (int)
+                        sessionStorage.setItem("buscar", id)
+
+                        location.href="ModificarCancion.html"
+           
+                } 
+
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,260 @@
+body{
+    position: relative;
+}
+
+.banner-izquierdo{
+    position: absolute;
+    margin-top: -10px;
+    margin-left: -10px;
+    width: 300px;
+    height: 621px;
+    background-color: rgb(152, 251, 152);
+    
+}
+
+.info-container{
+
+    position: absolute;
+    margin-top: -10px;
+    margin-left: 290px;
+    width: 1060px;
+    height: 620px;
+    
+}
+
+.btn-pagina-principal{
+
+    position: absolute;
+    margin-top: 250px;
+    margin-left: 50px;
+    width: 200px;
+    border-color:rgb(0, 255,255);
+    border-style: groove;
+    border-radius: 10px;
+    height: 40px;
+    background-image: url('pagina-principal.jpg');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+
+}
+
+.btn-mi-perfil{
+
+    position: absolute;
+    margin-top: 300px;
+    margin-left: 50px;
+    width: 200px;
+    border-color:rgb(0, 255,255);
+    border-style: groove;
+    border-radius: 10px;
+    height: 40px;
+    background-image: url('user.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 4px center;
+    outline: none;
+}
+
+.foto-usuario{
+
+    position: absolute;
+    border-color: white;
+    border-radius: 50%;
+    border-style: groove;
+    top: 30px;
+    left: 80px;
+    width: 150px;
+    height: 150px;
+    background-image: url('usuario.png');
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-position: -25px center;
+}
+
+.administrador{
+
+    position: absolute;
+    text-align: center;
+    margin-top: 180px;
+    margin-left: 0px;
+    font-size: 15px;
+    color: rgb(25, 25, 112);
+    width: 300px;
+    border-color:  rgb(152, 251, 152);
+    
+    
+}
+
+.label-nombre{
+
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    top: 100px;
+    left: 100px;
+    width: 150px;
+    
+
+}
+
+.input-nombre{
+
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    border-color: rgb(220, 220, 220);
+    border-style: groove;
+    width: 800px;
+    top: 120px;
+    left: 100px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.label-apellido{
+
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    top: 200px;
+    left: 100px;
+    width: 150px;
+    height: 30px;
+
+}
+
+.input-apellido{
+
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    width: 800px;
+    border-color: black;
+    border-style: groove;
+    top: 220px;
+    left: 100px;
+    border-color: rgb(220, 220, 220);
+    height: 30px;
+    border-radius: 5px;
+}
+
+.label-usuario{
+
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    top: 300px;
+    left: 100px;
+    width: 150px;
+    height: 30px;
+
+}
+
+.input-usuario{
+
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    border-color: rgb(220, 220, 220);
+    border-radius: 5px;
+    border-style: groove;
+    top: 320px;
+    left: 100px;
+    width: 800px;
+    height: 30px;
+}
+
+.label-contrasena{
+
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    top: 400px;
+    left: 100px;
+    width: 150px;
+    height: 30px;
+
+}
+
+.input-contrasena{
+
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    border-color: rgb(220, 220, 220);
+    border-radius: 5px;
+    border-style: groove;
+    top: 420px;
+    left: 100px;
+    width: 800px;
+    height: 30px;
+}
+
+p{
+    position: absolute;
+    left: 50px;
+    font-size: 30px;
+    color: rgb(25, 25, 112);
+    font-weight: bold;
+    border-style: groove;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-color:rgb(154, 205, 50);;
+    border-width: 2px;
+}
+
+.boton-modificar{
+
+    position: absolute;
+    background-color: rgb(34, 139, 34);
+    top: 500px;
+    left: 100px;
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+    outline: none;
+    border: 0px;
+    color: white;
+}
+
+.boton-eliminar{
+
+    position: absolute;
+    background-color: rgb(255, 0, 0);
+    top: 500px;
+    left: 230px;
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+    outline: none;
+    border: 0px;
+    color: white;
+}
+
+.boton-regresar{
+
+    position: absolute;
+    background-color: black;
+    color: white;
+    top: 500px;
+    left: 350px;
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+    outline: none;
+    border: 0px;
+}
+
+
+.boton-back{
+    position: absolute;
+    top: 400;
+    left: 100px;
+    width: 100px;
+    height: 30px;
+    border-width: 1px;
+    background-color: white;
+    border-color: rgb(154, 205, 50);
+    color: black;
+    border-radius: 10px;
+    outline: none;
+}

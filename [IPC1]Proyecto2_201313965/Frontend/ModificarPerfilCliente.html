@@ -1,0 +1,148 @@
+<html>
+    <head>
+        
+        <link href="ModificarPerfilCliente.css" rel="stylesheet" >
+        
+        
+    </head>
+
+    <body onload="mostrarCliente(), cargarInfo()">
+
+        <div class="banner-izquierdo">
+
+            <label class="foto-cliente"></label>
+            <h1 id="cliente" class="cliente"></h1>
+            <button onclick="back()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button onclick="miPerfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
+            <button type="button"  id="playlist" onclick="" class="btn-playlist">Mi PlayList</button>
+            <button type="button"  id="solicitar" onclick="solicitar()" class="btn-solicitar">Solicitar Cancion</button>
+            <button onclick="back()" type="button" class="boton-back">Back</button>
+
+        </div>
+
+        <div class="info-container">
+        
+            <p class="p-tablacanciones">Datos Del Usuario</p>
+        
+            <label class="label-nombre">Nombre</label>
+            <input class="input-nombre" id="nombre">
+        
+            <label class="label-apellido">Apellido</label>
+            <input class="input-apellido" id="apellido">
+        
+            <label class="label-usuario">Usuario</label>
+            <input class="input-usuario" id="usuario">
+        
+            <label class="label-contrasena">Contrasena</label>
+            <input class="input-contrasena" id="contrasena">
+
+            
+        
+            <button type="button" onclick="Modificar()" class="boton-modificar">Modificar</button>
+            
+            <button type="button" onclick="back()" class="boton-regresar">Regresar</button>
+            
+        
+        </div>
+
+        <script>
+
+            function back(){
+                location.href="Cliente.html"
+            }
+
+            function miPerfil(){
+                location.href="ModificarPerfilCliente.html"
+            }
+
+            function cerrarSesion(){
+                
+                location.href="inicio.html"
+            }
+
+            function solicitar(){
+                location.href="Solicitar.html"
+            }
+
+            function mostrarCliente(){
+                fetch('http://127.0.0.1:8000/Usuarios',
+
+                ).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res)
+                    for(i=0; i<(res.length); i++){
+                        console.log(res [i])
+                        var valor = sessionStorage.usuario // proviene de inicio.html (valor=username)
+                        if(res[i].Usuario==valor){
+                        var h1 = document.querySelector('#cliente')
+                        h1.innerHTML += 
+                        `
+
+                        <h1>${valor}</h1>
+                        ` 
+                        }    
+                    }
+                })
+            }
+
+            function cargarInfo(){
+                 
+                 var carga = sessionStorage.usuario //.usuario // proviene de inicio.html 
+                 
+                 fetch(`http://127.0.0.1:8000/Usuarios/${carga}`, // 
+     
+                 ).then(response => response.json()
+                 ).catch(err =>{
+                     console.log("no se pudo consumir la api")
+                 }).then(res =>{
+                     console.log(res)
+                     
+                         document.querySelector('#nombre').value = res.Nombre
+                         document.querySelector('#apellido').value = res.Apellido
+                         document.querySelector('#usuario').value = res.Usuario
+                         document.querySelector('#contrasena').value = res.Contrasena
+                         
+                 })
+            }
+
+            function Modificar(){
+
+                //var carga = sessionStorage.usuario
+                var nombre = document.querySelector('#nombre').value
+                var apellido = document.querySelector('#apellido').value
+                var usuario = document.querySelector('#usuario').value 
+                var contrasena = document.querySelector('#contrasena').value
+
+                var objeto={
+                    'nombre' : nombre,
+                    'apellido' : apellido,
+                    'usuario' : usuario,
+                    'contrasena' : contrasena
+                    
+                }
+
+                fetch(`http://127.0.0.1:8000/ModificarUsuario/${usuario}`,{
+
+                    
+                    method : 'PUT',
+                    body: JSON.stringify(objeto),
+                    headers:{
+                    'Content-Type': 'application/json'   
+                    }
+                }).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res.message)
+                    sessionStorage.setItem("usuario",usuario) // se envia a Cliente.html
+                    alert(res.message)
+                    location.href="Cliente.html"
+                    
+                })
+            }
+        </script>
+        
+    </body>
+</html>
