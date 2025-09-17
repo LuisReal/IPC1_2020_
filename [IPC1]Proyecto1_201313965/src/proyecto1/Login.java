@@ -70,8 +70,8 @@ class Panel extends JPanel {
         ingresar.setBounds(80, 200, 100, 25);
         add(ingresar);
 
-        registrar = new JButton("Registrar");
-        registrar.setBounds(200, 200, 100, 25);
+        registrar = new JButton("Crear Usuario");
+        registrar.setBounds(200, 200, 150, 25);
         add(registrar);
         
         
