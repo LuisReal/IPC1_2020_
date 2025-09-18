@@ -57,9 +57,9 @@
         
                 function cargarInfo(){
                     
-                    var id = sessionStorage.buscar // proviene de administrador.html // mostrarPerfil
-                    
-                    fetch(`http://127.0.0.1:8000/Canciones/${id}`, // proviene de administrador.html
+                    var id = sessionStorage.buscar // la clave buscar que guarda el id de la cancion proviene de administrador.html // mostrarPerfil
+                      
+                    fetch(`http://127.0.0.1:8000/Canciones/${id}`, // proviene de administrador.html  y por defecto el metodo es GET
         
                     ).then(response => response.json()
                     ).catch(err =>{
@@ -98,7 +98,7 @@
                         'youtube' : youtube
                     }
                     
-                    fetch(`http://127.0.0.1:8000/Canciones/${id}`,{
+                    fetch(`http://127.0.0.1:8000/Canciones/${id}`,{ 
         
                         
                         method : 'PUT',

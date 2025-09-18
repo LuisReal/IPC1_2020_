@@ -289,7 +289,7 @@ def eliminarCancion(nombre):
     
     for i in range(len(Canciones)):
         if nombre == Canciones[i].getNombre():
-            del Canciones[i] # del elimina el objeto
+            del Canciones[i] # del elimina el objeto pasandole el indice
             break
        
     return({'message': "Se Elimino la Cancion"})
