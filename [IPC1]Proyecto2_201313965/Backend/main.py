@@ -173,16 +173,19 @@ def modifyAdmin(admin):
         Usuarios[0].setContrasena(request.json['contrasena'])
         return({'message': "Se modifico el Usuario"})
 
-@app.route('/Usuarios/<string:nombre>', methods=['DELETE']) #se elimina 1 usuario
-def deletePersona(nombre): 
+@app.route('/Usuarios/<string:usuario>', methods=['DELETE']) #se elimina 1 usuario
+def deletePersona(usuario): 
     global Usuarios
+    
     for i in range(len(Usuarios)):
 
-        if nombre == Usuarios[i].getNombre():
+        if usuario == Usuarios[i].getUsuario():
+            
             del Usuarios[i] # del elimina el objeto
-            break
-       
-    return({'message': "Se Elimino el Usuario"})
+            
+            return jsonify({'message': "Se Elimino el Usuario"})
+    
+    return jsonify({'message': "el usuario no existe"})
 
 @app.route('/Login', methods=['POST'])
 def Login():

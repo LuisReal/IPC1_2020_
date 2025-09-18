@@ -102,7 +102,7 @@
                      
                         if(res.usuario == "admin"){
                            
-                           alert("Accediste como Administrador")
+                           //alert("Accediste como Administrador")
                            alert(res.message+" "+res.usuario) // Bienvenido (el usuario)
                            location.href="administrador.html"
 
@@ -116,6 +116,8 @@
                            sessionStorage.setItem('usuario', username)
                            alert("Accediste como cliente")
                            location.href="Cliente.html"
+                        }else{
+                           alert("Usuario o contrasena incorrectos")
                         }
                   })
             }

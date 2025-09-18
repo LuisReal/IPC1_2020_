@@ -136,15 +136,15 @@
 
                 function Eliminar(){
                     
-                    var nombre = document.querySelector('#Nombre').value
+                    var usuario = document.querySelector('#Usuario').value
                     
 
                     var objeto={
-                        'nombre' : nombre,
+                        'usuario' : usuario,
                         
                     }
                     
-                    fetch(`http://127.0.0.1:8000/Usuarios/${nombre}`,{
+                    fetch(`http://127.0.0.1:8000/Usuarios/${usuario}`,{
 
                         
                         method : 'DELETE',
@@ -156,9 +156,9 @@
                     ).catch(err =>{
                         console.log("no se pudo consumir la api")
                     }).then(res =>{
-                        console.log(res.message)
+                        
 
-                        alert("El usuario fue eliminado exitosamente")
+                        alert(res.message)
                         location.href="TablaUsuarios.html"
                         
                     })
