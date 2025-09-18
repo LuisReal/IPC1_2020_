@@ -1,7 +1,7 @@
 <html>
     <head>
         
-        <link href="DetallesCancion.css" rel="stylesheet" >
+        <link href="../css/DetallesCancion.css" rel="stylesheet" >
         
     </head>
 
@@ -11,9 +11,9 @@
 
             <label class="foto-cliente"></label>
             <h1 id="cliente" class="cliente"></h1>
-            <button onclick="" type="button" class="btn-pagina-principal" >Pagina Principal</button>
-            <button type="button" class="btn-mi-perfil">Mi Perfil</button>
-            <button type="button"  id="playlist" onclick="" class="btn-playlist">Mi PlayList</button>
+            <button onclick="Principal()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button onclick="miPerfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
+            <button onclick="miPlayList()" type="button"  id="playlist" onclick="" class="btn-playlist">Mi PlayList</button>
             <button onclick="back()" type="button" class="boton-back">Back</button>
 
         </div>
@@ -44,6 +44,19 @@
 
             function back(){
                 location.href="Cliente.html"
+            }
+
+            function Principal(){
+                location.href="Cliente.html"
+            }
+
+
+            function miPerfil(){
+                location.href="ModificarPerfilCliente.html"
+            }
+
+            function miPlayList(){
+                location.href="PlayList.html"
             }
 
             function verImagen(){
@@ -90,7 +103,7 @@
                                 var video = document.querySelector('#div-video')
                                 video.innerHTML += 
                                 `
-                                <iframe src="${res[i].youtube}" width="550" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                <iframe src="${res[i].youtube}" width="600" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                                 <label style="position:absolute; left:10px; top:310px">Artista: ${res[i].artista}</label>
                                 <label style="position:absolute; left:10px; top:330px">Album: ${res[i].album}</label>
                                 <label style="position:absolute; left:10px; top:350px">Fecha de Lanzamiento: ${res[i].fecha}</label>
@@ -156,7 +169,7 @@
             function crearComentario(){
                     // se recive el id de la cancion seleccionada
                     var id = sessionStorage.detalles // proviene de Cliente.html (verDetalles)
-                    var usuario = sessionStorage.mostrar // proviene de inicio.html
+                    var usuario = sessionStorage.usuario
                 
                     var comentario = document.querySelector('#text').value
                     

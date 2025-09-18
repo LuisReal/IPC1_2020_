@@ -1,7 +1,7 @@
 <html>
     <head>
         
-        <link href="Cliente.css" rel="stylesheet" >
+        <link href="../css/Cliente.css" rel="stylesheet" >
         
     </head>
 
@@ -118,8 +118,9 @@
             }
 
             function verDetalles(boton){
-                 var detalles = boton.value // se guarda el id de la cancion seleccionada
-                 sessionStorage.setItem("detalles", detalles) // se envia a DetallesCancion.html (guarda el id al presionar boton)
+                var detalles = boton.value // se guarda el id de la cancion seleccionada
+                sessionStorage.setItem("detalles", detalles) // se envia a DetallesCancion.html (guarda el id al presionar boton)
+                //sessionStorage.setItem("mostrar", detalles)
                 location.href="DetallesCancion.html"
             }
             
