@@ -113,6 +113,10 @@ label{
     
 }
 
+#miBoton:focus {
+    background-color: black;
+}
+
 .form-user{
 
     margin-left: 10px;

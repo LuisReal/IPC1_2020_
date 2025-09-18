@@ -314,14 +314,16 @@ def crearComentario(id):
     return jsonify({'message': "success",
                     'reason': "se agrego el comentario"})
 
-@app.route('/Comentarios/<int:id>', methods=['GET']) #se modifica 1 comentario
-def getComentario(id): 
+@app.route('/Comentarios/<int:id>', methods=['GET']) 
+def getComentario(id):
+   
     global Comentarios 
     
     Datos = []
 
     for i in range(len(Comentarios)):
         if id == Comentarios[i].getId():
+            
             Dato={
                 'id': Comentarios[i].getId(),
                 'comentario': Comentarios[i].getComentario(),
@@ -330,7 +332,7 @@ def getComentario(id):
                 'imagen': Comentarios[i].getImagen()
                 
             }
-        Datos.append(Dato)
+            Datos.append(Dato)
     respuesta = jsonify(Datos)
     return(respuesta)
 

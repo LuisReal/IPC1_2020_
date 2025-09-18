@@ -38,7 +38,7 @@
 
                       <div class="botones">
                      
-                        <button onclick="login()" type="button" class="btnL">Login</button>
+                        <button onclick="login()" type="button"  class="btnL" id="miBoton">Login</button>
                         <button onclick = "location.href='register.html'" type="button" class="btnR">Register</button>
                         <a class="forgot" href="RecuperarContrasena.html" >Forgot Password?</a>
                       
@@ -63,7 +63,16 @@
           </div>
 
           <script>
+            const boton = document.getElementById('miBoton');
+            const miInput = document.getElementById('password');
 
+            miInput.addEventListener('keydown', (e) => {
+               if (e.key === 'Enter') {
+                  e.preventDefault();    
+                  boton.focus();               
+                  login()              
+                  }
+            });
              function login(){
                
               var username = document.querySelector('#username').value 
