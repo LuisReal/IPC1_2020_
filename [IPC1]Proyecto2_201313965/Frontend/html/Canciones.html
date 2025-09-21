@@ -79,7 +79,7 @@
           }
             function CargarArchivo(){
 
-                $('#file').parse({
+                $('#file').parse({         //recive un archivo csv
 		        config: {
 			    delimiter: ";",
                 complete: guardarCanciones,
@@ -100,12 +100,12 @@
             }
 
             async function guardarCanciones(results){
-                console.log(results.data)
-                var data = results.data;
+                console.log(results.data)  
+                var data = results.data;   //un array de strings de los datos del archivo csv.
                 var val = true;
 
                 for(i=0; i<data.length-1; i++){
-                    var nombre = data[i][0]
+                    var nombre = data[i][0]    //primero fila y despues columna
                     var artista = data[i][1]
                     var album = data[i][2]
                     var fecha = data[i][3]

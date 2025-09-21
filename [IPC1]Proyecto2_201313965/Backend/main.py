@@ -5,6 +5,7 @@ from Canciones import Cancion
 from Comentarios import Comentario
 from Solicitud import Solicitar
 from PlayList import playlist
+import oracledb
 
 app = Flask (__name__)
 CORS(app)
@@ -45,11 +46,24 @@ def Iniciar():
 def getPersonas(): 
     global Usuarios # hace referencia a la lista que esta arriba
     Datos = []
-    for usuario in Usuarios:
+    '''for usuario in Usuarios:
         Dato={'Nombre' : usuario.getNombre(),
               'Apellido': usuario.getApellido(),
               'Usuario': usuario.getUsuario()}  
+        Datos.append(Dato)  # guarda la info del diccionario en la lista Datos'''
+    
+    cursor.execute(""" SELECT nombre, apellido, usuario, contrasena FROM usuarios """) 
+    
+    rows = cursor.fetchall() # rows = una lista de tuplas
+
+    for fila in rows:
+        Dato={'Nombre' : fila[0],
+              'Apellido': fila[1],
+              'Usuario': fila[2]}  
         Datos.append(Dato)
+
+    connection.commit()
+    
     respuesta = jsonify(Datos)   #jsonify sirve para convertir una lista a un objeto json 
     return(respuesta)
 
@@ -61,8 +75,16 @@ def addPersonas():
     usuario = request.json['usuario']
     contrasena = request.json['contrasena']
     encontrado = False
-    
-    for i in Usuarios:
+
+
+    cursor.execute("""
+        INSERT INTO usuarios (nombre, apellido, usuario, contrasena)
+        VALUES (:1, :2, :3, :4)
+    """, (nombre, apellido, usuario, contrasena))
+
+    connection.commit()
+
+    '''for i in Usuarios:
         if i.getUsuario() == usuario:
             encontrado = True
             break
@@ -71,8 +93,9 @@ def addPersonas():
                         'reason': "El usuario ya existe"})
     else:
         nuevo = Persona(nombre, apellido, usuario, contrasena)
-        Usuarios.append(nuevo)
-        return jsonify({'message': "successful",
+        Usuarios.append(nuevo)'''
+    
+    return jsonify({'message': "successful",
                         'reason': "Se agrego el usuario"})
 
 @app.route('/Usuario', methods=['POST']) # recupera la contrasena
@@ -81,15 +104,30 @@ def recuperarContrasena():
     
     usuario = request.json['usuario'] # request es para hacer solicitudes (se utiliza postman para pruebas de solicitudes)
     # request es la solicitud que hace el usuario
-    encontrado = False
+    #encontrado = False
     
+    cursor.execute("""
+    SELECT contrasena
+    FROM usuarios
+    WHERE usuario = :usuario
+    """, {"usuario": usuario})
+    
+    fila = cursor.fetchone()  # Obtenemos una sola la fila resultante, fila = una tupla
+    print(fila)
+    Dato={
+            'contrasena': fila[0]
+        }
+
+    '''
     
     for i in Usuarios:
         if i.getUsuario() == usuario:
             Dato={
                 'contrasena': i.getContrasena()
             }
-            break
+            break'''
+    
+    connection.commit()
     respuesta = jsonify(Dato)
     return(respuesta)
     
@@ -97,7 +135,7 @@ def recuperarContrasena():
 @app.route('/Usuarios/<string:usuario>', methods=['GET']) #se obtiene solo 1 persona
 def getPersona(usuario): 
     
-    global Usuarios
+    '''global Usuarios
    
     for i in Usuarios:
         if i.getUsuario() == usuario:
@@ -107,12 +145,64 @@ def getPersona(usuario):
                 'Contrasena': i.getContrasena()}  
             
             break
-    respuesta = jsonify(Dato)    
-    return(respuesta)
+    respuesta = jsonify(Dato)    '''
 
-@app.route('/Usuarios/<string:usuario>', methods=['PUT']) #se modifica usuario 
-def modifyPersona(usuario): 
+    cursor.execute("""
+        SELECT * FROM usuarios
+        WHERE usuario = :usuario
+    """, {"usuario": usuario})
+
+    fila = cursor.fetchone()
+
+    if fila is None:
+        return jsonify({"mensaje": "Usuario no encontrado"}), 404
+
+    Dato={'Nombre' : fila[0],
+        'Apellido': fila[1],
+        'Usuario': fila[2],
+        'Contrasena': fila[3]} 
+
+
+    return(jsonify(Dato))
+
+@app.route('/Usuarios/<string:usuario_anterior>', methods=['PUT']) #se modifica usuario 
+def modifyPersona(usuario_anterior): 
     global Usuarios
+    
+    usuario_nuevo = request.json['usuario']
+    nombre = request.json['nombre']
+    apellido = request.json['apellido']
+    contrasena = request.json['contrasena']
+
+    cursor.execute("""
+    SELECT 1 FROM usuarios WHERE usuario = :usuario
+    """, {"usuario": usuario_nuevo}) # si existe el usuario devuelve el valor 1
+
+    fila = cursor.fetchone()
+    
+    if fila is not None:
+        # El usuario existe
+        
+        return jsonify({"message": "El usuario ya existe"})  # 409 Conflict
+    else:
+        print("estoy verificando")
+        cursor.execute("""
+        UPDATE usuarios
+        SET
+            contrasena = :contrasena,
+            usuario = :usuario_nuevo            
+        WHERE usuario = :usuario_anterior
+        """, {
+            "contrasena": contrasena,
+            "usuario_anterior": usuario_anterior,
+            "usuario_nuevo" : usuario_nuevo
+        })
+   
+    
+    connection.commit()
+    return jsonify({'message': "Se modifico el Usuario"})
+    
+    '''
     encontrado = False
     for i in range(len(Usuarios)):
         if usuario == Usuarios[i].getUsuario():
@@ -125,7 +215,39 @@ def modifyPersona(usuario):
         Usuarios[i].setContrasena(request.json['contrasena'])
         return({'message': "Se modifico el Usuario"})
     else:
-        return jsonify({'message': "el usuario ya existe"})
+        return jsonify({'message': "el usuario ya existe"})'''
+    
+    
+    
+    
+@app.route('/Usuarios/<string:usuario>', methods=['DELETE']) #se elimina 1 usuario
+def deletePersona(usuario): 
+    global Usuarios
+
+
+    cursor.execute("""
+        DELETE FROM usuarios
+        WHERE usuario = :usuario
+    """, {"usuario": usuario})
+
+    connection.commit()
+
+    '''
+    
+    for i in range(len(Usuarios)):
+
+        if usuario == Usuarios[i].getUsuario():
+            
+            del Usuarios[i] # del elimina el objeto
+            
+            return jsonify({'message': "Se Elimino el Usuario"})
+    '''
+
+    if cursor.rowcount == 0:   #si ninguna fila fue afectada en la base de datos
+
+        return jsonify({'message': "el usuario no existe"})
+    
+    return jsonify({'message': "el usuario fue eliminado"})
 
 @app.route('/ModificarUsuario/<string:usuario>', methods=['PUT']) #se modifica usuario 
 def modifyUser(usuario): 
@@ -173,19 +295,7 @@ def modifyAdmin(admin):
         Usuarios[0].setContrasena(request.json['contrasena'])
         return({'message': "Se modifico el Usuario"})
 
-@app.route('/Usuarios/<string:usuario>', methods=['DELETE']) #se elimina 1 usuario
-def deletePersona(usuario): 
-    global Usuarios
-    
-    for i in range(len(Usuarios)):
 
-        if usuario == Usuarios[i].getUsuario():
-            
-            del Usuarios[i] # del elimina el objeto
-            
-            return jsonify({'message': "Se Elimino el Usuario"})
-    
-    return jsonify({'message': "el usuario no existe"})
 
 @app.route('/Login', methods=['POST'])
 def Login():
@@ -194,7 +304,20 @@ def Login():
     username = request.json['username']
     password = request.json['password']
 
-    for usuario in Usuarios:
+    cursor.execute("""
+        SELECT * FROM usuarios
+        WHERE usuario = :usuario
+    """, {"usuario": username})
+
+    fila = cursor.fetchone()
+
+    Dato={'message': 'Bienvenido',
+            'usuario': fila[2],
+            'contrasena': fila[3]
+            }
+
+
+    '''for usuario in Usuarios:
         if usuario.getUsuario() == username and usuario.getContrasena() == password:
             Dato={'message': 'Bienvenido',
                   'usuario': usuario.getUsuario(),
@@ -206,7 +329,8 @@ def Login():
                  'message': 'Usuario o contrasena no existen',
                  'usuario': ''   
 
-            }
+            }'''
+    
     respuesta = jsonify(Dato)
     return(respuesta)
     
@@ -472,5 +596,15 @@ def getPlayList():
         Datos.append(Dato)
     respuesta = jsonify(Datos)
     return(respuesta)           
+
 if __name__ == "__main__":
+
+    connection = oracledb.connect(
+        user="usuarios",
+        password="usuarios123",
+        dsn="localhost/xepdb1"
+    )
+
+    cursor = connection.cursor()
+
     app.run(debug=True, port = 8000) # esto inicia el servidor
