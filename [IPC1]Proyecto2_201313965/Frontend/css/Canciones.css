@@ -89,66 +89,7 @@ h2{
    
 }
 
-.btn-pagina-principal{
 
-    position: absolute;
-    margin-top: 300px;
-    margin-left: 50px;
-    width: 200px;
-    border-radius: 10px;
-    height: 40px;
-    border-width: 1px;
-    background-color: white;
-    border-color:rgb(0, 255,255);
-    border-style: groove;
-    font-weight: bold;
-    background-image: url('../images/pagina-principal.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    outline: none;
-
-}
-
-.btn-mi-perfil{
-
-    position: absolute;
-    margin-top: 350px;
-    margin-left: 50px;
-    width: 200px;
-    border-width: 1px;
-    background-color: white;
-    border-color: rgb(255, 255,0);
-    border-style: groove;
-    border-radius: 10px;
-    height: 40px;
-    font-weight: bold;
-    background-image: url('../images/user.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    outline: none;
-}
-
-.btn-usuarios{
-
-    position: absolute;
-    margin-top: 400px;
-    margin-left: 50px;
-    width: 200px;
-    border-width: 1px;
-    background-color: white;
-    border-color: rgb(50, 205, 50);
-    border-style: groove;
-    border-radius: 10px;
-    height: 40px;
-    font-weight: bold;
-    background-image: url('../images/usuarios.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    outline: none;
-}
 
 .back{
 

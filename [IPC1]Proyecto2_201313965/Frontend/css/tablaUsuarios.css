@@ -33,40 +33,7 @@
     border-width: 2px;
 }
 
-.btn-pagina-principal{
 
-    position: absolute;
-    margin-top: 250px;
-    margin-left: 50px;
-    width: 200px;
-    border-color:rgb(0, 255,255);
-    border-style: groove;
-    border-radius: 10px;
-    height: 40px;
-    background-image: url('../images/pagina-principal.jpg');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    outline: none;
-
-}
-
-.btn-mi-perfil{
-
-    position: absolute;
-    margin-top: 300px;
-    margin-left: 50px;
-    width: 200px;
-    border-color:rgb(0, 255,255);
-    border-style: groove;
-    border-radius: 10px;
-    height: 40px;
-    background-image: url('../images/user.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    outline: none;
-}
 
 .foto-usuario{
 
@@ -129,16 +96,3 @@ th,td{
     border: 0px;
 }
 
-.boton-back{
-    position: absolute;
-    top: 400;
-    left: 100px;
-    width: 100px;
-    height: 30px;
-    border-width: 1px;
-    background-color: white;
-    border-color: rgb(154, 205, 50);
-    color: black;
-    border-radius: 10px;
-    outline: none;
-}
