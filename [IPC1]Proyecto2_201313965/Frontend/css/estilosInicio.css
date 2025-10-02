@@ -35,17 +35,14 @@ label{
 
 .sidenav {
 
-    
     background-image: url("../images/fondo.jpg");
-    
-    
     border-style: groove;
     margin: 0px -10px -140px -10px;
     height: 300px;
     
     border-color: black;
     border-style: groove;
-   /*padding-top: 20px;*/
+   
 }
 
 

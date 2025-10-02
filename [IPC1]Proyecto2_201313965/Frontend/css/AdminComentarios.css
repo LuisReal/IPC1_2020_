@@ -89,17 +89,5 @@ td{
     background-position: -25px center;
 }
 
-.cliente{
-
-    position: absolute;
-    text-align: center;
-    margin-top: 180px;
-    margin-left: 0px;
-    font-size: 15px;
-    color: rgb(25, 25, 112);
-    width: 300px;
-    border-color:  rgb(152, 251, 152);
-    
-}
 
 

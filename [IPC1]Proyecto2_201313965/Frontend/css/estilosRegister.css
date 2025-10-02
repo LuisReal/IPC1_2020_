@@ -135,13 +135,17 @@
     top: 400px;
     width: 100px;
     height: 40px;
-    background-color: yellowgreen;
+    background-color: rgb(149, 218,1);
     border-radius: 10px;
     color: white;
     font-weight: bold;
     border-color:0px;
-    outline: none;
+    border: none;
     
+}
+
+.btn:hover{
+    background-color: rgba(149, 218,1,0.7);
 }
 
 .back{

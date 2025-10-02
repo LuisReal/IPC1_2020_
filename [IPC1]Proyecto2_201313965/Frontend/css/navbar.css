@@ -1,21 +1,40 @@
+.banner-izquierdo{
+    position: absolute;
+    position: fixed;
+    margin-top: -10px;
+    margin-left: -10px;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(to right, #2c0596, #7bddfe);
+}
+
+.cliente{
+
+    position: absolute;
+    margin-top: 185px;
+    text-align: center;
+    left: 0px;
+    font-size: 15px;
+    color: rgb(red, green, blue);
+    background-color: red;
+    
+    width: 300px;
+    height: 65px;
+}
+
 .btn-pagina-principal{
 
     position: absolute;
     margin-top: 250px;
-    
     width: 100%;
-    border-width: 1px;
-    background-color: white;
-    border-color:rgb(0, 255,255);
     border-style: groove;
-    
+    border:none;
+    border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
-    background-image: url('../images/casa.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    border: none;
-    background-color: rgba(65, 214, 48, 0.7);
+    background: url('../images/casa.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-size: 25px, 100% 100%;
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
@@ -23,7 +42,7 @@
 }
 
 .btn-pagina-principal:hover{
-    background-color: black;
+    background: black;
     color: white;
     font-weight: bold;
 }
@@ -31,28 +50,22 @@
 .btn-mi-perfil{
 
     position: absolute;
-    margin-top: 300px;
-    
+    margin-top: 290px;
     width: 100%;
-    border-width: 1px;
-    background-color: white;
-    border-color:rgb(124, 253,0);
-    border-style: groove;
-    
+    border:none;
+    border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
-    background-image: url('../images/user.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    border: none;
-    background-color: rgba(65, 214, 48, 0.7);
+    background: url('../images/user.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-size: 25px, 100% 100%;
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
 .btn-mi-perfil:hover{
-    background-color: black;
+    background: black;
     color: white;
     font-weight: bold;
 }
@@ -60,28 +73,25 @@
 .btn-usuarios{
 
     position: absolute;
-    margin-top: 350px;
+    margin-top: 330px;
     
     width: 100%;
     border-width: 1px;
-    background-color: white;
-    border-color:rgb(255, 255,0);
-    border-style: groove;
     
-    height: 40px;
-    background-image: url('../images/usuarios.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
     border:none;
-    background-color: rgba(65, 214, 48, 0.7);
+    border-bottom: 2px solid rgba(66, 216, 223, 0.9);
+    height: 40px;
+    background: url('../images/usuarios.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-size: 25px, 100% 100%;
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
 .btn-usuarios:hover{
-    background-color: black;
+    background: black;
     color: white;
     font-weight: bold;
 }
@@ -89,28 +99,26 @@
 .btn-comentarios{
 
     position: absolute;
-    margin-top: 400px;
-    
+    margin-top: 370px;
     width: 100%;
     border-width: 1px;
     background-color: white;
     border-color:rgb(255, 0,0);
     border-style: groove;
-    
+    border:none;
+    border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
-    background-image: url('../images/comentarios.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    border: none;
-    background-color: rgba(65, 214, 48, 0.7);
+    background: url('../images/comentarios.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-size: 25px, 100% 100%;
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
 .btn-comentarios:hover{
-    background-color: black;
+    background: black;
     color: white;
     font-weight: bold;
 }
@@ -118,27 +126,22 @@
 .btn-cargar-canciones{
 
     position: absolute;
-    margin-top: 450px;
+    margin-top: 410px;
     width: 100%;
-    border-width: 1px;
-    background-color: white;
-    border-color:rgb(0, 0,139);
-    border-style: groove;
-    
+    border:none;
+    border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
-    background-image: url('../images/cancion.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    border: none;
-    background-color: rgba(65, 214, 48, 0.7);
+    background: url('../images/cancion.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-size: 25px, 100% 100%;
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
 .btn-cargar-canciones:hover{
-    background-color: black;
+    background: black;
     color: white;
     font-weight: bold;
 }
@@ -146,27 +149,24 @@
 .btn-solicitudes{
 
     position: absolute;
-    margin-top: 500px;
+    margin-top: 450px;
     width: 100%;
-    border-width: 1px;
-    background-color: white;
-    border-color:rgb(0, 0,139);
-    border-style: groove;
+    border:none;
+    border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     color: white;
     font-weight: 300;
     height: 40px;
-    background-image: url('../images/cancion.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    border: none;
-    background-color: rgba(65, 214, 48, 0.7);
+    background: url('../images/cancion.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-size: 25px, 100% 100%;
+    
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
 .btn-solicitudes:hover{
-    background-color: black;
+    background: black;
     color: white;
     font-weight: bold;
 }

@@ -39,46 +39,27 @@ body{
     background-position: -25px center;
 }
 
-.cliente{
-
-    position: absolute;
-    margin-top: 185px;
-    text-align: center;
-    left: 0px;
-    font-size: 15px;
-    color: rgb(red, green, blue);
-    background-color: red;
-    
-    width: 300px;
-    height: 65px;
-}
-
 
 .btn-playlist{
 
     position: absolute;
-    margin-top: 350px;
-    
+    margin-top: 330px;
     width: 100%;
-    border-width: 1px;
-    background-color: white;
-    border-color:rgb(255, 255,0);
-    border-style: groove;
-    
+    border:none;
+    border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
-    background-image: url('../images/pagina.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
+    background: url('../images/cancion.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-size: 25px, 100% 100%;
     border: none;
-    background-color: rgba(65, 214, 48, 0.7);
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
 .btn-playlist:hover{
-    background-color: black;
+    background: black;
     color: white;
     font-weight: bold;
 }
@@ -225,28 +206,23 @@ body{
 .btn-solicitar{
 
     position: absolute;
-    margin-top: 400px;
-    
+    margin-top: 370px;
     width: 100%;
-    border-width: 1px;
-    background-color: white;
-    border-color:rgb(255, 255,0);
-    border-style: groove;
-    
+    border:none;
+    border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
-    background-image: url('../images/cancion.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    border: none;
-    background-color: rgba(65, 214, 48, 0.7);
+    background: url('../images/usuarios.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-size: 25px, 100% 100%;
+
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
 .btn-solicitar:hover{
-    background-color: black;
+    background: black;
     color: white;
     font-weight: bold;
 }
