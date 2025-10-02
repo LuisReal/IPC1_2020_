@@ -42,7 +42,7 @@ body{
 .cliente{
 
     position: absolute;
-    margin-top: 200px;
+    margin-top: 185px;
     text-align: center;
     left: 0px;
     font-size: 15px;
@@ -68,64 +68,36 @@ body{
     
 }
 
-.btn-pagina-principal{
 
-    position: absolute;
-    margin-top: 300px;
-    margin-left: 50px;
-    width: 200px;
-    border-width: 1px;
-    background-color: white;
-    border-color:rgb(0, 255,255);
-    border-style: groove;
-    border-radius: 10px;
-    height: 40px;
-    background-image: url('../images/pagina-principal.jpg');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    outline: none;
-
-}
-
-.btn-mi-perfil{
-
-    position: absolute;
-    margin-top: 350px;
-    margin-left: 50px;
-    width: 200px;
-    border-width: 1px;
-    background-color: white;
-    border-color:rgb(124, 253,0);
-    border-style: groove;
-    border-radius: 10px;
-    height: 40px;
-    background-image: url('../images/user.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    outline: none;
-}
 
 .btn-playlist{
 
     position: absolute;
-    margin-top: 400px;
-    margin-left: 50px;
-    width: 200px;
+    margin-top: 350px;
+    
+    width: 100%;
     border-width: 1px;
     background-color: white;
     border-color:rgb(255, 255,0);
     border-style: groove;
-    border-radius: 10px;
+    
     height: 40px;
     background-image: url('../images/pagina.png');
     background-repeat: no-repeat;
     background-size: 25px;
     background-position: 4px center;
-    outline: none;
+    border: none;
+    background-color: rgba(65, 214, 48, 0.7);
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
 }
 
+.btn-playlist:hover{
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
 
 .boton-back{
     position: absolute;

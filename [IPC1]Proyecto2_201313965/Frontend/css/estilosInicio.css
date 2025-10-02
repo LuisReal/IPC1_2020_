@@ -173,8 +173,13 @@ label{
     border-radius: 15px;
     color: white;
     font-weight: bold;
-    outline: none;
+    border: none;
 }
+
+.btnL:hover{
+    background-color: rgba(149, 218,1,0.7);
+}
+
 
 .btnR{
     position : absolute;
@@ -186,8 +191,12 @@ label{
     border-radius: 15px;
     color: white;
     font-weight: bold;
-    outline: none;
+    border: none;
     
+}
+
+.btnR:hover{
+    background-color: rgba(149, 218,1,0.7);
 }
 
 .forgot{

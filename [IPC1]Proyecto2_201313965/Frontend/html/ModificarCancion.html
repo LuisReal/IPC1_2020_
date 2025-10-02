@@ -1,6 +1,7 @@
 <html>
     <head>
         <link href="../css/ModificarCancion.css" rel="stylesheet" >
+        <link href="../css/navbar.css" rel="stylesheet" >
     </head>
 
     <body onload="cargarInfo()">
@@ -9,8 +10,8 @@
 
             <label class="foto-usuario"></label>
             
-            <button onclick="usuarios()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
-            <button type="button" class="btn-mi-perfil">Mi Perfil</button>
+            <button onclick="Back()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
+            <button onclick="perfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
            
         
         </div>
@@ -48,8 +49,12 @@
         </div>
         
         <script>
-            function back(){
+            
+            function Back(){
                 location.href="administrador.html"
+            }
+            function perfil(){
+                location.href="ModificarPerfilAdministrador.html"
             }
         </script>
         
