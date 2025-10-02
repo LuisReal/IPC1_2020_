@@ -1,8 +1,8 @@
 class playlist:
 
-    def __init__(self, id, nombre, artista, album, fecha, imagen, spotify, youtube):
-
-        self.id = id
+    def __init__(self, id_usuario, id_cancion, nombre, artista, album, fecha, imagen, spotify, youtube):
+        self.id_usuario = id_usuario
+        self.id_cancion = id_cancion
         self.nombre = nombre
         self.artista = artista
         self.album = album
@@ -11,9 +11,13 @@ class playlist:
         self.spotify = spotify
         self.youtube = youtube
 
+    def getIdUsuario(self):
+
+        return self.id_usuario 
+    
     def getId(self):
 
-        return self.id 
+        return self.id_cancion 
 
     def getNombre(self):
 
@@ -43,8 +47,11 @@ class playlist:
 
         return self.youtube
 
-    def setId(self, id):
-        self.id = id
+    def setIdUsuario(self, id_usuario):
+        self.id_usuario = id_usuario
+
+    def setId(self, id_cancion):
+        self.id_cancion = id_cancion
     
     def setNombre(self, nombre):
         self.nombre = nombre

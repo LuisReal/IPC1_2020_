@@ -65,8 +65,9 @@
             }
 
             function mostrarPlayList(){
-                
-                fetch('http://127.0.0.1:8000/getPlayList',
+                var usuario = sessionStorage.usuario
+
+                fetch(`http://127.0.0.1:8000/getPlayList/${usuario}`,
 
                 ).then(response => response.json()
                 ).catch(err =>{

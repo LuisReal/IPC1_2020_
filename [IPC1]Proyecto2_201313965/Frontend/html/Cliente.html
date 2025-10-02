@@ -89,11 +89,12 @@
 
             function addPlayList(boton){
                  var id = boton.value // se guarda el id de la cancion seleccionada
-                 sessionStorage.setItem("id", id) // se envia a DetallesCancion.html (guarda el id al presionar boton)
+                 var id_usuario = sessionStorage.usuario
+                 sessionStorage.setItem("id", id) 
                  
                     var objeto={
-                        'id' : id
-                        
+                        'id' : id,
+                        'id_usuario': id_usuario
                     }
                     
                     fetch(`http://127.0.0.1:8000/CrearPlayList/${id}`,{

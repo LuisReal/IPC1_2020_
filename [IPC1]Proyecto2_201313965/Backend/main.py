@@ -560,6 +560,7 @@ def crearSolicitud1(id):
 @app.route('/CrearPlayList/<int:id>', methods = ['POST']) #ay que pasar parametro para que funcione
 def crearPlayList(id):
     global PlayList, Canciones
+    id_usuario = request.json['id_usuario']
 
     for i in range(len(Canciones)):
         if id == Canciones[i].getId():
@@ -570,30 +571,36 @@ def crearPlayList(id):
             imagen = Canciones[i].getImagen()
             spotify = Canciones[i].getSpotify()
             youtube = Canciones[i].getYoutube()
-            new = playlist(id,nombre,artista,album,fecha,imagen,spotify,youtube)
+            new = playlist(id_usuario,id,nombre,artista,album,fecha,imagen,spotify,youtube)
+            
             PlayList.append(new) 
+            
             break
             
     return jsonify({'message': "success",
                     'reason': "Se agrego la cancion a la PlayList"})
     
-@app.route('/getPlayList', methods=['GET'])
-def getPlayList():
+@app.route('/getPlayList/<string:id_usuario>', methods=['GET'])
+def getPlayList(id_usuario):
     global PlayList
     Datos = []
 
+    print("SI COINCIDE CON ESTA PARTE")
     for i in PlayList:
-        Dato={
-            'id': i.getId(),
-            'nombre': i.getNombre(),
-            'artista': i.getArtista(),
-            'album': i.getAlbum(),
-            'fecha': i.getFecha(),
-            'imagen': i.getImagen(),
-            'spotify': i.getSpotify(),
-            'youtube': i.getYoutube()
-        }
-        Datos.append(Dato)
+        if id_usuario == i.getIdUsuario():
+            print("SI COINCIDE CON ESTA PARTE")
+            Dato={
+                'id_usuario': i.getIdUsuario(),
+                'id': i.getId(),
+                'nombre': i.getNombre(),
+                'artista': i.getArtista(),
+                'album': i.getAlbum(),
+                'fecha': i.getFecha(),
+                'imagen': i.getImagen(),
+                'spotify': i.getSpotify(),
+                'youtube': i.getYoutube()
+            }
+            Datos.append(Dato)
     respuesta = jsonify(Datos)
     return(respuesta)           
 
