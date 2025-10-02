@@ -80,7 +80,7 @@
                     console.log(res)
                     for(i=0; i<(res.length); i++){
                         console.log(res [i])
-                        var valor = sessionStorage.mostrar // proviene de inicio.html (valor=username)
+                        var valor = sessionStorage.usuario // proviene de inicio.html (valor=username)
                         if(res[i].Usuario==valor){
                         var h1 = document.querySelector('#cliente')
                         h1.innerHTML += 
@@ -92,6 +92,8 @@
                     }
                 })
             }
+
+            
 
             function Solicitar(){
                

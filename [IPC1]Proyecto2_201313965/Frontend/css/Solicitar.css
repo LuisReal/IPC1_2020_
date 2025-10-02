@@ -40,35 +40,6 @@ body{
 }
 
 
-
-
-.btn-playlist{
-
-    position: absolute;
-    margin-top: 330px;
-    width: 100%;
-    border:none;
-    border-bottom: 2px solid rgba(66, 216, 223, 0.9);
-    height: 40px;
-    background: url('../images/cancion.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
-    background-repeat: no-repeat, no-repeat;
-    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
-    background-size: 25px, 100% 100%;
-    border: none;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: large;
-}
-
-.btn-playlist:hover{
-    background: black;
-    color: white;
-    font-weight: bold;
-}
-
-
-
-
 .boton-back{
     position: absolute;
     top: 550;

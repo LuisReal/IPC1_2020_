@@ -57,36 +57,6 @@ body{
 }
 
 
-
-.btn-playlist{
-
-    position: absolute;
-    margin-top: 350px;
-    
-    width: 100%;
-    border-width: 1px;
-    background-color: white;
-    border-color:rgb(255, 255,0);
-    border-style: groove;
-    
-    height: 40px;
-    background-image: url('../images/pagina.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 4px center;
-    border: none;
-    background-color: rgba(65, 214, 48, 0.7);
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: large;
-}
-
-.btn-playlist:hover{
-    background-color: black;
-    color: white;
-    font-weight: bold;
-}
-
 .boton-back{
     position: absolute;
     top: 550;
