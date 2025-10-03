@@ -113,14 +113,19 @@ body{
 .btn-comentario{
     position: absolute;
     top: 440px;
-    left: 120px;
-   
-    width: 100px;
+    left: 100px;
+    width: 150px;
     height: 30px;
-    
-    
+    background-color: rgb(1, 211, 218);
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+    border: none;
 }
 
+.btn-comentario:hover{
+    background-color: black;
+}
 .div-comentarios{
     
     position: absolute;

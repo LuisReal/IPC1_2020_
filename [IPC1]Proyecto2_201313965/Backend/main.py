@@ -443,11 +443,11 @@ def crearComentario(id):
 
 @app.route('/Comentarios/<int:id>', methods=['GET']) 
 def getComentario(id):
-   
+    
     global Comentarios 
     
     Datos = []
-
+    print("ESTOY AQUI DE NUEVO")
     for i in range(len(Comentarios)):
         if id == Comentarios[i].getId():
             
@@ -459,6 +459,7 @@ def getComentario(id):
                 'imagen': Comentarios[i].getImagen()
                 
             }
+            
             Datos.append(Dato)
     respuesta = jsonify(Datos)
     return(respuesta)
@@ -585,10 +586,10 @@ def getPlayList(id_usuario):
     global PlayList
     Datos = []
 
-    print("SI COINCIDE CON ESTA PARTE")
+    
     for i in PlayList:
         if id_usuario == i.getIdUsuario():
-            print("SI COINCIDE CON ESTA PARTE")
+            
             Dato={
                 'id_usuario': i.getIdUsuario(),
                 'id': i.getId(),

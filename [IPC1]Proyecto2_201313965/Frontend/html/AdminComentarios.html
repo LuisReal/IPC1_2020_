@@ -24,13 +24,11 @@
             <table>
                 <thead >
 
-                    <tr id="thead" class="thead">
-                        <!--<th colspan="2" style="background-color: white; height: 100px; color: black;">l</th>
-                        -->
-                    </tr>
                     <tr>
                         <th>Usuario</th>
                         <th>Comentario</th>
+                        <th>Cancion</th>
+                        <th>Imagen</th>
                     </tr>
                 </thead>
                 <tbody id="tbody">
@@ -43,24 +41,16 @@
         <script>
             function mostrarComentarios(){
                 
-                var id= sessionStorage.id //  proviene de administrador.html
-                fetch(`http://127.0.0.1:8000/Comentarios/${id}`,
+                var id= sessionStorage.detalles //  proviene de administrador.html
+                fetch('http://127.0.0.1:8000/Comentarios',
 
                 ).then(response => response.json()
                 ).catch(err =>{
                     console.log("no se pudo consumir la api")
                 }).then(res =>{
-                    console.log(res)
-
-                    var head = document.querySelector('#thead')
-                        head.innerHTML += 
-                        `
-                        <tr >
-                            <th><img src="${res[0].imagen}" height="100" width="100"></th>
-                            
-                        </tr>
-                        `
-
+                    console.log("Respuesta ",res)
+                    
+                        
                     for(i=0; i<(res.length); i++){
                         console.log(res [i])
 
@@ -73,7 +63,8 @@
                             
                             <td>${res[i].usuario}</td>
                             <td>${res[i].comentario}</td>
-                            
+                            <td>${res[i].nombre}</td>
+                            <td><img src="${res[i].imagen}" height="100" width="100"><td>
                         </tr>
                         `     
                     }
