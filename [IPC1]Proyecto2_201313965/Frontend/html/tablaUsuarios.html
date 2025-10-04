@@ -26,6 +26,7 @@
                         <th>Apellido</th>
                         <th>Usuario</th>
                         <th>Modificar</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody id="tbody">
@@ -82,10 +83,34 @@
                             <th>${res[i].Apellido}</th>
                             <th>${res[i].Usuario}</th>
                             <th><button type="button" value="${res[i].Usuario}"  onclick="modificarUsuario(this)" class="boton-modificar">Modificar</button></th>
+                            <th><button type="button" value="${res[i].Usuario}" onclick="eliminarUsuario(this)"class="boton-eliminar">Eliminar</button><th>
                         </tr>
                         `     
                     }
                 })
+            function eliminarUsuario(boton){
+                var usuario = boton.value
+                var objeto={
+                        'usuario' : usuario
+                    }
+
+                fetch(`http://127.0.0.1:8000/Usuarios/${usuario}`,{
+
+                        method : 'DELETE',
+                        body: JSON.stringify(objeto),
+                        headers:{
+                        'Content-Type': 'application/json'   
+                        }
+
+                }).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res.message)
+                    alert(res.message)
+                    document.location.reload();
+                })
+            }
 
             function modificarUsuario(boton){
                

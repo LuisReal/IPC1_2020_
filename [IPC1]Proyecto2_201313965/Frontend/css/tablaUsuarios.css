@@ -100,3 +100,20 @@ th,td{
     background-color: rgba(66, 205, 50, 0.96);
     font-weight: bold;
 }
+
+.boton-eliminar{
+
+    
+    background-color: rgb(255, 0, 0);
+    height: 30px;
+    width: 100px;
+    border-radius: 3px;
+    outline: none;
+    border: 0px;
+    color: white;
+}
+
+.boton-eliminar:hover{
+    background-color: rgba(255, 0, 0, 0.782);
+    font-weight: bold;
+}
