@@ -89,6 +89,24 @@ body{
     background-color: rgba(154, 205, 50, 0.9);
 }
 
+.boton-eliminar{
+
+    position: absolute;
+    background-color: rgb(255, 0, 0);
+    
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+    outline: none;
+    border: 0px;
+    color: white;
+}
+
+.boton-eliminar:hover{
+    background-color: rgba(255, 0, 0, 0.782);
+    font-weight: bold;
+}
+
 table{
     text-align: left;
     position: absolute;

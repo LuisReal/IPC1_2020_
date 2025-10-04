@@ -603,7 +603,19 @@ def getPlayList(id_usuario):
             }
             Datos.append(Dato)
     respuesta = jsonify(Datos)
-    return(respuesta)           
+    return(respuesta)        
+
+
+@app.route('/deletePlayList/<int:id>', methods=['DELETE']) #para eliminar una cancion de la playlist
+def deletePlayList(id):
+    global PlayList
+    
+    for index, i in enumerate(PlayList):
+        if id == i.getId():
+            del PlayList[index]
+            break
+    
+    return jsonify({'message': "La cancion fue eliminada con exito"})        
 
 if __name__ == "__main__":
 

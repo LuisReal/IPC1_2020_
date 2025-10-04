@@ -83,16 +83,42 @@
                         
                             <td>${res[i].nombre}</td>
                             <td><iframe src="${res[i].spotify}" width="300" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                            
+                            <td><button type="button" value="${res[i].id}"  onclick="eliminarCancion(this)" class="boton-eliminar">Eliminar</button></td>
                             
                         
                         `     
                     }
                 })
             }
+
+            function eliminarCancion(boton){
+                var id = boton.value
+                var objeto={
+                        'id' : id
+                    }
+
+                fetch(`http://127.0.0.1:8000/deletePlayList/${id}`,{
+
+                        method : 'DELETE',
+                        body: JSON.stringify(objeto),
+                        headers:{
+                        'Content-Type': 'application/json'   
+                        }
+
+                }).then(response => response.json()
+                ).catch(err =>{
+                    console.log("no se pudo consumir la api")
+                }).then(res =>{
+                    console.log(res.message)
+                    alert(res.message)
+                    document.location.reload();
+                })
+            }
+
             function mostrarCliente(){
                 fetch('http://127.0.0.1:8000/Usuarios',
 
+                
                 ).then(response => response.json()
                 ).catch(err =>{
                     console.log("no se pudo consumir la api")
