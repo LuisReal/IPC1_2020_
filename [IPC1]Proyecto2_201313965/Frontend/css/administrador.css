@@ -76,6 +76,11 @@ td{
     border: 0px;
 }
 
+.boton-modificar:hover{
+    background-color: rgba(66, 205, 50, 0.96);
+    font-weight: bold;
+}
+
 .boton-eliminar{
 
     background-color: rgb(255, 0, 0);
@@ -98,6 +103,11 @@ td{
     width: 100px;
     padding: 5px;
     border: none;
+}
+
+.boton-comentario:hover{
+    background-color: rgba(0, 0, 0, 0.812);
+    font-weight: bold;
 }
 
 .foto-administrador{
