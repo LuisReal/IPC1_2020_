@@ -165,6 +165,12 @@ body{
     color: white;
 }
 
+.boton-modificar:hover{
+    background-color: rgba(34, 139, 34, 0.716);
+    font-weight: bold;
+}
+
+
 .boton-regresar{
 
     position: absolute;
@@ -178,7 +184,10 @@ body{
     outline: none;
     border: 0px;
 }
-
+.boton-regresar:hover{
+    background-color: rgba(0, 0, 0, 0.689);
+    font-weight: bold;
+}
 
 .boton-back{
     position: absolute;

@@ -96,3 +96,7 @@ th,td{
     border: 0px;
 }
 
+.boton-modificar:hover{
+    background-color: rgba(66, 205, 50, 0.96);
+    font-weight: bold;
+}

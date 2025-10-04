@@ -183,6 +183,11 @@ p{
     color: white;
 }
 
+.boton-modificar:hover{
+    background-color: rgba(34, 139, 34, 0.716);
+    font-weight: bold;
+}
+
 .boton-eliminar{
 
     position: absolute;
@@ -197,6 +202,11 @@ p{
     color: white;
 }
 
+.boton-eliminar:hover{
+    background-color: rgba(255, 0, 0, 0.782);
+    font-weight: bold;
+}
+
 .boton-regresar{
 
     position: absolute;
@@ -209,6 +219,11 @@ p{
     border-radius: 10px;
     outline: none;
     border: 0px;
+}
+
+.boton-regresar:hover{
+    background-color: rgba(0, 0, 0, 0.689);
+    font-weight: bold;
 }
 
 
