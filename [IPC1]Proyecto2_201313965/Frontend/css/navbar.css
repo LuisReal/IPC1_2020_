@@ -1,18 +1,18 @@
-*{
-    margin:0;
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.global-container{
-    
+.global-container {
+
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(3,1fr);
+    grid-template-rows: repeat(3, 1fr);
 }
 
 
-.banner-izquierdo{
+.banner-izquierdo {
     grid-column: 1/2;
     grid-row: 1/4;
     width: 300px;
@@ -20,7 +20,7 @@
     background: linear-gradient(to right, #2c0596, #7bddfe);
 }
 
-.info-container{
+.info-container {
     grid-column: 2/7;
     grid-row: 1/4;
     margin: 0;
@@ -28,14 +28,14 @@
     overflow-y: scroll;
 }
 
-.foto-perfil{
+.foto-perfil {
 
     position: absolute;
     border-color: white;
     border-radius: 50%;
     border-style: groove;
-    top: 30px;
-    left: 80px;
+    margin-top: 30px;
+    margin-left: 80px;
     width: 150px;
     height: 150px;
     background-image: url('../images/usuario.png');
@@ -44,32 +44,34 @@
     background-position: -25px center;
 }
 
-.nombre-usuario{
+.nombre-usuario {
 
     position: absolute;
     margin-top: 185px;
     text-align: center;
     font-size: 15px;
     background-color: red;
-    
+
     width: 300px;
     height: 65px;
 }
 
-.botones-container{
+.botones-container {
 
     margin-top: 250px;
 }
-.btn-pagina-principal{
 
-    
+.btn-pagina-principal {
+
+
     width: 100%;
-    border:none;
+    border: none;
     border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
     background: url('../images/casa.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
     background-repeat: no-repeat, no-repeat;
-    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-position: 4px center, center;
+    /* Ícono a la izquierda, gradiente centrado */
     background-size: 25px, 100% 100%;
     color: white;
     font-family: 'Courier New', Courier, monospace;
@@ -77,157 +79,164 @@
 
 }
 
-.btn-pagina-principal:hover{
+.btn-pagina-principal:hover {
     background: black;
     color: white;
     font-weight: bold;
 }
 
-.btn-mi-perfil{
+.btn-mi-perfil {
 
 
     width: 100%;
-    border:none;
+    border: none;
     border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
     background: url('../images/user.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
     background-repeat: no-repeat, no-repeat;
-    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-position: 4px center, center;
+    /* Ícono a la izquierda, gradiente centrado */
     background-size: 25px, 100% 100%;
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
-.btn-mi-perfil:hover{
+.btn-mi-perfil:hover {
     background: black;
     color: white;
     font-weight: bold;
 }
 
-.btn-usuarios{
-    
+.btn-usuarios {
+
     width: 100%;
     border-width: 1px;
-    
-    border:none;
+
+    border: none;
     border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
     background: url('../images/usuarios.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
     background-repeat: no-repeat, no-repeat;
-    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-position: 4px center, center;
+    /* Ícono a la izquierda, gradiente centrado */
     background-size: 25px, 100% 100%;
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
-.btn-usuarios:hover{
+.btn-usuarios:hover {
     background: black;
     color: white;
     font-weight: bold;
 }
 
-.btn-comentarios{
+.btn-comentarios {
 
-    
+
     width: 100%;
     border-width: 1px;
     background-color: white;
-    border-color:rgb(255, 0,0);
+    border-color: rgb(255, 0, 0);
     border-style: groove;
-    border:none;
+    border: none;
     border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
     background: url('../images/comentarios.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
     background-repeat: no-repeat, no-repeat;
-    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-position: 4px center, center;
+    /* Ícono a la izquierda, gradiente centrado */
     background-size: 25px, 100% 100%;
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
-.btn-comentarios:hover{
+.btn-comentarios:hover {
     background: black;
     color: white;
     font-weight: bold;
 }
 
-.btn-cargar-canciones{
+.btn-cargar-canciones {
 
 
     width: 100%;
-    border:none;
+    border: none;
     border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
     background: url('../images/cancion.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
     background-repeat: no-repeat, no-repeat;
-    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-position: 4px center, center;
+    /* Ícono a la izquierda, gradiente centrado */
     background-size: 25px, 100% 100%;
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
-.btn-cargar-canciones:hover{
+.btn-cargar-canciones:hover {
     background: black;
     color: white;
     font-weight: bold;
 }
 
-.btn-solicitudes{
+.btn-solicitudes {
     width: 100%;
-    border:none;
+    border: none;
     border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     color: white;
     font-weight: 300;
     height: 40px;
     background: url('../images/cancion.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
     background-repeat: no-repeat, no-repeat;
-    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-position: 4px center, center;
+    /* Ícono a la izquierda, gradiente centrado */
     background-size: 25px, 100% 100%;
-    
+
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
-.btn-solicitudes:hover{
+.btn-solicitudes:hover {
     background: black;
     color: white;
     font-weight: bold;
 }
 
-.btn-playlist{
+.btn-playlist {
 
     width: 100%;
-    border:none;
+    border: none;
     border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
     background: url('../images/cancion.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
     background-repeat: no-repeat, no-repeat;
-    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-position: 4px center, center;
+    /* Ícono a la izquierda, gradiente centrado */
     background-size: 25px, 100% 100%;
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
 
-.btn-playlist:hover{
+.btn-playlist:hover {
     background: black;
     color: white;
     font-weight: bold;
 }
 
-.btn-solicitar{
+.btn-solicitar {
 
     width: 100%;
-    border:none;
+    border: none;
     border-bottom: 2px solid rgba(66, 216, 223, 0.9);
     height: 40px;
     background: url('../images/usuarios.png') 4px center, linear-gradient(to right, #2c0596, #7bddfe);
     background-repeat: no-repeat, no-repeat;
-    background-position: 4px center, center; /* Ícono a la izquierda, gradiente centrado */
+    background-position: 4px center, center;
+    /* Ícono a la izquierda, gradiente centrado */
     background-size: 25px, 100% 100%;
 
     color: white;
@@ -235,13 +244,13 @@
     font-size: large;
 }
 
-.btn-solicitar:hover{
+.btn-solicitar:hover {
     background: black;
     color: white;
     font-weight: bold;
 }
 
-.boton-back{
+.boton-back {
     position: absolute;
     top: 550;
     left: 100px;
@@ -256,6 +265,59 @@
     font-weight: bold;
 }
 
-.boton-back:hover{
+.boton-back:hover {
     background-color: black;
+}
+
+.btn-open-navbar,
+.btn-close-navbar {
+    width: 35px;
+    height: 35px;
+    border: none;
+    display: none;
+    color: black;
+    background-color: transparent;
+}
+
+@media(max-width : 480px) {
+    .btn-open-navbar {
+        grid-column: 1/2;
+        grid-row: 1/2;
+        font-size: 2rem;
+        display: block;
+        z-index: 1;
+    }
+
+    .btn-close-navbar {
+        grid-column: 1/2;
+        grid-row: 1/2;
+        font-size: 2rem;
+        color: white;
+        display: block;
+    }
+
+    #banner-izquierdo {
+        display: none;
+    }
+
+    #banner-izquierdo.visible {
+        display: block;
+        grid-column: 1 / 2;
+        grid-row: 1 / 6;
+        z-index: 1;
+
+    }
+
+    .info-container {
+        grid-column: 1/7;
+        grid-row: 1/4;
+        margin: 0;
+        height: 100vh;
+
+    }
+
+    .canciones_disponibles {
+        margin-left: 100px;
+    }
+
 }

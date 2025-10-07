@@ -1,32 +1,8 @@
-.perfil-container{
-
-    
-    position: absolute;
-    position: fixed;
-    margin-top: -10px;
-    margin-left: -10px;
-    width: 300px;
-    height: 100%;
-    background-color: rgb(152, 251, 152);
-    
-}
-
-.canciones-container{
-
-    position: absolute;
-    
-    top: -5px;
-    left: 280px;
-    height: 622px;
-    width: 1080px;
-
-}
-
 
 
 h2{
-    position: absolute;
-    left: 50px;
+    margin-top: 20px;
+    margin-left: 50px;
     font-size: 30px;
     color: rgb(25, 25, 112);
     font-weight: bold;
@@ -40,9 +16,9 @@ h2{
 
 
 .boton-cargar{
-    position: absolute;
-    top: 100px;
-    left: 50px;
+    
+    margin-top: 20px;
+    margin-left: 50px;
     background-color: rgb(50, 205, 50);
     outline: none;
     border-radius: 5px;
@@ -54,32 +30,18 @@ h2{
 }
 
 .input-file{
-    position: absolute;
-    top: 105px;
-    left: 290px;
+    
+    margin-top: 20px;
+    margin-left: 100px;
     outline: none;
     height: 30px;
     width: 200px;
 }
 
-.usuario{
-
-    position: absolute;
-    text-align: center;
-    margin-top: 180px;
-    margin-left: 0px;
-    font-size: 15px;
-    color: rgb(25, 25, 112);
-    width: 300px;
-    border-color:  rgb(152, 251, 152);
-   
-}
-
-
 
 .back{
 
-    position: absolute;
+    
     margin-top: 500px;
     margin-left: 80px;
     color: rgb(0, 128,128);
@@ -88,7 +50,6 @@ h2{
 
 table{
     text-align: left;
-    position: absolute;
     border-collapse: collapse;
     border-bottom: 0px;
     top: 150px;
@@ -102,4 +63,10 @@ th,td{
     border-bottom: 1px solid rgb(25, 25, 112);
     width: 100px;
     padding: 10px;
+}
+
+@media (max-width: 480px){
+    h2{
+        margin-left: 50px;
+    }
 }

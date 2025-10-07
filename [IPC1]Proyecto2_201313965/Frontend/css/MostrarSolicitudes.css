@@ -1,32 +1,8 @@
-body{
-    position: relative;
-}
-
-.banner-izquierdo{
-    position: absolute;
-    position: fixed;
-    margin-top: -10px;
-    margin-left: -10px;
-    width: 300px;
-    height: 100%;
-    background-color: rgb(152, 251, 152);
-}
-
-#info-container{
-
-    
-    position: absolute;
-    margin-top: -10px;
-    margin-left: 290px;
-    width: 1060px;
-    height: 620px;
-    
-}
 
 
 table{
     text-align: left;
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     border-collapse: collapse;
     border-bottom: 0px;
@@ -56,8 +32,8 @@ td{
 
 
 .p-tablacanciones{
-    position: absolute;
-    left: 50px;
+    
+    margin-left: 50px;
     font-size: 30px;
     color: rgb(25, 25, 112);
     font-weight: bold;
@@ -68,4 +44,10 @@ td{
     border-color:rgb(154, 205, 50);;
     border-width: 1px;
     
+}
+
+@media(max-width:480px){
+    .p-tablacanciones{
+        margin-left: 50px;
+    }
 }
