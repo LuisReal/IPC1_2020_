@@ -10,8 +10,8 @@
 
         <div class="banner-izquierdo">
 
-            <label class="foto-cliente"></label>
-            <h1 id="cliente" class="cliente"></h1>
+            <label class="foto-perfil"></label>
+            <h1  id="usuario" class="nombre-usuario"></h1>
             <button onclick="" type="button" class="btn-pagina-principal" >Pagina Principal</button>
             <button onclick="miPerfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
             <button type="button"  id="playlist" onclick="miPlayList()" class="btn-playlist">Mi PlayList</button>
@@ -142,7 +142,7 @@
                     var valor = sessionStorage.usuario // .usuario proviene de inicio.html (valor=username)
                                                        
                         if(res[i].Usuario==valor){
-                        var h1 = document.querySelector('#cliente')
+                        var h1 = document.querySelector('#usuario')
                         h1.innerHTML += 
                         `
 

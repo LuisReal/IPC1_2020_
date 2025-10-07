@@ -8,8 +8,8 @@
 
         <div class="banner-izquierdo">
 
-            <label class="foto-usuario"></label>
-            <h1 id="admin" class="usuario"></h1>
+            <label class="foto-perfil"></label>
+            <h1 id="usuario" class="nombre-usuario"></h1>
             <button onclick="back()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
             <button onclick="miPerfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
             <button onclick="back()" type="button" class="boton-back">Back</button>
@@ -69,7 +69,7 @@
                     
                     var valor = res.admin // Proviene de ModificarPerfilAdministrador.html (Modificar()) 
                     
-                    var h1 = document.querySelector('#admin')
+                    var h1 = document.querySelector('#usuario')
                         h1.innerHTML += 
                         `
                         <h1>${valor}</h1>

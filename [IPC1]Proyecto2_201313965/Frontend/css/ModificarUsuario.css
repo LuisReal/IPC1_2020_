@@ -24,35 +24,6 @@ body{
 }
 
 
-.foto-usuario{
-
-    position: absolute;
-    border-color: white;
-    border-radius: 50%;
-    border-style: groove;
-    top: 30px;
-    left: 80px;
-    width: 150px;
-    height: 150px;
-    background-image: url('../images/usuario.png');
-    background-repeat: no-repeat;
-    background-size: 200px;
-    background-position: -25px center;
-}
-
-.administrador{
-
-    position: absolute;
-    text-align: center;
-    margin-top: 180px;
-    margin-left: 0px;
-    font-size: 15px;
-    color: rgb(25, 25, 112);
-    width: 300px;
-    border-color:  rgb(152, 251, 152);
-    
-    
-}
 
 .label-nombre{
 

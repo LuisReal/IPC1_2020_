@@ -72,21 +72,7 @@ td{
     padding: 10px;
 }
 
-.foto-cliente{
 
-    position: absolute;
-    border-color: white;
-    border-radius: 50%;
-    border-style: groove;
-    top: 30px;
-    left: 80px;
-    width: 150px;
-    height: 150px;
-    background-image: url('../images/usuario.png');
-    background-repeat: no-repeat;
-    background-size: 200px;
-    background-position: -25px center;
-}
 
 
 

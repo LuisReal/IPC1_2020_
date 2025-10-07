@@ -6,21 +6,18 @@ body{
 
 #info-container{
 
-    
-    position: absolute;
     margin-top: -10px;
-    margin-left: 290px;
-    width: 1060px;
-    height: 620px;
-    
+    width: 100%;
+    height: 100vh;
+    border: 5px solid green;
 }
 
                                 /*AQUI INICIA EL CSS DE ModificarUsuario*/
 
 
                                /*AQUI FINALIZA EL CSS DE ModificarUsuario*/
-.p-tablacanciones{
-    position: absolute;
+.canciones_disponibles{
+    
     left: 50px;
     font-size: 30px;
     color: rgb(25, 25, 112);
@@ -34,17 +31,17 @@ body{
     
 }
 
+
+
 table{
     text-align: left;
-    position: absolute;
     font-family: 'Courier New', Courier, monospace;
     border-collapse: collapse;
-    border-bottom: 0px;
     top: 100px;
-    left: 50px;
-    width: 900px;
+    width: 100%;
     padding-top: 10px;
     padding-left: 10px;
+    
 }
 
 th{
@@ -108,35 +105,6 @@ td{
 .boton-comentario:hover{
     background-color: rgba(0, 0, 0, 0.812);
     font-weight: bold;
-}
-
-.foto-administrador{
-
-    position: absolute;
-    border-color: white;
-    border-radius: 50%;
-    border-style: groove;
-    top: 30px;
-    left: 80px;
-    width: 150px;
-    height: 150px;
-    background-image: url('../images/usuario.png');
-    background-repeat: no-repeat;
-    background-size: 200px;
-    background-position: -25px center;
-}
-
-.administrador{
-
-    position: absolute;
-    text-align: center;
-    margin-top: 180px;
-    margin-left: 0px;
-    font-size: 15px;
-    color: rgb(25, 25, 112);
-    width: 300px;
-    border-color:  rgb(152, 251, 152);
-    
 }
 
 
