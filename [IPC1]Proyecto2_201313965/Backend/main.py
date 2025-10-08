@@ -46,12 +46,12 @@ def Iniciar():
 def getPersonas(): 
     global Usuarios # hace referencia a la lista que esta arriba
     Datos = []
-    '''for usuario in Usuarios:
+    for usuario in Usuarios:
         Dato={'Nombre' : usuario.getNombre(),
               'Apellido': usuario.getApellido(),
               'Usuario': usuario.getUsuario()}  
-        Datos.append(Dato)  # guarda la info del diccionario en la lista Datos'''
-    
+        Datos.append(Dato)  # guarda la info del diccionario en la lista Datos
+    '''
     cursor.execute(""" SELECT nombre, apellido, usuario, contrasena FROM usuarios """) 
     
     rows = cursor.fetchall() # rows = una lista de tuplas
@@ -63,7 +63,7 @@ def getPersonas():
         Datos.append(Dato)
 
     connection.commit()
-    
+    '''
     respuesta = jsonify(Datos)   #jsonify sirve para convertir una lista a un objeto json 
     return(respuesta)
 
@@ -76,15 +76,15 @@ def addPersonas():
     contrasena = request.json['contrasena']
     encontrado = False
 
-
+    '''
     cursor.execute("""
         INSERT INTO usuarios (nombre, apellido, usuario, contrasena)
         VALUES (:1, :2, :3, :4)
     """, (nombre, apellido, usuario, contrasena))
 
     connection.commit()
-
-    '''for i in Usuarios:
+    '''
+    for i in Usuarios:
         if i.getUsuario() == usuario:
             encontrado = True
             break
@@ -93,7 +93,7 @@ def addPersonas():
                         'reason': "El usuario ya existe"})
     else:
         nuevo = Persona(nombre, apellido, usuario, contrasena)
-        Usuarios.append(nuevo)'''
+        Usuarios.append(nuevo)
     
     return jsonify({'message': "successful",
                         'reason': "Se agrego el usuario"})
@@ -105,7 +105,7 @@ def recuperarContrasena():
     usuario = request.json['usuario'] # request es para hacer solicitudes (se utiliza postman para pruebas de solicitudes)
     # request es la solicitud que hace el usuario
     #encontrado = False
-    
+    '''
     cursor.execute("""
     SELECT contrasena
     FROM usuarios
@@ -118,6 +118,7 @@ def recuperarContrasena():
             'contrasena': fila[0]
         }
 
+    connection.commit()
     '''
     
     for i in Usuarios:
@@ -125,17 +126,18 @@ def recuperarContrasena():
             Dato={
                 'contrasena': i.getContrasena()
             }
-            break'''
+            respuesta = jsonify(Dato)
+            break
     
-    connection.commit()
-    respuesta = jsonify(Dato)
+    
+    
     return(respuesta)
     
 
 @app.route('/Usuarios/<string:usuario>', methods=['GET']) #se obtiene solo 1 persona
 def getPersona(usuario): 
     
-    '''global Usuarios
+    global Usuarios
    
     for i in Usuarios:
         if i.getUsuario() == usuario:
@@ -145,8 +147,8 @@ def getPersona(usuario):
                 'Contrasena': i.getContrasena()}  
             
             break
-    respuesta = jsonify(Dato)    '''
-
+    respuesta = jsonify(Dato)
+    '''
     cursor.execute("""
         SELECT * FROM usuarios
         WHERE usuario = :usuario
@@ -161,19 +163,15 @@ def getPersona(usuario):
         'Apellido': fila[1],
         'Usuario': fila[2],
         'Contrasena': fila[3]} 
+    '''
 
-
-    return(jsonify(Dato))
+    return(respuesta)
 
 @app.route('/Usuarios/<string:usuario_anterior>', methods=['PUT']) #se modifica usuario 
-def modifyPersona(usuario_anterior): 
+def modifyPersona(usuario): 
     global Usuarios
     
-    usuario_nuevo = request.json['usuario']
-    nombre = request.json['nombre']
-    apellido = request.json['apellido']
-    contrasena = request.json['contrasena']
-
+    '''
     cursor.execute("""
     SELECT 1 FROM usuarios WHERE usuario = :usuario
     """, {"usuario": usuario_nuevo}) # si existe el usuario devuelve el valor 1
@@ -215,7 +213,7 @@ def modifyPersona(usuario_anterior):
         Usuarios[i].setContrasena(request.json['contrasena'])
         return({'message': "Se modifico el Usuario"})
     else:
-        return jsonify({'message': "el usuario ya existe"})'''
+        return jsonify({'message': "el usuario ya existe"})
     
     
     
@@ -224,7 +222,7 @@ def modifyPersona(usuario_anterior):
 def deletePersona(usuario): 
     global Usuarios
 
-
+    '''
     cursor.execute("""
         DELETE FROM usuarios
         WHERE usuario = :usuario
@@ -232,6 +230,11 @@ def deletePersona(usuario):
 
     connection.commit()
 
+    if cursor.rowcount == 0:   #si ninguna fila fue afectada en la base de datos
+
+        return jsonify({'message': "el usuario no existe"})
+    
+    return jsonify({'message': "el usuario fue eliminado"})
     '''
     
     for i in range(len(Usuarios)):
@@ -241,13 +244,9 @@ def deletePersona(usuario):
             del Usuarios[i] # del elimina el objeto
             
             return jsonify({'message': "Se Elimino el Usuario"})
-    '''
-
-    if cursor.rowcount == 0:   #si ninguna fila fue afectada en la base de datos
-
-        return jsonify({'message': "el usuario no existe"})
     
-    return jsonify({'message': "el usuario fue eliminado"})
+
+    
 
 @app.route('/ModificarUsuario/<string:usuario>', methods=['PUT']) #se modifica usuario 
 def modifyUser(usuario): 
@@ -303,7 +302,7 @@ def Login():
     
     username = request.json['username']
     password = request.json['password']
-
+    '''
     cursor.execute("""
         SELECT * FROM usuarios
         WHERE usuario = :usuario
@@ -315,9 +314,9 @@ def Login():
             'usuario': fila[2],
             'contrasena': fila[3]
             }
+    '''
 
-
-    '''for usuario in Usuarios:
+    for usuario in Usuarios:
         if usuario.getUsuario() == username and usuario.getContrasena() == password:
             Dato={'message': 'Bienvenido',
                   'usuario': usuario.getUsuario(),
@@ -329,7 +328,7 @@ def Login():
                  'message': 'Usuario o contrasena no existen',
                  'usuario': ''   
 
-            }'''
+            }
     
     respuesta = jsonify(Dato)
     return(respuesta)
@@ -618,7 +617,7 @@ def deletePlayList(id):
     return jsonify({'message': "La cancion fue eliminada con exito"})        
 
 if __name__ == "__main__":
-
+    '''
     connection = oracledb.connect(
         user="usuarios",
         password="usuarios123",
@@ -626,5 +625,5 @@ if __name__ == "__main__":
     )
 
     cursor = connection.cursor()
-
+    '''
     app.run(debug=True, port = 8000) # esto inicia el servidor

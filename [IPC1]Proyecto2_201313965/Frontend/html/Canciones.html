@@ -72,7 +72,7 @@
         }
         function mostrarPerfil() {
 
-            fetch('http://127.0.0.1:8000/Admin',
+            fetch('http://3.129.19.112:8000/Admin',
 
             ).then(response => response.json()
             ).catch(err => {
@@ -138,7 +138,7 @@
                 }
 
 
-                fetch('http://127.0.0.1:8000/Canciones', {
+                fetch('http://3.129.19.112:8000/Canciones', {
                     method: 'POST',
                     body: JSON.stringify(objeto),
                     headers: {
@@ -169,7 +169,7 @@
 
             var contenido = document.querySelector('#body')
             contenido.innerHTML = ""
-            fetch('http://127.0.0.1:8000/Canciones'
+            fetch('http://3.129.19.112:8000/Canciones'
             ).then(response => response.json()
             ).catch(error => {
                 console.log(error)

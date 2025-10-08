@@ -2,10 +2,11 @@
     <head>
 
         <link href="../css/estilosRecuperarContrasena.css" rel="stylesheet" >
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     
     <body>
+
         <div class="main-container">
             
             
@@ -30,7 +31,7 @@
                     'usuario': usuario
                 }
 
-                fetch('http://127.0.0.1:8000/Usuario',{
+                fetch('http://3.129.19.112:8000/Usuario',{
 
                 method : 'POST',
                 body: JSON.stringify(objeto),

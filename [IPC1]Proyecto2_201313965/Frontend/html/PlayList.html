@@ -83,7 +83,7 @@
         function mostrarPlayList() {
             var usuario = sessionStorage.usuario
 
-            fetch(`http://127.0.0.1:8000/getPlayList/${usuario}`,
+            fetch(`http://3.129.19.112:8000/getPlayList/${usuario}`,
 
             ).then(response => response.json()
             ).catch(err => {
@@ -113,7 +113,7 @@
                 'id': id
             }
 
-            fetch(`http://127.0.0.1:8000/deletePlayList/${id}`, {
+            fetch(`http://3.129.19.112:8000/deletePlayList/${id}`, {
 
                 method: 'DELETE',
                 body: JSON.stringify(objeto),
@@ -132,7 +132,7 @@
         }
 
         function mostrarCliente() {
-            fetch('http://127.0.0.1:8000/Usuarios',
+            fetch('http://3.129.19.112:8000/Usuarios',
 
 
             ).then(response => response.json()

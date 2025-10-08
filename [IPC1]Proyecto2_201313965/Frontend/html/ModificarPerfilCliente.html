@@ -90,7 +90,7 @@
         }
 
         function mostrarCliente() {
-            fetch('http://127.0.0.1:8000/Usuarios',
+            fetch('http://3.129.19.112:8000/Usuarios',
 
             ).then(response => response.json()
             ).catch(err => {
@@ -116,7 +116,7 @@
 
             var carga = sessionStorage.usuario //.usuario // proviene de inicio.html 
 
-            fetch(`http://127.0.0.1:8000/Usuarios/${carga}`, // 
+            fetch(`http://3.129.19.112:8000/Usuarios/${carga}`, // 
 
             ).then(response => response.json()
             ).catch(err => {
@@ -148,7 +148,7 @@
 
             }
 
-            fetch(`http://127.0.0.1:8000/ModificarUsuario/${usuario}`, {
+            fetch(`http://3.129.19.112:8000/ModificarUsuario/${usuario}`, {
 
 
                 method: 'PUT',
