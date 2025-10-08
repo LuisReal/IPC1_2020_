@@ -35,7 +35,8 @@
 
             <button href="javascript:cerrar()" onclick="cerrarSesion()" type="button" class="boton-cerrarSesion">Cerrar
                 Sesion</button>
-            <p class="p-tablacanciones">Mi PlayList</p>
+            
+                <p class="p-tablacanciones">Mi PlayList</p>
 
             <table>
                 <thead>
@@ -54,6 +55,7 @@
 
 
     <script>
+
 
         function Principal() {
             location.href = "Cliente.html"
@@ -92,17 +94,21 @@
                 console.log(res)
 
                 for (i = 0; i < (res.length); i++) {
-                    console.log(res[i])
+                    console.log(res[i].audio)
                     var body = document.querySelector('#tbody')
+
                     body.innerHTML +=
                         `
                         
                             <td>${res[i].nombre}</td>
                             <td><iframe src="${res[i].spotify}" width="300" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                            <td><audio style="outline: none; width:100%" src="${res[i].audio}" autoplay  controls ></audio></td>
                             <td><button type="button" value="${res[i].id}"  onclick="eliminarCancion(this)" class="boton-eliminar">Eliminar</button></td>
                             
                         
                         `
+                    
+                    
                 }
             })
         }

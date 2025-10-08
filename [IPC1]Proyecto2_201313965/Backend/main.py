@@ -574,7 +574,8 @@ def crearPlayList(id):
             imagen = Canciones[i].getImagen()
             spotify = Canciones[i].getSpotify()
             youtube = Canciones[i].getYoutube()
-            new = playlist(id_usuario,id,nombre,artista,album,fecha,imagen,spotify,youtube)
+            audio = Canciones[i].getAudio()
+            new = playlist(id_usuario,id,nombre,artista,album,fecha,imagen,spotify,youtube, audio)
             
             PlayList.append(new) 
             
@@ -601,7 +602,8 @@ def getPlayList(id_usuario):
                 'fecha': i.getFecha(),
                 'imagen': i.getImagen(),
                 'spotify': i.getSpotify(),
-                'youtube': i.getYoutube()
+                'youtube': i.getYoutube(),
+                'audio': i.getAudio()
             }
             Datos.append(Dato)
     respuesta = jsonify(Datos)
@@ -629,4 +631,4 @@ if __name__ == "__main__":
 
     cursor = connection.cursor()
     '''
-    app.run(debug=True, port = 8000) # esto inicia el servidor
+    app.run(debug=True, port = 8000, host='0.0.0.0') # esto inicia el servidor
