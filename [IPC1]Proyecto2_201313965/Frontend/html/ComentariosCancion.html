@@ -1,19 +1,32 @@
 <html>
-    <head>
-        
-        <link href="../css/AdminComentarios.css" rel="stylesheet" >
-        <link href="../css/navbar.css" rel="stylesheet" >
-    </head>
 
-    <body onload="mostrarComentarios(), mostrarPerfil()">
+<head>
 
-        <div class="banner-izquierdo">
+    <link href="../css/AdminComentarios.css" rel="stylesheet">
+    <link href="../css/navbar.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body onload="mostrarComentarios(), mostrarPerfil()">
+
+    <div class="global-container">
+
+        <button id="btn-open-menu" class="btn-open-navbar"><i class="bi bi-list"></i></button>
+
+        <div class="banner-izquierdo" id="banner-izquierdo">
+
+            <button id="btn-close-menu" class="btn-close-navbar"><i class="bi bi-x-square"></i></button>
 
             <label class="foto-perfil"></label>
             <h1 id="usuario" class="nombre-usuario"></h1>
-            <button onclick="back()" type="button" class="btn-pagina-principal" >Pagina Principal</button>
-            <button onclick="irPerfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
-            <button type="button" onclick="back()" class="boton-back">Back</button>
+
+            <div class="botones-container">
+                <button onclick="back()" type="button" class="btn-pagina-principal">Pagina Principal</button>
+                <button onclick="irPerfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
+                <button type="button" onclick="back()" class="boton-back">Back</button>
+            </div>
+
 
         </div>
 
@@ -22,7 +35,7 @@
             <p class="p-tablacanciones">Informacion de los Comentarios</p>
 
             <table>
-                <thead >
+                <thead>
 
                     <tr>
                         <th>Usuario</th>
@@ -37,27 +50,30 @@
             </table>
 
         </div>
+    </div>
 
-        <script>
-            function mostrarComentarios(){
-                
-                var id= sessionStorage.id //  proviene de administrador.html
-                fetch(`http://3.129.19.112:8000/Comentarios/${id}`,
 
-                ).then(response => response.json()
-                ).catch(err =>{
-                    console.log("no se pudo consumir la api")
-                }).then(res =>{
-                    console.log("Respuesta ",res)
-                    
-                        
-                    for(i=0; i<(res.length); i++){
-                        console.log(res [i])
 
-                        
-                        
-                        var body = document.querySelector('#tbody')
-                        body.innerHTML += 
+    <script>
+        function mostrarComentarios() {
+
+            var id = sessionStorage.id //  proviene de administrador.html
+            fetch(`http://3.129.19.112:8000/Comentarios/${id}`,
+
+            ).then(response => response.json()
+            ).catch(err => {
+                console.log("no se pudo consumir la api")
+            }).then(res => {
+                console.log("Respuesta ", res)
+
+
+                for (i = 0; i < (res.length); i++) {
+                    console.log(res[i])
+
+
+
+                    var body = document.querySelector('#tbody')
+                    body.innerHTML +=
                         `
                         <tr >
                             
@@ -66,42 +82,59 @@
                             <td>${res[i].nombre}</td>
                             <td><img src="${res[i].imagen}" height="100" width="100"><td>
                         </tr>
-                        `     
-                    }
-                })
-            }
+                        `
+                }
+            })
+        }
 
-            function mostrarPerfil(){
-            
-                fetch('http://3.129.19.112:8000/Admin',
+        function mostrarPerfil() {
 
-                ).then(response => response.json()
-                ).catch(err =>{
-                    console.log("no se pudo consumir la api")
-                }).then(res =>{
-                    console.log(res)
-                    
-                        
-                        var valor = res.admin // Proviene de ModificarPerfilAdministrador.html (Modificar()) 
-                        
-                        var h1 = document.querySelector('#usuario')
-                            h1.innerHTML += 
-                            `
+            fetch('http://3.129.19.112:8000/Admin',
+
+            ).then(response => response.json()
+            ).catch(err => {
+                console.log("no se pudo consumir la api")
+            }).then(res => {
+                console.log(res)
+
+
+                var valor = res.admin // Proviene de ModificarPerfilAdministrador.html (Modificar()) 
+
+                var h1 = document.querySelector('#usuario')
+                h1.innerHTML +=
+                    `
                             <h1>${valor}</h1>
                             
-                            ` 
-                })
-          
-          }
+                            `
+            })
 
-            function back(){
-                location.href="administrador.html"
-            }
+        }
 
-            function irPerfil(){
-                location.href="ModificarPerfilAdministrador.html"
-            }
-        </script>
+        function back() {
+            location.href = "administrador.html"
+        }
 
-    </body>
+        function irPerfil() {
+            location.href = "ModificarPerfilAdministrador.html"
+        }
+    </script>
+    <script>
+        const open_menu = document.getElementById("btn-open-menu");
+        const close_menu = document.getElementById("btn-close-menu");
+        const navbar = document.getElementById("banner-izquierdo");
+
+        
+            open_menu.addEventListener("click", () => {
+                console.log("hiciste click en abrir menu");
+                navbar.classList.add("visible");
+            });
+
+            close_menu.addEventListener("click", () => {
+                console.log("hiciste click en cerrar menu");
+                navbar.classList.remove("visible");
+            });
+        
+    </script>
+</body>
+
 </html>

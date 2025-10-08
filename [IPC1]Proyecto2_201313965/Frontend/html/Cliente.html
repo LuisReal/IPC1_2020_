@@ -57,7 +57,7 @@
     <script>
 
         function back() {
-            location.href = "inicio.html"
+            location.href = "../index.html"
         }
 
         function miPerfil() {
@@ -66,7 +66,7 @@
 
         function cerrarSesion() {
 
-            location.href = "inicio.html"
+            location.href = "../index.html"
         }
 
         function solicitar() {
@@ -92,9 +92,9 @@
                     body.innerHTML +=
                         `
                         
-                            <!--<td>${res[i].id}</td>-->
-                            <td><iframe src="${res[i].spotify}" width="300" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                            <button onclick="verPortada(this)"  type="button" value="${res[i].id}" class="ver-portada">Ver Portada</button><button type="button" value="${res[i].id}"  onclick="verDetalles(this)" class="ver-detalles">Ver Detalles</button>
+                            
+                            <td>${res[i].id}<iframe src="${res[i].spotify}" width="300" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                            <button type="button" value="${res[i].id}"  onclick="verDetalles(this)" class="ver-detalles">Ver Detalles</button>
                             <button onclick="addPlayList(this)"  type="button" value="${res[i].id}" class="add-to-playlist">Add to PlayList</button></td>
                             
                         

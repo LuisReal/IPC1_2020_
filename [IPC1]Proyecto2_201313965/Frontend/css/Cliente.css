@@ -52,27 +52,23 @@
 
 table{
     text-align: left;
-    
     font-family: 'Courier New', Courier, monospace;
     border-collapse: collapse;
     border-bottom: 0px;
-    top: 100px;
-    left: 50px;
-    width: 900px;
+    width: 100%;
     padding-top: 10px;
     padding-left: 10px;
 }
 
 th,td{
     border-bottom: 1px solid rgb(25, 25, 112);
-    width: 100px;
+    width: 100%;
     padding: 10px;
 }
 
 .ver-portada{
     
     margin-top: 10px;
-    margin-left: 50px;
     height: 35px;
     border: none;
     background-color: rgb(149, 218,1);

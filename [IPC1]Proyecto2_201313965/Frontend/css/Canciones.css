@@ -52,9 +52,7 @@ table{
     text-align: left;
     border-collapse: collapse;
     border-bottom: 0px;
-    top: 150px;
-    left: 50px;
-    width: 900px;
+    width: 100%;
     padding-top: 10px;
     padding-left: 10px;
 }

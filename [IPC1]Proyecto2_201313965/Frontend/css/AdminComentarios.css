@@ -1,4 +1,11 @@
-
+.p-tablacanciones{
+    margin-left: 50px;
+    font-size: 30px;
+    color: rgb(25, 25, 112);
+    font-weight: bold;
+    border-color:rgb(154, 205, 50);;
+    border: none;
+}
 
             
 .etiqueta-titulo{
@@ -21,9 +28,7 @@ table{
     font-family: 'Courier New', Courier, monospace;
     border-collapse: collapse;
     border-bottom: 0px;
-    top: 100px;
-    left: 50px;
-    width: 900px;
+    width: 100%;
     padding-top: 10px;
     padding-left: 10px;
 }

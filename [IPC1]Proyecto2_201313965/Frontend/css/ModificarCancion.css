@@ -1,33 +1,19 @@
-body{
-    position: relative;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.banner-izquierdo{
-    position: absolute;
-    position: fixed;
-    margin-top: -10px;
-    margin-left: -10px;
-    width: 300px;
-    height: 100%;
-    background-color: rgb(152, 251, 152);
-    
+.datos-usuario{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    margin-left: 10px;
 }
-
-.info-container{
-
-    position: absolute;
-    margin-top: -10px;
-    margin-left: 290px;
-    width: 1060px;
-    height: 620px;
-    
-}
-
-
 
 .label-nombre{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     top: 100px;
@@ -39,7 +25,7 @@ body{
 
 .input-nombre{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     border-color: rgb(220, 220, 220);
     border-style: groove;
@@ -52,7 +38,7 @@ body{
 
 .label-artista{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     top: 170px;
@@ -64,7 +50,7 @@ body{
 
 .input-artista{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     width: 800px;
     border-color: black;
@@ -78,7 +64,7 @@ body{
 
 .label-album{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     top: 240px;
@@ -90,7 +76,7 @@ body{
 
 .input-album{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     border-color: rgb(220, 220, 220);
     border-radius: 5px;
@@ -103,7 +89,7 @@ body{
 
 .label-fecha{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     top: 310px;
@@ -115,7 +101,7 @@ body{
 
 .input-fecha{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     border-color: rgb(220, 220, 220);
     border-radius: 5px;
@@ -128,7 +114,7 @@ body{
 
 .label-imagen{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     top: 380px;
@@ -140,7 +126,7 @@ body{
 
 .input-imagen{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     border-color: rgb(220, 220, 220);
     border-radius: 5px;
@@ -153,7 +139,7 @@ body{
 
 .label-spotify{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     top: 450px;
@@ -165,7 +151,7 @@ body{
 
 .input-spotify{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     border-color: rgb(220, 220, 220);
     border-radius: 5px;
@@ -178,7 +164,7 @@ body{
 
 .label-youtube{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     top: 520px;
@@ -190,7 +176,7 @@ body{
 
 .input-youtube{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     border-color: rgb(220, 220, 220);
     border-radius: 5px;
@@ -202,7 +188,7 @@ body{
 }
 
 p{
-    position: absolute;
+    
     left: 50px;
     font-size: 30px;
     color: rgb(25, 25, 112);
@@ -217,16 +203,12 @@ p{
 
 .boton-modificar{
 
-    position: absolute;
     background-color: rgb(34, 139, 34);
-    top: 590px;
-    left: 100px;
     height: 30px;
     width: 100px;
     border-radius: 10px;
-    outline: none;
-    border: 0px;
     color: white;
+    border: none;
 }
 
 .boton-modificar:hover{
@@ -236,16 +218,13 @@ p{
 
 .boton-eliminar{
 
-    position: absolute;
+   
     background-color: rgb(255, 0, 0);
-    top: 590px;
-    left: 230px;
     height: 30px;
     width: 100px;
     border-radius: 10px;
-    outline: none;
-    border: 0px;
     color: white;
+    border: none;
 }
 
 .boton-eliminar:hover{
@@ -255,19 +234,23 @@ p{
 
 .boton-regresar{
 
-    position: absolute;
+    
     background-color: black;
     color: white;
-    top: 590px;
-    left: 350px;
     height: 30px;
     width: 100px;
     border-radius: 10px;
-    outline: none;
-    border: 0px;
+    border: none;
+    
 }
 
 .boton-regresar:hover{
     background-color: rgba(0, 0, 0, 0.689);
     font-weight: bold;
+}
+
+@media(max-width: 480px){
+    p{
+        margin-left: 50px;
+    }
 }
