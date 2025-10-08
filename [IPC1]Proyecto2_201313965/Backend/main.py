@@ -345,8 +345,10 @@ def crearCanciones():
     imagen = request.json['imagen']
     spotify = request.json['spotify']
     youtube = request.json['youtube']
+    audio = request.json['audio']
 
-    new = Cancion(id,nombre,artista,album,fecha,imagen,spotify,youtube)
+    print("EL NOMBRE DEL AUDIO ES: "+ audio)
+    new = Cancion(id,nombre,artista,album,fecha,imagen,spotify,youtube, audio)
     Canciones.append(new)
     contador += 1
     return jsonify({'message': "success",
@@ -403,7 +405,8 @@ def getCancion():
             'fecha': i.getFecha(),
             'imagen': i.getImagen(),
             'spotify': i.getSpotify(),
-            'youtube': i.getYoutube()
+            'youtube': i.getYoutube(),
+            'audio': i.getAudio()
         }
         Datos.append(Dato)
     respuesta = jsonify(Datos)
@@ -446,7 +449,7 @@ def getComentario(id):
     global Comentarios 
     
     Datos = []
-    print("ESTOY AQUI DE NUEVO")
+    
     for i in range(len(Comentarios)):
         if id == Comentarios[i].getId():
             

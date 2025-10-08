@@ -1,6 +1,6 @@
 class Cancion:
 
-    def __init__(self, id, nombre, artista, album, fecha, imagen, spotify, youtube):
+    def __init__(self, id, nombre, artista, album, fecha, imagen, spotify, youtube, audio):
 
         self.id = id
         self.nombre = nombre
@@ -10,6 +10,7 @@ class Cancion:
         self.imagen = imagen
         self.spotify = spotify
         self.youtube = youtube
+        self.audio = audio
 
     def getId(self):
 
@@ -42,6 +43,10 @@ class Cancion:
     def getYoutube(self):
 
         return self.youtube
+    
+    def getAudio(self):
+
+        return self.audio
 
     def setId(self, id):
         self.id = id
@@ -66,3 +71,6 @@ class Cancion:
 
     def setYoutube(self, youtube):
         self.youtube = youtube
+
+    def setAudio(self, audio):
+        self.audio = audio

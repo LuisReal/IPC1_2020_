@@ -35,6 +35,7 @@
 
             <p class="p-tablacanciones">Informacion de la Cancion</p>
 
+            <audio style="outline: none; width:100%" id="audio-cancion" autoplay  controls ></audio>
             <div class="comments-container">
 
                 <div class="image-comment-container">
@@ -130,9 +131,12 @@
                     if (res[i].id == detalles) {
                         console.log(res[i])
                         var video = document.querySelector('#div-video')
+                        var audio = document.querySelector('#audio-cancion')
+                        audio.src = "songs/" +res[i].audio;
+                        console.log("EL NOMBRE DE LA CANCION ES: ", res[i].audio);
                         video.innerHTML +=
                             `
-                                <iframe src="${res[i].youtube}" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                <iframe src="${res[i].youtube}" width="100%" height="300" title="YouTube video player" frameborder="0" allowtransparency="true" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                                 <label style=" left:10px">Nombre: ${res[i].nombre}</label>
                                 <label style=" left:10px">Artista: ${res[i].artista}</label>
                                 <label style=" left:10px">Album: ${res[i].album}</label>
