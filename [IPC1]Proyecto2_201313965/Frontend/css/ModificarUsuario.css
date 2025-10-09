@@ -1,33 +1,13 @@
-body{
-    position: relative;
+.datos-usuario{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    margin-left: 10px;
 }
-
-.banner-izquierdo{
-    position: absolute;
-    position: fixed;
-    margin-top: -10px;
-    margin-left: -10px;
-    width: 300px;
-    height: 100%;
-    background-color: rgb(152, 251, 152);
-    
-}
-
-.info-container{
-
-    position: absolute;
-    margin-top: -10px;
-    margin-left: 290px;
-    width: 1060px;
-    height: 620px;
-    
-}
-
-
 
 .label-nombre{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     top: 100px;
@@ -39,7 +19,7 @@ body{
 
 .input-nombre{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     border-color: rgb(220, 220, 220);
     border-style: groove;
@@ -52,7 +32,7 @@ body{
 
 .label-apellido{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     top: 200px;
@@ -64,7 +44,7 @@ body{
 
 .input-apellido{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     width: 800px;
     border-color: black;
@@ -78,7 +58,7 @@ body{
 
 .label-usuario{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     top: 300px;
@@ -90,7 +70,7 @@ body{
 
 .input-usuario{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     border-color: rgb(220, 220, 220);
     border-radius: 5px;
@@ -103,7 +83,7 @@ body{
 
 .label-contrasena{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     top: 400px;
@@ -115,7 +95,7 @@ body{
 
 .input-contrasena{
 
-    position: absolute;
+    
     font-family: 'Courier New', Courier, monospace;
     border-color: rgb(220, 220, 220);
     border-radius: 5px;
@@ -127,8 +107,7 @@ body{
 }
 
 p{
-    position: absolute;
-    left: 50px;
+    
     font-size: 30px;
     color: rgb(25, 25, 112);
     font-weight: bold;
@@ -140,12 +119,17 @@ p{
     border-width: 2px;
 }
 
+@media (max-width: 480px){
+    p{
+        margin-left: 100px;
+    }
+}
+
 .boton-modificar{
 
-    position: absolute;
+    
     background-color: rgb(34, 139, 34);
-    top: 500px;
-    left: 100px;
+    
     height: 30px;
     width: 100px;
     border-radius: 10px;
@@ -161,14 +145,12 @@ p{
 
 .boton-eliminar{
 
-    position: absolute;
+    
     background-color: rgb(255, 0, 0);
-    top: 500px;
-    left: 230px;
+    
     height: 30px;
     width: 100px;
     border-radius: 10px;
-    outline: none;
     border: 0px;
     color: white;
 }
@@ -180,15 +162,13 @@ p{
 
 .boton-regresar{
 
-    position: absolute;
+    
     background-color: black;
     color: white;
-    top: 500px;
-    left: 350px;
+    
     height: 30px;
     width: 100px;
     border-radius: 10px;
-    outline: none;
     border: 0px;
 }
 
@@ -199,7 +179,7 @@ p{
 
 
 .boton-back{
-    position: absolute;
+    
     top: 400;
     left: 100px;
     width: 100px;
@@ -209,5 +189,5 @@ p{
     border-color: rgb(154, 205, 50);
     color: black;
     border-radius: 10px;
-    outline: none;
+    
 }

@@ -98,7 +98,7 @@ def addPersonas():
     return jsonify({'message': "successful",
                         'reason': "Se agrego el usuario"})
 
-@app.route('/Usuario', methods=['POST']) # recupera la contrasena
+@app.route('/Usuario/<string:usuario>', methods=['GET']) # recupera la contrasena
 def recuperarContrasena(): 
     global Usuarios
     
@@ -127,27 +127,23 @@ def recuperarContrasena():
                 'contrasena': i.getContrasena()
             }
             respuesta = jsonify(Dato)
-            break
-    
-    
-    
-    return(respuesta)
+            return(respuesta)
     
 
 @app.route('/Usuarios/<string:usuario>', methods=['GET']) #se obtiene solo 1 persona
 def getPersona(usuario): 
     
     global Usuarios
-   
+    Datos=[]
     for i in Usuarios:
         if i.getUsuario() == usuario:
             Dato={'Nombre' : i.getNombre(),
                 'Apellido': i.getApellido(),
                 'Usuario': i.getUsuario(),
                 'Contrasena': i.getContrasena()}  
-            
+            Datos.append(Dato)
             break
-    respuesta = jsonify(Dato)
+    respuesta = jsonify(Datos)
     '''
     cursor.execute("""
         SELECT * FROM usuarios
