@@ -72,10 +72,10 @@
             }).then(res => {
                 console.log(res)
 
-                document.querySelector('#nombre').value = res.Nombre
-                document.querySelector('#apellido').value = res.Apellido
-                document.querySelector('#usuario').value = res.Usuario
-                document.querySelector('#contrasena').value = res.Contrasena
+                document.querySelector('#nombre').value = res[0].Nombre
+                document.querySelector('#apellido').value = res[0].Apellido
+                document.querySelector('#usuario').value = res[0].Usuario
+                document.querySelector('#contrasena').value = res[0].Contrasena
 
             })
         }

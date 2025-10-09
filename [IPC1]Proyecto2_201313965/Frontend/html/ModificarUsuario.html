@@ -33,16 +33,16 @@
                 <p>Datos Del Usuario Seleccionado</p>
 
                 <label class="label-nombre">Nombre</label>
-                <input class="input-nombre" id="Nombre">
+                <input class="input-nombre" id="nombre">
 
                 <label class="label-apellido">Apellido</label>
-                <input class="input-apellido" id="Apellido">
+                <input class="input-apellido" id="apellido">
 
                 <label class="label-usuario">Usuario</label>
-                <input class="input-usuario" id="Usuario">
+                <input class="input-usuario" id="usuario">
 
                 <label class="label-contrasena">Contrasena</label>
-                <input class="input-contrasena" id="Contrasena">
+                <input class="input-contrasena" id="contrasena">
 
                 <div class="botones-usuario">
                     <button type="button" onclick="Modificar()" class="boton-modificar">Modificar</button>
@@ -109,11 +109,12 @@
             }).then(res => {
                 
 
-                for (i = 1; i < (res.length); i++) {
-                    document.querySelector('#Nombre').value = res[i].Nombre
-                    document.querySelector('#Apellido').value = res[i].Apellido
-                    document.querySelector('#Usuario').value = res[i].Usuario
-                    document.querySelector('#Contrasena').value = res[i].Contrasena
+                for (var i = 0; i < (res.length); i++) {
+                    console.log("El nombre del usuario es: ", res[i].Nombre )
+                    document.querySelector('#nombre').value = res[i].Nombre;
+                    document.querySelector('#apellido').value = res[i].Apellido;
+                    document.querySelector('#usuario').value = res[i].Usuario;
+                    document.querySelector('#contrasena').value = res[i].Contrasena;
                 }
 
 
