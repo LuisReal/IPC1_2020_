@@ -51,7 +51,7 @@
     <script>
 
         function MostrarSolicitudes() {
-            fetch('http://3.129.19.112:8000/Solicitud',
+            fetch('http://3.150.236.120:8000/Solicitud',
 
             ).then(response => response.json()
             ).catch(err => {
@@ -85,7 +85,7 @@
                 'id': id
             }
 
-            fetch(`http://3.129.19.112:8000/AgregarSolicitud/${id}`, {
+            fetch(`http://3.150.236.120:8000/AgregarSolicitud/${id}`, {
 
 
                 method: 'POST',
@@ -116,7 +116,7 @@
 
             }
 
-            fetch(`http://3.129.19.112:8000/Solicitud/${id}`, {
+            fetch(`http://3.150.236.120:8000/Solicitud/${id}`, {
 
 
                 method: 'DELETE',
@@ -147,7 +147,7 @@
 
         function mostrarPerfil() {
 
-            fetch('http://3.129.19.112:8000/Admin',
+            fetch('http://3.150.236.120:8000/Admin',
 
             ).then(response => response.json()
             ).catch(err => {

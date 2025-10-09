@@ -131,7 +131,7 @@ def recuperarContrasena(usuario):
 
 @app.route('/Usuarios/<string:usuario>', methods=['GET']) #se obtiene solo 1 persona
 def getPersona(usuario): 
-    
+    print("EL USUARIO BUSCADO ES: ", usuario)
     global Usuarios
     Datos=[]
     for i in Usuarios:
