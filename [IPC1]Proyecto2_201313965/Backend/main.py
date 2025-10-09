@@ -99,10 +99,9 @@ def addPersonas():
                         'reason': "Se agrego el usuario"})
 
 @app.route('/Usuario/<string:usuario>', methods=['GET']) # recupera la contrasena
-def recuperarContrasena(): 
+def recuperarContrasena(usuario): 
     global Usuarios
     
-    usuario = request.json['usuario'] # request es para hacer solicitudes (se utiliza postman para pruebas de solicitudes)
     # request es la solicitud que hace el usuario
     #encontrado = False
     '''
