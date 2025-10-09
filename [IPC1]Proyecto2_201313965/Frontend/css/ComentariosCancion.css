@@ -27,7 +27,8 @@ table{
     text-align: left;
     font-family: 'Courier New', Courier, monospace;
     border-collapse: collapse;
-    border-bottom: 0px;
+
+    top:100px;
     width: 100%;
     padding-top: 10px;
     padding-left: 10px;

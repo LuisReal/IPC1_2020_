@@ -317,16 +317,17 @@ def Login():
                   'usuario': usuario.getUsuario(),
                   'contrasena': usuario.getContrasena()
                  }
-            break
+            respuesta = jsonify(Dato)
+            return(respuesta)
         else:
             Dato={
                  'message': 'Usuario o contrasena no existen',
                  'usuario': ''   
 
             }
+            respuesta = jsonify(Dato)
+            return(respuesta)
     
-    respuesta = jsonify(Dato)
-    return(respuesta)
     
 
 @app.route('/Canciones', methods = ['POST'])

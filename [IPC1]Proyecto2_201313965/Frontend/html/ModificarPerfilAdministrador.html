@@ -15,14 +15,19 @@
         <div class="banner-izquierdo" id="banner-izquierdo">
             <button id="btn-close-menu" class="btn-close-navbar"><i class="bi bi-x-square"></i></button>
             <label class="foto-perfil"></label>
-            <h1 id="nombre-usuario" class="nombre-usuario"></h1>
+            
             
             <div class="botones-container">
+
+                <h1 id="nombre-usuario" class="nombre-usuario"></h1>
+                
                 <button onclick="backPaginaPrincipal()" type="button" class="btn-pagina-principal">Pagina
                     Principal</button>
                 <button type="button" class="btn-mi-perfil">Mi Perfil</button>
+                <button onclick="Back()" type="button" class="boton-back">Back</button>
             </div>
-
+            <button href="javascript:cerrar()" onclick="cerrarSesion()" type="button" class="boton-cerrarSesion">Cerrar
+                Sesion</button>
 
         </div>
 
@@ -59,6 +64,9 @@
 
 
     <script>
+        function Back() {
+            location.href = "administrador.html"
+        }
 
         function cargarInfo() {
 

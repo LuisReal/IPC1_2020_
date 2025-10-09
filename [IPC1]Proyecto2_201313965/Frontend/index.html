@@ -85,7 +85,7 @@
             'password': password
          }
 
-         fetch('http://3.150.236.120:8000/Login', {   //3.129.19.112
+         fetch('http://3.150.236.120:8000/Login', {   
  
             method: 'POST',
             body: JSON.stringify(objeto),
@@ -98,15 +98,15 @@
             alert("Ocurrio un error ver la consola")
          }).then(res => {
 
-            console.log(res.usuario)
+            
             var new_admin = sessionStorage.admin // proviene de ModificarPerfilAdministrador (Modificar())
+            console.log("EL USUARIO ES: ", res.usuario)
+            if (res.usuario == "admin" && res.contrasena == "admin") {
 
-
-
-            if (res.usuario == "admin") {
-
-               //alert("Accediste como Administrador")
-               alert(res.message + " " + res.usuario) // Bienvenido (el usuario)
+               console.log("ESTOY EN ADMIN")
+               
+               sessionStorage.setItem('usuario', username)
+               alert(res.message + " " + res.usuario) // Bienvenido admin
                location.href = "html/administrador.html"
 
             } else if (res.usuario == new_admin) {
@@ -115,6 +115,7 @@
                location.href = "html/administrador.html"
 
             } else if (res.usuario == username && res.contrasena == password) {
+               
 
                sessionStorage.setItem('usuario', username)
                alert("Accediste como cliente")

@@ -18,9 +18,12 @@
             <button id="btn-close-menu" class="btn-close-navbar"><i class="bi bi-x-square"></i></button>
 
             <label class="foto-perfil"></label>
-            <h1 id="usuario" class="nombre-usuario"></h1>
+            
 
             <div class="botones-container">
+
+                <h1 id="usuario" class="nombre-usuario"></h1>
+                
                 <button onclick="Principal()" type="button" class="btn-pagina-principal">Pagina Principal</button>
                 <button onclick="miPerfil()" type="button" class="btn-mi-perfil">Mi Perfil</button>
                 <button onclick="miPlayList()" type="button" id="playlist" onclick="" class="btn-playlist">Mi
@@ -28,7 +31,8 @@
                 <button onclick="back()" type="button" class="boton-back">Back</button>
 
             </div>
-
+            <button href="javascript:cerrar()" onclick="cerrarSesion()" type="button" class="boton-cerrarSesion">Cerrar
+                Sesion</button>
         </div>
 
         <div class="info-container">

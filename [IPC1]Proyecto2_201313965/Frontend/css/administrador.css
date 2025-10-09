@@ -1,17 +1,4 @@
 
-
-#info-container{
-
-    margin-top: -10px;
-    width: 100%;
-    height: 100vh;
-    border: 5px solid green;
-}
-
-                                /*AQUI INICIA EL CSS DE ModificarUsuario*/
-
-
-                               /*AQUI FINALIZA EL CSS DE ModificarUsuario*/
 .canciones_disponibles{
     
     margin-left: 50px;
@@ -104,21 +91,3 @@ td{
 }
 
 
-.boton-back{
-    position: absolute;
-    top: 550;
-    left: 100px;
-    width: 100px;
-    height: 30px;
-    border-width: 1px;
-    background-color: red;
-    border-color: rgb(154, 205, 50);
-    color: white;
-    border-radius: 10px;
-    border: none;
-    font-weight: bold;
-}
-
-.boton-back:hover{
-    background-color: black;
-}

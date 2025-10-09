@@ -8,8 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 </head>
+<script>
+    if (!sessionStorage.usuario) {
+            window.location.href = "../index.html";
+        }
+</script>
 
-<body onload="mostrarCanciones(), mostrarPerfil()">
+<body onload="mostrarPerfil(), mostrarCanciones()">
+
     <div class="global-container">
         <button id="btn-open-menu" class="btn-open-navbar"><i class="bi bi-list"></i></button>
 
@@ -17,9 +23,12 @@
 
             <button id="btn-close-menu" class="btn-close-navbar"><i class="bi bi-x-square"></i></button>
             <label class="foto-perfil"></label>
-            <h1 id="usuario" class="nombre-usuario"></h1>
-
+            
+            
             <div class="botones-container">
+
+                <h1 id="usuario" class="nombre-usuario"></h1>
+                
                 <button onclick="mostrarCanciones()" type="button" class="btn-pagina-principal">Pagina Principal</button>
                 <button type="button" onclick="Perfil()" class="btn-mi-perfil">Mi Perfil</button>
                 <button type="button" id="lola" onclick="mostrarUsuarios()" class="btn-usuarios">Usuarios</button>
@@ -27,8 +36,10 @@
                 <button onclick="cargarCanciones()" type="button" class="btn-cargar-canciones">Cargar Canciones</button>
                 <button onclick="mostrarSolicitudes()" type="button" class="btn-solicitudes">Solicitudes</button>
                 <button onclick="Back()" type="button" class="boton-back">Back</button>
+                
             </div>
-
+            <button href="javascript:cerrar()" onclick="cerrarSesion()" type="button" class="boton-cerrarSesion">Cerrar
+                Sesion</button>
 
         </div>
 
@@ -59,6 +70,10 @@
 
      
     <script>
+        function cerrarSesion() {
+            sessionStorage.removeItem('usuario');
+            location.href = "../index.html"
+        }
         
         function mostrarPerfil() {
 
