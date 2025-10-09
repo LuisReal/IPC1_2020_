@@ -96,13 +96,17 @@
                 for (i = 0; i < (res.length); i++) {
                     console.log(res[i].audio)
                     var body = document.querySelector('#tbody')
+                    var ruta = res[i].audio;
+                    var ruta = ruta.slice(0, -1);
+                    
+
 
                     body.innerHTML +=
                         `
                         
                             <td>${res[i].nombre}</td>
                             <td><iframe src="${res[i].spotify}" width="300" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                            <td><audio style="outline: none; width:100%" src="${res[i].audio}" autoplay  controls ></audio></td>
+                            <td><audio  src="${ruta}"   controls ></audio></td>
                             <td><button type="button" value="${res[i].id}"  onclick="eliminarCancion(this)" class="boton-eliminar">Eliminar</button></td>
                             
                         

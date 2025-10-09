@@ -93,8 +93,9 @@
                         `
                         
                             
-                            <td>${res[i].id}<iframe src="${res[i].spotify}" width="300" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                            <button type="button" value="${res[i].id}"  onclick="verDetalles(this)" class="ver-detalles">Ver Detalles</button>
+                            <td><iframe src="${res[i].spotify}" width="300" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                <p>${res[i].id} ${res[i].nombre} ${res[i].artista}</p>
+                                <button type="button" value="${res[i].id}"  onclick="verDetalles(this)" class="ver-detalles">Ver Detalles</button>
                             <button onclick="addPlayList(this)"  type="button" value="${res[i].id}" class="add-to-playlist">Add to PlayList</button></td>
                             
                         

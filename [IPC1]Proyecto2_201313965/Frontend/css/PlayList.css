@@ -49,6 +49,13 @@
     background-color: rgba(154, 205, 50, 0.9);
 }
 
+audio{
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+    color: white;
+}
+
 .boton-eliminar{
 
    
