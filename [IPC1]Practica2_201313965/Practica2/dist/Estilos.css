@@ -1,0 +1,78 @@
+@charset "utf-8";
+/* CSS Document */
+
+    .p1{text-align:center; background:#0FF; padding: 10px; margin-top: 10px; margin-left: -10px; border-radius:#03F;
+	float: none; width: 1500px;
+    font-family:Verdana, Geneva, sans-serif;
+    color:#6CF;
+	font-size:16px }
+	
+	.pA{background:#09C; text-align:center; padding: 10px; margin-top: 40px; margin-left: 200px; border: 2px solid green;       border-radius: 50px 20px;
+	float: left; width: 250px;
+    font-family:Verdana, Geneva, sans-serif;
+    color:#FFF;
+	font-size:16px }
+	
+	.pV{background:#09C; text-align:center; padding: 10px; margin-top: 130px; margin-left: 200px; border: 2px solid green;
+	border-radius: 50px 20px;
+	float: none; width: 250px;
+    font-family:Verdana, Geneva, sans-serif;
+    color:#FFF;
+	font-size:16px }
+	
+	.pO{ background:#09C; text-align:center; padding: 10px; margin-top: 20px; margin-left: 200px; border: 2px solid green;
+	border-radius: 50px 20px;
+	float: none; width: 250px;
+    font-family:Verdana, Geneva, sans-serif;
+    color:#FFF;
+	font-size:16px }
+	
+	.pT{ background:#09C; text-align:center; padding: 10px; margin-top: -160px; margin-left: 800px; border: 2px solid green;
+	border-radius: 50px 20px;
+	float: none; width: 250px;
+    font-family:Verdana, Geneva, sans-serif;
+    color:#FFF;
+	font-size:16px }
+	
+	.pP{ background:#09C; text-align:center; padding: 10px;  margin-top: 40px; margin-left: 800px; border: 2px solid green;
+	border-radius: 50px 20px;
+	float: none; width: 250px;
+    font-family:Verdana, Geneva, sans-serif;
+    color:#FFF;
+	font-size:16px }
+	
+	.tmayor{padding: 10px; margin-top: 90px; margin-left: 200px; 
+	float: none; width: 250px;
+    font-family:Verdana, Geneva, sans-serif;
+    color:#06F;
+	font-size:16px }
+	
+	.tmenor{padding: 10px; margin-top: -130px; margin-left: 800px; 
+	float: none; width: 250px;
+    font-family:Verdana, Geneva, sans-serif;
+    color:#06F;
+	font-size:16px }
+	
+	.desordenado{padding: 10px; margin-top: 10px; margin-left: 100px;
+	float: none; width: 250px;
+    font-family:Verdana, Geneva, sans-serif;
+    color:#06F;
+	font-size:16px }
+	
+	.ordenado{padding: 10px; margin-top: 10px; margin-left: 100px; 
+	float: none; width: 250px;
+    font-family:Verdana, Geneva, sans-serif;
+    color:#06F;
+	font-size:16px }
+	
+	h1{text-align:center; background:#09C; padding: 10px; margin-top: 10px; margin-left: -10px; border-radius:#03F;
+	float: none; width: 1350px;
+    font-family:"Courier New", Courier, monospace;
+    color:#FFF;
+	font-size:24px }
+	
+	td{text-align:center; background:#09C; padding: 10px;border-radius:#03F;
+	
+    font-family:"Courier New", Courier, monospace;
+    color:#FFF;
+	font-size:14px}
