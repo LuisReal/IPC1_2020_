@@ -8,6 +8,7 @@
 </head>
 
 <body>
+   
    <div class="contenedor">
       
 
@@ -32,8 +33,8 @@
             <!---- <img class="image" src="icono.png" width="90" height="90"> -->
             <div class="form-group">
 
-               <input type="text" class="form-user" placeholder="User Name" id="username">
-               <input type="password" class="form-password" placeholder="Password" id="password">
+               <input type="text" class="form-user" autocomplete="off" placeholder="User Name" id="username">
+               <input type="password" class="form-password" autocomplete="off" placeholder="Password" id="password">
                <div class="botones">
                   <button onclick="login()" type="button" class="btnL" id="miBoton">Login</button>
                   <button onclick="location.href='html/register.html'" type="button" class="btnR">Register</button>
@@ -99,28 +100,25 @@
          }).then(res => {
 
             
-            var new_admin = sessionStorage.admin // proviene de ModificarPerfilAdministrador (Modificar())
-            console.log("EL USUARIO ES: ", res.usuario)
             if (res.usuario == "admin" && res.contrasena == "admin") {
 
-               console.log("ESTOY EN ADMIN")
+               document.querySelector('#username').value = "";
+               document.querySelector('#password').value = "";
                
-               sessionStorage.setItem('usuario', username)
+               localStorage.setItem('usuario', username)
                alert(res.message + " " + res.usuario) // Bienvenido admin
                location.href = "html/administrador.html"
 
-            } else if (res.usuario == new_admin) {
-
-               alert(`hola ${new_admin}`)
-               location.href = "html/administrador.html"
-
             } else if (res.usuario == username && res.contrasena == password) {
-               
+               document.querySelector('#username').value = "";
+               document.querySelector('#password').value = "";
 
-               sessionStorage.setItem('usuario', username)
+               localStorage.setItem('usuario', username)
                alert("Accediste como cliente")
                location.href = "html/Cliente.html"
             } else {
+               document.querySelector('#username').value = "";
+               document.querySelector('#password').value = "";
                alert("Usuario o contrasena incorrectos")
             }
          })

@@ -1,18 +1,27 @@
 <html>
 
 <head>
+    <script>
+        window.onload = function() {
+            
+            if (!localStorage.getItem('usuario')) {
+                
+                window.location.href = "../index.html";
+            }
+
+            mostrarCliente(); 
+            mostrarCanciones();
+        };
+    </script>
 
     <link href="../css/Cliente.css" rel="stylesheet">
     <link href="../css/navbar.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 </head>
-<script>
-    if (!sessionStorage.usuario) {
-            window.location.href = "../index.html";
-        }
-</script>
-<body onload="mostrarCliente(), mostrarCanciones()">
+
+<body>
 
     <div class="global-container">
 
@@ -74,7 +83,7 @@
         }
 
         function cerrarSesion() {
-            sessionStorage.removeItem('usuario');
+            localStorage.removeItem('usuario');
             location.href = "../index.html"
         }
 
@@ -115,8 +124,8 @@
 
         function addPlayList(boton) {
             var id = boton.value // se guarda el id de la cancion seleccionada
-            var id_usuario = sessionStorage.usuario
-            sessionStorage.setItem("id", id)
+            var id_usuario = localStorage.usuario
+            localStorage.setItem("id", id)
 
             var objeto = {
                 'id': id,
@@ -147,7 +156,7 @@
 
         function verDetalles(boton) {
             var detalles = boton.value // se guarda el id de la cancion seleccionada
-            sessionStorage.setItem("detalles", detalles) // se envia a DetallesCancion.html (guarda el id al presionar boton)
+            localStorage.setItem("detalles", detalles) // se envia a DetallesCancion.html (guarda el id al presionar boton)
             //sessionStorage.setItem("mostrar", detalles)
             location.href = "DetallesCancion.html"
         }
@@ -165,7 +174,7 @@
 
                 for (i = 0; i < (res.length); i++) {
                     console.log(res[i])
-                    var valor = sessionStorage.usuario // .usuario proviene de inicio.html (valor=username)
+                    var valor = localStorage.usuario // .usuario proviene de inicio.html (valor=username)
 
                     if (res[i].Usuario == valor) {
                         var h1 = document.querySelector('#usuario')
