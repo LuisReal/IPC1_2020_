@@ -88,7 +88,7 @@
 
     <script>
         function cerrarSesion() {
-            sessionStorage.removeItem('usuario');
+            localStorage.removeItem('usuario');
             location.href = "../index.html"
         }
 
@@ -111,7 +111,7 @@
 
         function verImagen() {
 
-            var detalles = sessionStorage.detalles
+            var detalles = localStorage.detalles
 
             fetch('http://3.150.236.120:8000/Canciones',
 
@@ -137,7 +137,7 @@
 
         function verVideo() {
 
-            var detalles = sessionStorage.detalles // contiene el id
+            var detalles = localStorage.detalles // contiene el id
 
             fetch('http://3.150.236.120:8000/Canciones',
 
@@ -174,7 +174,7 @@
 
         function verComentarios() {
 
-            var id = sessionStorage.detalles // contiene el id
+            var id = localStorage.detalles // contiene el id
 
 
             fetch(`http://3.150.236.120:8000/Comentarios/${id}`,
@@ -214,7 +214,7 @@
                 console.log(res)
                 for (i = 0; i < (res.length); i++) {
                     console.log(res[i])
-                    var valor = sessionStorage.usuario // proviene de inicio.html (valor=username)
+                    var valor = localStorage.usuario // proviene de inicio.html (valor=username)
                     if (res[i].Usuario == valor) {
                         var h1 = document.querySelector('#usuario')
                         h1.innerHTML +=
@@ -229,8 +229,8 @@
 
         function crearComentario() {
             // se recive el id de la cancion seleccionada
-            var id = sessionStorage.detalles // proviene de Cliente.html (verDetalles)
-            var usuario = sessionStorage.usuario
+            var id = localStorage.detalles // proviene de Cliente.html (verDetalles)
+            var usuario = localStorage.usuario
 
             console.log("el usuario es: " + usuario + " y el id: " + id)
 

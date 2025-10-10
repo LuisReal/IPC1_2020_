@@ -69,13 +69,13 @@
 
     <script>
         function cerrarSesion() {
-            sessionStorage.removeItem('usuario');
+            localStorage.removeItem('usuario');
             location.href = "../index.html"
         }
         
         function mostrarComentarios() {
 
-            var id = sessionStorage.id //  proviene de administrador.html
+            var id = localStorage.id //  proviene de administrador.html
             fetch(`http://3.150.236.120:8000/Comentarios/${id}`,
 
             ).then(response => response.json()

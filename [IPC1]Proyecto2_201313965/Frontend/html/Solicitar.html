@@ -81,7 +81,7 @@
 
     <script>
         function cerrarSesion() {
-            sessionStorage.removeItem('usuario');
+            localStorage.removeItem('usuario');
             location.href = "../index.html"
         }
         
@@ -111,7 +111,7 @@
                 console.log(res)
                 for (i = 0; i < (res.length); i++) {
                     console.log(res[i])
-                    var valor = sessionStorage.usuario // proviene de inicio.html (valor=username)
+                    var valor = localStorage.usuario // proviene de inicio.html (valor=username)
                     if (res[i].Usuario == valor) {
                         var h1 = document.querySelector('#nombre-usuario')
                         h1.innerHTML +=

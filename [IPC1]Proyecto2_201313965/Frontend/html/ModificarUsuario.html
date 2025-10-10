@@ -75,7 +75,7 @@
 
     <script>
         function cerrarSesion() {
-            sessionStorage.removeItem('usuario');
+            localStorage.removeItem('usuario');
             location.href = "../index.html"
         }
         
@@ -118,7 +118,7 @@
 
         function cargarInfo() {
 
-            var cargar = sessionStorage.buscar_usuario // proviene de TablaUsuarios.html mostrarPerfil()
+            var cargar = localStorage.buscar_usuario // proviene de TablaUsuarios.html mostrarPerfil()
             
             fetch(`http://3.150.236.120:8000/Usuarios/${cargar}`, // proviene de administrador.html
 
@@ -142,7 +142,7 @@
         }
 
         function Modificar() {
-            var cargar = sessionStorage.buscar_usuario // proviene de tablaUsuarios.html (modifcarUsuario())
+            var cargar = localStorage.buscar_usuario // proviene de tablaUsuarios.html (modifcarUsuario())
             var nombre = document.querySelector('#Nombre').value
             var apellido = document.querySelector('#Apellido').value
             var usuario = document.querySelector('#Usuario').value

@@ -65,7 +65,7 @@
 
     <script>
         function cerrarSesion() {
-            sessionStorage.removeItem('usuario');
+            localStorage.removeItem('usuario');
             location.href = "../index.html"
         }
         
@@ -147,7 +147,7 @@
         function modificarUsuario(boton) {
 
             var usuario = boton.value
-            sessionStorage.setItem("buscar_usuario", usuario) // se envia a ModificarUsuario.html
+            localStorage.setItem("buscar_usuario", usuario) // se envia a ModificarUsuario.html
 
             location.href = "ModificarUsuario.html"
         }

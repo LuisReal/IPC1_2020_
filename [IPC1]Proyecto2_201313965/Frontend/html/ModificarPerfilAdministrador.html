@@ -75,7 +75,7 @@
 
     <script>
         function cerrarSesion() {
-            sessionStorage.removeItem('usuario');
+            localStorage.removeItem('usuario');
             location.href = "../index.html"
         }
         
@@ -85,7 +85,7 @@
 
         function cargarInfo() {
 
-            var carga = sessionStorage.usuario // proviene de administrador.html (Perfil())
+            var carga = localStorage.usuario // proviene de administrador.html (Perfil())
 
             fetch(`http://3.150.236.120:8000/Usuarios/${carga}`, // proviene de administrador.html (Perfil())
 
@@ -154,7 +154,7 @@
                 console.log("no se pudo consumir la api")
             }).then(res => {
                 console.log(res.message)
-                sessionStorage.setItem("admin", usuario) // se envia a inicio.html
+                localStorage.setItem("admin", usuario) // se envia a inicio.html
                 alert(res.message)
                 location.href = "administrador.html"
 

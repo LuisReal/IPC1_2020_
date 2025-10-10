@@ -83,7 +83,7 @@
 
     <script>
         function cerrarSesion() {
-            sessionStorage.removeItem('usuario');
+            localStorage.removeItem('usuario');
             location.href = "../index.html"
         }
         
@@ -126,7 +126,7 @@
 
         function cargarInfo() {
 
-            var id = sessionStorage.buscar // la clave buscar que guarda el id de la cancion proviene de administrador.html // mostrarPerfil
+            var id = localStorage.buscar // la clave buscar que guarda el id de la cancion proviene de administrador.html // mostrarPerfil
 
 
             fetch(`http://3.150.236.120:8000/Canciones/${id}`, // proviene de administrador.html  y por defecto el metodo es GET

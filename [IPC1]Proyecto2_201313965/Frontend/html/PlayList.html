@@ -82,7 +82,7 @@
         }
 
         function cerrarSesion() {
-            sessionStorage.removeItem('usuario');
+            localStorage.removeItem('usuario');
             location.href = "../index.html"
         }
 
@@ -95,7 +95,7 @@
         }
 
         function mostrarPlayList() {
-            var usuario = sessionStorage.usuario
+            var usuario = localStorage.usuario
 
             fetch(`http://3.150.236.120:8000/getPlayList/${usuario}`,
 
@@ -117,9 +117,9 @@
                         `
                         
                             <td>${res[i].nombre}</td>
-                            <td><iframe src="${res[i].spotify}" width="300" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                            <td><audio  src="${ruta}"   controls ></audio></td>
-                            <td><button type="button" value="${res[i].id}"  onclick="eliminarCancion(this)" class="boton-eliminar">Eliminar</button></td>
+                            <td style="text-align:center"><iframe src="${res[i].spotify}" width="300" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                            <td ><audio  style="width:200px; display: block; margin: 0 auto;"src="${ruta}"   controls ></audio></td>
+                            <td ><button type="button" value="${res[i].id}"  onclick="eliminarCancion(this)" class="boton-eliminar">Eliminar</button></td>
                             
                         
                         `
@@ -165,7 +165,7 @@
 
                 for (i = 0; i < (res.length); i++) {
                     console.log(res[i])
-                    var valor = sessionStorage.usuario // .usuario proviene de inicio.html (valor=username)
+                    var valor = localStorage.usuario // .usuario proviene de inicio.html (valor=username)
 
                     if (res[i].Usuario == valor) {
                         var h1 = document.querySelector('#nombre-usuario')
