@@ -26,7 +26,6 @@ class Lamina extends JPanel {
     JButton creacion_clientes;
     JButton consulta;
     JButton modificar;
-    
 
     public static Object[][] elemento;
     public static ImageIcon icono;
@@ -34,14 +33,14 @@ class Lamina extends JPanel {
     public Lamina() {
 
         setLayout(null);
-
-        dashboard = new JButton("Dashboard Clientes");
-        dashboard.setBounds(100, 50, 200, 30);
-        add(dashboard);
-
-        carga = new JButton("Carga Masiva");
-        carga.setBounds(100, 100, 200, 30);
+        
+        carga = new JButton("Cargar Clientes");
+        carga.setBounds(100, 50, 200, 30);
         add(carga);
+        
+        dashboard = new JButton("Dashboard Clientes");
+        dashboard.setBounds(100, 100, 200, 30);
+        add(dashboard);
 
         creacion_clientes = new JButton("Creacion Clientes");
         creacion_clientes.setBounds(100, 150, 200, 30);
@@ -55,8 +54,6 @@ class Lamina extends JPanel {
         modificar.setBounds(100, 250, 200, 30);
         add(modificar);
 
-        
-
         Cargar cargar1 = new Cargar();
         carga.addActionListener(cargar1);
 
@@ -68,7 +65,7 @@ class Lamina extends JPanel {
 
         Consulta consultar = new Consulta();
         consulta.addActionListener(consultar);
-        
+
         Modificar modifica = new Modificar();
         modificar.addActionListener(modifica);
 
@@ -92,9 +89,17 @@ class Lamina extends JPanel {
 
         public void actionPerformed(ActionEvent e) {
 
-            DashboardClientes dashboard = new DashboardClientes(elemento); // pasa los elementos que proviene de CargaMasiva
-            dashboard.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            dashboard.setVisible(true);
+            if (elemento == null) {
+
+                JOptionPane.showMessageDialog(null, "No ha cargado los datos todavia");
+
+            } else {
+                DashboardClientes dashboard = new DashboardClientes(elemento); // pasa los elementos que proviene de CargaMasiva
+                dashboard.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                dashboard.setVisible(true);
+
+            }
+            
 
         }
 
@@ -137,20 +142,18 @@ class Lamina extends JPanel {
         }
 
     }
-    
-    private class Modificar implements ActionListener{
-        
-        public void actionPerformed(ActionEvent w){
-        
-        
+
+    private class Modificar implements ActionListener {
+
+        public void actionPerformed(ActionEvent w) {
+
             ModificarCliente modifica = new ModificarCliente(); // envia todos los elementos CargaMasiva y NuevoCliente
             modifica.setElemento(elemento);
             modifica.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             modifica.setVisible(true);
-        
+
         }
-    
-    
+
     }
 
 }// FIN CLASE Lamina

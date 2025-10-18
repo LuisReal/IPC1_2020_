@@ -26,17 +26,9 @@ public class DashboardClientes extends JFrame {
         setTitle("Graficas");
         setBounds(150, 50, 900, 670);
 
-        if (elemento == null) {
-
-            JOptionPane.showMessageDialog(null, "No ha cargado los datos todavia");
-
-        } else {
-
-            Lamina2 lamina = new Lamina2(elemento);// pasar el objeto solo por el constructo (por metodo no funciona)
-            //lamina.setArreglos(elemento);
-            add(lamina);
-
-        }
+        Lamina2 lamina = new Lamina2(elemento);// pasar el objeto solo por el constructo (por metodo no funciona)
+        //lamina.setArreglos(elemento);
+        add(lamina);
 
     }
 
@@ -175,10 +167,10 @@ class Lamina2 extends JPanel {
         //---------SE DEFINE LA AMPLITUD Y EL INTERVALO-----------------------------
         double intervalo = 1 + 3.3 * Math.log10(numero_edades);
         int intervalo_entero = (int) (intervalo);
-       // double ejemplo = 1 + 3.3 * Math.log10(20);
-       // System.out.println("El ejemplo log " + ejemplo);
+        // double ejemplo = 1 + 3.3 * Math.log10(20);
+        // System.out.println("El ejemplo log " + ejemplo);
         System.out.println("El intervalo es " + intervalo);
-        System.out.println("El intervalo entero es "+intervalo_entero);
+        System.out.println("El intervalo entero es " + intervalo_entero);
 
         int redondear3 = (int) Math.round(intervalo);//7
 
@@ -192,13 +184,13 @@ class Lamina2 extends JPanel {
             rangos[z] = (int) Math.round(menor);
 
             menor = menor + amplitud;
-            
+
             contador4++;
-            
-            if(contador4==redondear3){
-            
-               rangos[z] = rangos[z]+1;
-                
+
+            if (contador4 == redondear3) {
+
+                rangos[z] = rangos[z] + 1;
+
             }
         }
 
@@ -238,7 +230,7 @@ class Lamina2 extends JPanel {
 
                     //System.out.println("El valor del contador2 antes de resetearlo es "+contador2);
                     frecuencia_edades[d] = contador2;
-                    System.out.println("El valor del contador2 antes de ser reseteado es "+contador2);
+                    System.out.println("El valor del contador2 antes de ser reseteado es " + contador2);
                     System.out.println("El valor de la frecuencia_edades " + d + " = " + frecuencia_edades[d]);
                     d++;
 
@@ -298,7 +290,7 @@ class Lamina2 extends JPanel {
             if (contador3 < (rangos_finales.length - 1)) {
 
                 contador3++;
-                
+
                 rangos_finales[c] = rangos_strings[c] + "-" + rangos_strings[c + 1];
                 System.out.println("Los rangos finales " + rangos_finales[c]);
 
@@ -308,7 +300,7 @@ class Lamina2 extends JPanel {
         //-----------Finaliza Convertir los rangos (int) a String--------------------------------
         datos = new DefaultCategoryDataset();
 
-        for (int i = 0; i < (rangos.length-1); i++) {// k es el contador que lleva el conteo de las veces que se repite los numeros
+        for (int i = 0; i < (rangos.length - 1); i++) {// k es el contador que lleva el conteo de las veces que se repite los numeros
             //int                  string
             datos.addValue(frecuencia_edades[i], "1", rangos_finales[i]);
 

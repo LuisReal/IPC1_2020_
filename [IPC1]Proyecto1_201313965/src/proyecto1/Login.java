@@ -2,6 +2,7 @@ package proyecto1;
 
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class Login extends JFrame {
 
@@ -9,9 +10,9 @@ public class Login extends JFrame {
     public Login() {
 
         setTitle("Login");
-        setBounds(300, 200, 400, 340);
+        setBounds(300, 200, 600, 340);
         setResizable(false);
-        Panel panel = new Panel();
+        Panel panel = new Panel(this);
         add(panel);
     }
 }
@@ -21,7 +22,7 @@ class Panel extends JPanel {
     /*Declarar obligatoriamente public y static el ArregloUsuarios para poder acceder a este desde la clase
        privada interna private class Ingresar */
     public static ArregloUsuarios[] usuarios1 = new ArregloUsuarios[10];
-
+    
     private JTextField campo1; // contiene el nombre del usuario y NO se declara como static 
     private JPasswordField campo2;// contiene la contrasena y NO se declara como static
     JLabel usuario;
@@ -32,9 +33,16 @@ class Panel extends JPanel {
     JButton recuperar2;
 
     int m = 1;
+    
+    private Login loginRef;
+    private Image fondo; 
+    
+    public Panel(Login login) {
+        
+        this.loginRef = login;
+        fondo = new ImageIcon(getClass().getResource("/images/fondo.jpg")).getImage();
 
-    public Panel() {
-
+        
         usuarios1[0] = new ArregloUsuarios("", "admin", "admin123", "");
         usuarios1[1] = new ArregloUsuarios("", "", "", "");
         usuarios1[2] = new ArregloUsuarios("", "", "", "");
@@ -50,28 +58,32 @@ class Panel extends JPanel {
         setLayout(null);// Para poder colocar los componentes en la lamina donde yo quiera
 
         usuario = new JLabel("Usuario");
-        usuario.setBounds(80, 60, 100, 30);
+        usuario.setBounds(150, 60, 100, 30);
+        usuario.setForeground(Color.BLACK);
+        usuario.setFont(new Font("Arial", Font.BOLD, 16));
         add(usuario);
 
         campo1 = new JTextField("");// contiene el nombre de usuario
-        campo1.setBounds(180, 60, 100, 25);
+        campo1.setBounds(250, 60, 150, 25);
         add(campo1);
 
         contrasena = new JLabel("Contrasena");
-        contrasena.setBounds(80, 100, 100, 30);
+        contrasena.setBounds(150, 100, 100, 30);
+        contrasena.setForeground(Color.BLACK);
+        contrasena.setFont(new Font("Arial", Font.BOLD, 16));
         add(contrasena);
 
         campo2 = new JPasswordField(""); // contiene la contrasena del usuario y la oculta
-        campo2.setBounds(180, 100, 100, 25);
+        campo2.setBounds(250, 100, 150, 25);
         campo2.setEchoChar('•');
         add(campo2);
 
         ingresar = new JButton("Ingresar");
-        ingresar.setBounds(80, 200, 100, 25);
+        ingresar.setBounds(150, 200, 100, 25);
         add(ingresar);
 
         registrar = new JButton("Crear Usuario");
-        registrar.setBounds(200, 200, 150, 25);
+        registrar.setBounds(280, 200, 150, 25);
         add(registrar);
         
         
@@ -82,6 +94,12 @@ class Panel extends JPanel {
         Ingresar oyente_ingresar = new Ingresar();
         ingresar.addActionListener(oyente_ingresar);
 
+    }
+    
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // 🔹 Dibujar la imagen del fondo ajustada al tamaño del panel
+        g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
     }
 
     public void setArreglo(ArregloUsuarios[] arreglo) {
@@ -109,17 +127,23 @@ class Panel extends JPanel {
 
                    /* System.out.println("La posicion " + i + " El campo1 " + campo1.getText()
                             + " El usuario " + usuarios1[i].getUsuario());*/
-
-                    Administracion administracion = new Administracion();
+                    
+                    campo1.setText("");
+                    campo2.setText("");
+                    
+                    Administracion administracion = new Administracion(loginRef);
 
                     administracion.setVisible(true);
-
-                    /* campo1.setText(null);
-                    campo2.setText(null);*/
+                    
+                    loginRef.setVisible(false);
+                    
+                    break;
                 }
 
             }// fin del for
-
+            
+            
+            
             int contador = 0;
             boolean boo = false;
 
@@ -174,12 +198,11 @@ class Panel extends JPanel {
 
         public void actionPerformed(ActionEvent e) {
 
-            Usuarios usuarios = new Usuarios();
+            Usuarios usuarios = new Usuarios(Panel.this);
 
             usuarios.setVisible(true);
 
         }
-
     }
 
 }
@@ -200,10 +223,12 @@ class Usuarios extends JFrame {
 
     int k = 1;
     public static ArregloUsuarios[] usuarios2 = new ArregloUsuarios[10];
-    Panel pasar = new Panel();
+    private Panel pasar;
 
-    public Usuarios() {
-
+    public Usuarios(Panel panel) {
+        
+        this.pasar = panel;
+        
         usuarios2[0] = new ArregloUsuarios("", "admin", "admin123", "");
         usuarios2[1] = new ArregloUsuarios("", "", "", "");
         usuarios2[2] = new ArregloUsuarios("", "", "", "");

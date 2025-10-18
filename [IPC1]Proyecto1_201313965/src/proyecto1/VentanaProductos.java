@@ -2,19 +2,25 @@ package proyecto1;
 
 import javax.swing.*;
 import java.awt.event.*;
-import javax.swing.event.*;
+
 
 public class VentanaProductos extends JFrame {
-
+    
+    private LaminaVentanaProductos lamina_productos;
+    
     public VentanaProductos() {
 
         setTitle("Administracion de Productos");
         setBounds(200, 200, 400, 400);
         setResizable(false);
 
-        LaminaVentanaProductos lamina_productos = new LaminaVentanaProductos();
+        lamina_productos = new LaminaVentanaProductos();
         add(lamina_productos);
 
+    }
+    
+    public Object[][] getElementoProducto() {
+        return lamina_productos.getElementoProducto();
     }
 
 }
@@ -33,14 +39,14 @@ class LaminaVentanaProductos extends JPanel {
     public LaminaVentanaProductos() {
 
         setLayout(null);
-
-        dashboard = new JButton("Dashboard Productos");
-        dashboard.setBounds(100, 50, 200, 30);
-        add(dashboard);
-
-        carga = new JButton("Carga Masiva");
-        carga.setBounds(100, 100, 200, 30);
+        
+        carga = new JButton("Cargar Productos");
+        carga.setBounds(100, 50, 200, 30);
         add(carga);
+        
+        dashboard = new JButton("Dashboard Productos");
+        dashboard.setBounds(100, 100, 200, 30);
+        add(dashboard);
 
         creacion_productos = new JButton("Creacion Productos");
         creacion_productos.setBounds(100, 150, 200, 30);
@@ -65,41 +71,49 @@ class LaminaVentanaProductos extends JPanel {
 
         ConsultarProductos consultarP = new ConsultarProductos();
         consulta.addActionListener(consultarP);
-        
+
         Modificar modificaP = new Modificar();
         modificar.addActionListener(modificaP);
 
     }
 
-    public void setDatos(Object[][] elementoProducto) {
-
-        this.elementoProducto = elementoProducto; // proviene de la clase CargaMasiva
-
+    public Object[][] getElementoProducto() {
+        return elementoProducto;
     }
 
     private class CargarProductos implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent e) {
 
             CargaMasivaProductos carga = new CargaMasivaProductos();
-
+            elementoProducto = carga.elementoProducto;
         }
 
     }
 
     private class DashboardProductosOyente implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent e) {
 
-            DashboardProductos dash2 = new DashboardProductos(elementoProducto);
-            dash2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            dash2.setVisible(true);
+            if (elementoProducto == null) {
+
+                JOptionPane.showMessageDialog(null, "No ha cargado los datos todavia");
+
+            } else {
+                DashboardProductos dash2 = new DashboardProductos(elementoProducto);
+                dash2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                dash2.setVisible(true);
+
+            }
 
         }
     }
 
     private class CreacionProductos implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent w) {
 
             CrearProducto nuevo_producto = new CrearProducto();
@@ -114,6 +128,7 @@ class LaminaVentanaProductos extends JPanel {
 
     private class ConsultarProductos implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent w) {
 
             ConsultarProducto miConsulta = new ConsultarProducto();
@@ -127,6 +142,7 @@ class LaminaVentanaProductos extends JPanel {
 
     private class Modificar implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent e) {
 
             ModificarProducto modifica5 = new ModificarProducto(); // envia todos los elementos CargaMasiva y NuevoCliente

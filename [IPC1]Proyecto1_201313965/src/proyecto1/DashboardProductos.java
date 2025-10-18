@@ -1,16 +1,13 @@
 package proyecto1;
 
-import java.awt.*;
-import java.io.*;
+
 import java.text.DecimalFormat;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
@@ -21,16 +18,8 @@ public class DashboardProductos extends JFrame {
         setTitle("Graficas Productos");
         setBounds(150, 50, 1050, 670);
 
-        if (elementoProducto == null) {
-
-            JOptionPane.showMessageDialog(null, "No ha cargado los datos todavia");
-
-        } else {
-
-            LaminaDashboardProductos laminadash = new LaminaDashboardProductos(elementoProducto);
-            add(laminadash);
-
-        }
+        LaminaDashboardProductos laminadash = new LaminaDashboardProductos(elementoProducto);
+        add(laminadash);
 
     }
 
@@ -41,7 +30,7 @@ class LaminaDashboardProductos extends JPanel {
     JScrollPane scroll;
     ChartPanel Pie;
     ChartPanel barras;
-    public Object[][] elementoProducto;
+    //public Object[][] elementoProducto;
 
     public String[] columnas = {"nombre", "precio", "cantidad"}; // para usar en la tabla
 
@@ -63,32 +52,9 @@ class LaminaDashboardProductos extends JPanel {
 
         DefaultCategoryDataset datos;
 
-        //String[] datos_productos = new String[100];
         
 //------------------------codigo anterior----------------------------------------------------------------        
-      /*  String[] frecuencia = new String[100];
-        float[] frecuencia_precio = new float[100];
-
         
-
-        for (int j = 0; j < elementoProducto.length; j++) {
-
-            if (elementoProducto[j][1] != null) {
-
-                frecuencia[j] = String.valueOf(elementoProducto[j][1]); // se guarda el precio
-
-            }
-        }
-
-        for (int c = 0; c < frecuencia.length; c++) {
-
-            if (frecuencia[c] != null) {
-                frecuencia_precio[c] = Float.parseFloat(frecuencia[c]);
-
-                //System.out.println("La frecuencia_precio es " + c + " = " + frecuencia_precio[c]);
-            }
-        }*/
-
         int k = 0;
         String[] cantidad_productos = new String[100];
         String[] nombre_productos = new String[100];
@@ -104,14 +70,12 @@ class LaminaDashboardProductos extends JPanel {
 
             }
         }
-        
-  //--------------------------finaliza codigo anterior----------------------------------------------------      
 
-  //------------------------*****INICIA CODIGO NUEVO*********--------------------------------------------
-  
+            
+        //------------------------*****INICIA CODIGO NUEVO*********--------------------------------------------
         String[] cadena_precios = new String[100];
         double[] precios = new double[100];
-       // DefaultCategoryDataset datos = null;
+        // DefaultCategoryDataset datos = null;
 
         for (int i = 0; i < elementoProducto.length; i++) {
 
@@ -128,7 +92,7 @@ class LaminaDashboardProductos extends JPanel {
 
             }
         }
-        
+
         double mayor, menor;
 
         mayor = menor = precios[0];
@@ -151,54 +115,54 @@ class LaminaDashboardProductos extends JPanel {
 
             }
         }
-        
+
         System.out.println("El precio mayor es " + mayor);
         System.out.println("El precio menor es " + menor);
         System.out.println("El numero de precios es " + numero_precios);
-        
+
         double intervalo = 1 + 3.3 * Math.log10(numero_precios);
         int intervalo_entero = (int) (intervalo);
-       // double ejemplo = 1 + 3.3 * Math.log10(20);
-       // System.out.println("El ejemplo log " + ejemplo);
+        // double ejemplo = 1 + 3.3 * Math.log10(20);
+        // System.out.println("El ejemplo log " + ejemplo);
         System.out.println("El intervalo es " + intervalo);
-        System.out.println("El intervalo entero es "+intervalo_entero);
+        System.out.println("El intervalo entero es " + intervalo_entero);
 
         int redondear3 = (int) Math.round(intervalo);//7
 
-        DecimalFormat df = new DecimalFormat("#.00");        
+        DecimalFormat df = new DecimalFormat("#.00");
         double amplitud = (mayor - menor) / (intervalo_entero);
         double amplitud2 = Double.parseDouble(df.format(amplitud));
-        
+
         System.out.println("La amplitud es " + amplitud2);
-        
+
         double[] rangos = new double[redondear3];// tamano7
-        
+
         int contador4 = 0;
         for (int z = 0; z < redondear3; z++) {//de 0 a 6 son 7 
 
             rangos[z] = Double.parseDouble(df.format(menor));
 
             menor = menor + amplitud2;
-            
+
             contador4++;
-            
-            if(contador4==redondear3){
-            
-               rangos[z] = rangos[z]+1;
-                
+
+            if (contador4 == redondear3) {
+
+                rangos[z] = rangos[z] + 1;
+
             }
         }
-        
+
         for (int h = 0; h < rangos.length; h++) {
 
             System.out.println("Los rangos " + h + " = " + rangos[h]);
         }
-        
+
         int[] frecuencia_precios = new int[redondear3]; //7
         double contador1 = 0;
         int contador2 = 0;
         int d = 0;
-        
+
         for (int z = 0; z < (rangos.length); z++) {
 
             if (precios[z] != 0) {
@@ -225,7 +189,7 @@ class LaminaDashboardProductos extends JPanel {
 
                     //System.out.println("El valor del contador2 antes de resetearlo es "+contador2);
                     frecuencia_precios[d] = contador2;
-                    System.out.println("El valor del contador2 antes de ser reseteado es "+contador2);
+                    System.out.println("El valor del contador2 antes de ser reseteado es " + contador2);
                     System.out.println("El valor de la frecuencia_edades " + d + " = " + frecuencia_precios[d]);
                     d++;
 
@@ -234,7 +198,7 @@ class LaminaDashboardProductos extends JPanel {
                 }
             }
         }
-        
+
         String[] rangos_strings = new String[rangos.length];
 
         for (int t = 0; t < rangos.length; t++) {
@@ -243,7 +207,7 @@ class LaminaDashboardProductos extends JPanel {
             System.out.println("El valor de rangos_strings " + t + " = " + rangos_strings[t]);
 
         }
-        
+
         String[] rangos_finales = new String[rangos.length];
         int contador3 = 0;
 
@@ -252,23 +216,19 @@ class LaminaDashboardProductos extends JPanel {
             if (contador3 < (rangos_finales.length - 1)) {
 
                 contador3++;
-                
+
                 rangos_finales[c] = rangos_strings[c] + "-" + rangos_strings[c + 1];
                 System.out.println("Los rangos finales " + rangos_finales[c]);
 
             }
         }
 
-        
-  
-  //------------------------*****FINALIZA CODIGO NUEVO*********--------------------------------------------
-  
-  
+        //------------------------*****FINALIZA CODIGO NUEVO*********--------------------------------------------
         datos = new DefaultCategoryDataset();
 
-        for (int i = 0; i <(rangos.length-1); i++) {// k es el contador que lleva el conteo de las veces que se repite los numeros
+        for (int i = 0; i < (rangos.length - 1); i++) {// k es el contador que lleva el conteo de las veces que se repite los numeros
 
-           datos.addValue(frecuencia_precios[i], "1", rangos_finales[i]);
+            datos.addValue(frecuencia_precios[i], "1", rangos_finales[i]);
 
         }
 
@@ -322,16 +282,15 @@ class LaminaDashboardProductos extends JPanel {
 
             if ((cantidad[e] != 0) && (nombre_productos[e] != null)) {
 
-              /*  System.out.println("La cantidad " + d + " = " + cantidad[d] +        // es int 
+                /*  System.out.println("La cantidad " + d + " = " + cantidad[d] +        // es int 
                         " y el nombre productos " + d + " = "+ nombre_productos[d]); // es String*/
             }
         }
-        
-//--------------*********-----CONTIENE SOLUCION PARA GRAFICA DE PIE------------***************-------------
 
+//--------------*********-----CONTIENE SOLUCION PARA GRAFICA DE PIE------------***************-------------
         DefaultPieDataset pie = new DefaultPieDataset();
 
-        for (int c = 0; c < 5; c++) {
+        for (int c = 0; c < 5; c++) {   // solo muestra 5 productos en la grafica
             // int
             pie.setValue(nombre_productos[c], cantidad[c]);
 

@@ -1,8 +1,6 @@
 package proyecto1;
 
-import java.awt.*;
 import java.io.*;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class CargaMasivaProductos extends JFrame {
@@ -91,8 +89,10 @@ public class CargaMasivaProductos extends JFrame {
 
             System.out.println("Si se puede cargar el archivo");
             
-            LaminaVentanaProductos lamina_producto1 = new LaminaVentanaProductos();
-            lamina_producto1.setDatos(elementoProducto); // envia elementoProducto a VentanaProductos
+            /*LaminaVentanaProductos lamina_producto1 = new LaminaVentanaProductos();
+            lamina_producto1.setDatos(elementoProducto); // envia elementoProducto a VentanaProductos*/
+            
+            
 
         }else{
         
