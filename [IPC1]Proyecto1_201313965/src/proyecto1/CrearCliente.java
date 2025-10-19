@@ -5,9 +5,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class NuevoCliente extends JFrame {
+public class CrearCliente extends JFrame {
 
-    public NuevoCliente() {
+    public CrearCliente() {
 
         setTitle("Nuevo Cliente");
 
@@ -117,12 +117,17 @@ class Lamina3 extends JPanel {
 
         public void actionPerformed(ActionEvent e) {
 
-            chooser = new JFileChooser();
+            chooser = new JFileChooser("C:\\Users\\Fernando\\Desktop\\IPC1_2020_\\[IPC1]Proyecto1_201313965\\Archivos de Carga");
             chooser.showOpenDialog(null);
 
             avatar = chooser.getSelectedFile().toString();
 
-            
+            String rutaCorregida = avatar.replace("\\", "/");
+            int posicion = rutaCorregida.indexOf("src/");
+
+            if (posicion != -1) {
+                avatar = rutaCorregida.substring(posicion + 3); // incluye la barra inicial de esta forma /clientes/C0.jpg
+            }
         }
 
     }// FIN DE LA CLASE Seleccionar
@@ -131,7 +136,6 @@ class Lamina3 extends JPanel {
 
         public void actionPerformed(ActionEvent w) {
 
-            
             int contador = 0;
 
             for (int d = 0; d < elemento.length; d++) {
@@ -149,35 +153,37 @@ class Lamina3 extends JPanel {
             int z = 0;
 
             for (int j = 0; j < elemento.length; j++) {
-                
-               if(contador != 1){ // si ya existe el NIT el contador ==1 y nunca entra aca 
 
-                if (elemento[j][3] == null) { // evalua si el arreglo esta vacio para almacenar los datos
+                if (contador != 1) { // si ya existe el NIT el contador ==1 y nunca entra aca 
 
-                    z++;// incrementa 1 para poder entrar a la siguiente instruccion y solo guarda una vez los datos
-                    
-                    if (z==1) {
+                    if (elemento[j][3] == null) { // evalua si el arreglo esta vacio para almacenar los datos
 
-                        elemento[j][x] = campo_nombre.getText();
-                        System.out.println("La posicion elemento " + j + "," + x + " = " + elemento[j][x]);
+                        z++;// incrementa 1 para poder entrar a la siguiente instruccion y solo guarda una vez los datos
 
-                        elemento[j][x + 1] = campo_edad.getText();
-                        System.out.println("La posicion elemento " + j + "," + (x + 1) + " = " + elemento[j][x + 1]);
+                        if (z == 1) {
 
-                        elemento[j][x + 2] = combo_sexo.getSelectedItem();
-                        System.out.println("La posicion elemento " + j + "," + (x + 2) + " = " + elemento[j][x + 2]);
+                            elemento[j][x] = campo_nombre.getText();
+                            System.out.println("La posicion elemento " + j + "," + x + " = " + elemento[j][x]);
 
-                        elemento[j][x + 3] = campo_nit.getText();
-                        System.out.println("La posicion elemento " + j + "," + (x + 3) + " = " + elemento[j][x + 3]);
+                            elemento[j][x + 1] = campo_edad.getText();
+                            System.out.println("La posicion elemento " + j + "," + (x + 1) + " = " + elemento[j][x + 1]);
 
-                        elemento[j][x + 4] = avatar; // se almacena la ruta de la foto seleccionada
-                        System.out.println("La posicion elemento " + j + "," + (x + 4) + " = " + elemento[j][x + 4]);
+                            elemento[j][x + 2] = combo_sexo.getSelectedItem();
+                            System.out.println("La posicion elemento " + j + "," + (x + 2) + " = " + elemento[j][x + 2]);
 
-                    }
-                }// if (elemento[j][3] == null)
+                            elemento[j][x + 3] = campo_nit.getText();
+                            System.out.println("La posicion elemento " + j + "," + (x + 3) + " = " + elemento[j][x + 3]);
 
-               }
-                
+                            elemento[j][x + 4] = avatar; // se almacena la ruta de la foto seleccionada
+                            JOptionPane.showMessageDialog(null, "La ruta de la imagen es: " + avatar);
+
+                            System.out.println("La posicion elemento " + j + "," + (x + 4) + " = " + elemento[j][x + 4]);
+
+                        }
+                    }// if (elemento[j][3] == null)
+
+                }
+
             }
 
             campo_nombre.setText(null);
@@ -187,11 +193,11 @@ class Lamina3 extends JPanel {
         }// fin del metodo actionPerformed
 
     }
-    
-    public Object[][] getElemento(){
-    
+
+    public Object[][] getElemento() {
+
         return elemento; // envia el elemento a la clase VentanaClientes
-    
+
     }
 
 }// FIN DE LA CLASE Lamina3

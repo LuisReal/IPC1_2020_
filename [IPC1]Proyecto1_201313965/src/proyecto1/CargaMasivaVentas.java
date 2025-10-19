@@ -17,7 +17,7 @@ public class CargaMasivaVentas {
         elementoVenta = new Object[200][4];
 
         File archivo;
-        JFileChooser seleccionar = new JFileChooser();
+        JFileChooser seleccionar = new JFileChooser("C:\\Users\\Fernando\\Desktop\\IPC1_2020_\\[IPC1]Proyecto1_201313965\\Archivos de Carga");
         seleccionar.showOpenDialog(null);
 
         archivo = seleccionar.getSelectedFile();

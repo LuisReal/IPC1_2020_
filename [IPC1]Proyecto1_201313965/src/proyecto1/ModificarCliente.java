@@ -48,6 +48,8 @@ public class ModificarCliente extends JFrame {
 
         public void actionPerformed(ActionEvent w) {
 
+            int contador = 0;
+
             for (int i = 0; i < elemento.length; i++) {
 
                 if ((campo_consulta.getText()).equals(elemento[i][3])) {
@@ -57,7 +59,13 @@ public class ModificarCliente extends JFrame {
                     ModificaClientes modifica = new ModificaClientes(elemento, nit);
                     modifica.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     modifica.setVisible(true);
+
+                    contador++;
                 }
+            }
+
+            if (contador == 0) { //El nit no existe
+                JOptionPane.showMessageDialog(null, "El NIT no existe");
             }
 
         }// fin metodo actionPerformed
@@ -216,8 +224,6 @@ class LaminaModificaCliente extends JPanel {
 
                 } // fin if (contador!= 1)
             } // fin for
-            
-            
 
             campo_nombre.setText(null);
             campo_edad.setText(null);
@@ -242,9 +248,16 @@ class LaminaModificaCliente extends JPanel {
 
         public void actionPerformed(ActionEvent e) {
 
-            JFileChooser chooser = new JFileChooser();
+            JFileChooser chooser = new JFileChooser("C:\\Users\\Fernando\\Desktop\\IPC1_2020_\\[IPC1]Proyecto1_201313965\\Archivos de Carga");
             chooser.showOpenDialog(null);
             foto_seleccionada = chooser.getSelectedFile().toString();
+
+            String rutaCorregida = foto_seleccionada.replace("\\", "/");
+            int posicion = rutaCorregida.indexOf("src/");
+
+            if (posicion != -1) {
+                foto_seleccionada = rutaCorregida.substring(posicion + 3); // incluye la barra inicial de esta forma /clientes/C0.jpg
+            }
 
             System.out.println("la ruta de la foto seleccionada " + foto_seleccionada);
         }

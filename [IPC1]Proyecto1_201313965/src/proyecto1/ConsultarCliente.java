@@ -6,7 +6,7 @@ import java.awt.event.*;
 import java.io.*;
 import javax.imageio.ImageIO;
 
-public class Consultar extends JFrame {
+public class ConsultarCliente extends JFrame {
 
     JLabel consulta;
     JTextField campo_consulta;
@@ -14,7 +14,7 @@ public class Consultar extends JFrame {
 
     public static Object[][] elemento = new Object[100][5];
 
-    public Consultar() {
+    public ConsultarCliente() {
 
         setLayout(null);
 
@@ -47,18 +47,25 @@ public class Consultar extends JFrame {
     private class Buscar implements ActionListener {
 
         public void actionPerformed(ActionEvent w) {
-
+            int contador = 0;
+            System.out.println("******************** ESTOY EN CONSULTAR CLIENTE **************************");
             for (int i = 0; i < elemento.length; i++) {
 
-                if ((campo_consulta.getText()).equals(elemento[i][3])) {
-
+                if (elemento[i][3] != null && (campo_consulta.getText()).equals(elemento[i][3].toString())) {
+                    System.out.println("******************** ESTOY EN CONSULTAR CLIENTE CICLO FOR **************************");
                     String nit = campo_consulta.getText();
 
                     DatosClientes mostrar = new DatosClientes(elemento, nit); //pasa a la ventana DatosClientes(ir hacia abajo)
                     mostrar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     mostrar.setVisible(true);
-
+                    System.out.println("******************** ESTOY EN CONSULTAR CLIENTE CICLO FOR 2 **************************");
+                    contador++;
                 }
+            }
+
+            if (contador == 0) {
+
+                JOptionPane.showMessageDialog(null, "El NIT no es correcto");
             }
 
         } // find metodo actionPerformed
@@ -154,14 +161,11 @@ class LaminaDatosClientes extends JPanel {
                 sexo[j] = String.valueOf(elemento[j][2]);
                 nits[j] = String.valueOf(elemento[j][3]);
                 foto[j] = String.valueOf(elemento[j][4]);
+                System.out.println("\nLa ruta de la imagen es: " + foto[j]);
 
                 try {
 
-                    //Icon aboutIcon = new ImageIcon(new ImageIcon("Luis.jpg").getImage().getScaledInstance(100, 70, Image.SCALE_DEFAULT));
-                    // String prueba = ruta[0];
-                    File ruta = new File(foto[j]);
-
-                    imagen = ImageIO.read(ruta);
+                    imagen = ImageIO.read(getClass().getResource(foto[j])); // se maneja este tipo de ruta /clientes/C23.jpg
 
                     iconos[j] = new ImageIcon(new ImageIcon(imagen).getImage().getScaledInstance(200, 150, Image.SCALE_DEFAULT));
 

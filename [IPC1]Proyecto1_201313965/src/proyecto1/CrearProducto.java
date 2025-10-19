@@ -101,10 +101,19 @@ class LaminaCrearProducto extends JPanel {
 
         public void actionPerformed(ActionEvent e) {
 
-            chooser = new JFileChooser();
+            chooser = new JFileChooser("C:\\Users\\Fernando\\Desktop\\IPC1_2020_\\[IPC1]Proyecto1_201313965\\src\\productos");
             chooser.showOpenDialog(null);
-
+            
             ruta_imagen = chooser.getSelectedFile().toString();
+
+            String rutaCorregida = ruta_imagen.replace("\\", "/");
+            int posicion = rutaCorregida.indexOf("src/");
+
+            if (posicion != -1) {
+                ruta_imagen = rutaCorregida.substring(posicion + 3); // incluye la barra inicial de esta forma /producto/P0.jpg
+            }
+
+            
             System.out.println("La ruta de la imagen del producto es: " + ruta_imagen);
 
         }

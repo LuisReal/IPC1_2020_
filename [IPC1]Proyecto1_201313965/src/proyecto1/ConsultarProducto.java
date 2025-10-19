@@ -1,4 +1,3 @@
-
 package proyecto1;
 
 import javax.swing.*;
@@ -8,15 +7,15 @@ import java.io.*;
 import javax.imageio.ImageIO;
 
 public class ConsultarProducto extends JFrame {
-    
+
     JLabel consulta;
     JTextField campo_consulta;
     JButton buscar;
-    
+
     public static Object[][] elementoProducto = new Object[100][4];
-    
-    public ConsultarProducto(){
-    
+
+    public ConsultarProducto() {
+
         setLayout(null);
 
         setTitle("Consulta Producto");
@@ -36,19 +35,21 @@ public class ConsultarProducto extends JFrame {
 
         Buscar busqueda = new Buscar();
         buscar.addActionListener(busqueda);
-    
+
     }
-    
+
     public void setElemento(Object[][] elementoProducto) {
 
         this.elementoProducto = elementoProducto; // proviene de la clase VentanaProductos
 
     }
-    
+
     private class Buscar implements ActionListener {
 
         public void actionPerformed(ActionEvent w) {
-
+            
+            int contador = 0;
+            
             for (int i = 0; i < elementoProducto.length; i++) {
 
                 if ((campo_consulta.getText()).equals(elementoProducto[i][0])) {
@@ -58,15 +59,20 @@ public class ConsultarProducto extends JFrame {
                     DatosProductos mostrar = new DatosProductos(elementoProducto, nombre);
                     mostrar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     mostrar.setVisible(true);
-
+                    
+                    contador++;
                 }
+            }
+            
+            if (contador == 0) {
+
+                JOptionPane.showMessageDialog(null, "El Nombre no existe");
             }
 
         } // find metodo actionPerformed
 
     }// fin private class Buscar
-    
-    
+
 }
 
 class DatosProductos extends JFrame {
@@ -83,18 +89,16 @@ class DatosProductos extends JFrame {
 
 }
 
-class LaminaDatosProductos extends JPanel{
+class LaminaDatosProductos extends JPanel {
 
     JLabel etiqueta_nombre_producto;
     JLabel etiqueta_precio_producto;
     JLabel etiqueta_cantidad_producto;
     JLabel imagen_producto;
-    
 
     JLabel mostrar_nombre_producto;
     JLabel mostrar_precio_producto;
     JLabel mostrar_cantidad_producto;
-    
 
     JLabel avatar_foto;
 
@@ -105,8 +109,7 @@ class LaminaDatosProductos extends JPanel{
     String[] cadenaNombres = new String[100];
     String[] cadenaPrecios = new String[100];
     String[] cadenaCantidad = new String[100];
-    
-    
+
     String[] foto = new String[200];
     Icon[] iconos = new Icon[200];
 
@@ -114,19 +117,16 @@ class LaminaDatosProductos extends JPanel{
     public Image imagen;
     public Icon icono;
 
+    public LaminaDatosProductos(Object[][] elementoProducto, String nombre) {
 
-    public LaminaDatosProductos(Object[][] elementoProducto, String nombre){
-    
         setLayout(null);
 
         this.elementoProducto = elementoProducto;
         this.nombre = nombre;
-    
+
         etiqueta_nombre_producto = new JLabel("Nombre ");
         etiqueta_nombre_producto.setBounds(30, 20, 100, 30);
         add(etiqueta_nombre_producto);
-        
-        
 
         etiqueta_precio_producto = new JLabel("Precio ");
         etiqueta_precio_producto.setBounds(30, 70, 100, 30);
@@ -136,8 +136,6 @@ class LaminaDatosProductos extends JPanel{
         etiqueta_cantidad_producto.setBounds(30, 120, 100, 30);
         add(etiqueta_cantidad_producto);
 
-        
-
         imagen_producto = new JLabel("Imagen ");
         imagen_producto.setBounds(30, 170, 100, 30);
         add(imagen_producto);
@@ -145,10 +143,10 @@ class LaminaDatosProductos extends JPanel{
         eliminar = new JButton("Eliminar");
         eliminar.setBounds(150, 390, 100, 30);
         add(eliminar);
-        
+
         Eliminar elimina = new Eliminar();
         eliminar.addActionListener(elimina);
-        
+
         for (int j = 0; j < elementoProducto.length; j++) {
 
             if (elementoProducto[j][0] != null) {
@@ -156,18 +154,12 @@ class LaminaDatosProductos extends JPanel{
                 cadenaNombres[j] = String.valueOf(elementoProducto[j][0]);
                 cadenaPrecios[j] = String.valueOf(elementoProducto[j][1]);
                 cadenaCantidad[j] = String.valueOf(elementoProducto[j][2]);
-                
-                foto[j] = String.valueOf(elementoProducto[j][3]);
+
+                foto[j] = String.valueOf(elementoProducto[j][3]); //esto contiene la ruta de la imagen tipo: /productos/P27.jpg
 
                 try {
 
-                    //Icon aboutIcon = new ImageIcon(new ImageIcon("Luis.jpg").getImage().getScaledInstance(100, 70, Image.SCALE_DEFAULT));
-                    // String prueba = ruta[0];
-                    
-                    //String ruta1 = foto[j].replaceFirst("^/", "");
-                    //File ruta = new File();
-                    
-                    imagen = ImageIO.read(getClass().getResource(foto[j]));
+                    imagen = ImageIO.read(getClass().getResource(foto[j])); // se maneja este tipo de ruta /productos/P27.jpg
 
                     iconos[j] = new ImageIcon(new ImageIcon(imagen).getImage().getScaledInstance(200, 150, Image.SCALE_DEFAULT));
 
@@ -180,7 +172,7 @@ class LaminaDatosProductos extends JPanel{
             }
 
         } // fin del for
-        
+
         for (int i = 0; i < elementoProducto.length; i++) {
 
             if (nombre.equals(elementoProducto[i][0])) {
@@ -197,7 +189,6 @@ class LaminaDatosProductos extends JPanel{
                 mostrar_cantidad_producto.setBounds(150, 120, 100, 30);
                 add(mostrar_cantidad_producto);
 
-                
                 avatar_foto = new JLabel(iconos[i]);
                 avatar_foto.setBounds(100, 220, 200, 150);
                 add(avatar_foto);
@@ -206,7 +197,7 @@ class LaminaDatosProductos extends JPanel{
 
         } // fin del for
     }// fin constructor LaminaDatosProductos
-    
+
     private class Eliminar implements ActionListener {
 
         public void actionPerformed(ActionEvent w) {
@@ -214,7 +205,7 @@ class LaminaDatosProductos extends JPanel{
             mostrar_nombre_producto.setText("");
             mostrar_precio_producto.setText("");
             mostrar_cantidad_producto.setText("");
-            
+
             avatar_foto.setIcon(null); // elimina la imagen de la foto
 
             for (int i = 0; i < elementoProducto.length; i++) {
@@ -248,5 +239,3 @@ class LaminaDatosProductos extends JPanel{
     }// fin clase Eliminar
 
 }
-
-

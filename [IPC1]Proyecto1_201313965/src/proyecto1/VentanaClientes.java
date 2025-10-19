@@ -27,7 +27,7 @@ class Lamina extends JPanel {
     JButton consulta;
     JButton modificar;
 
-    public static Object[][] elemento;
+    public static Object[][] elementoCliente;
     public static ImageIcon icono;
 
     public Lamina() {
@@ -73,7 +73,7 @@ class Lamina extends JPanel {
 
     public void setDatos(Object[][] elemento) {
 
-        this.elemento = elemento; // proviene de la clase CargaMasiva
+        this.elementoCliente = elemento; // proviene de la clase CargaMasiva
 
     }
 
@@ -81,20 +81,21 @@ class Lamina extends JPanel {
 
         Lamina3 lamina = new Lamina3();
 
-        this.elemento = lamina.getElemento(); // proviene de la clase NuevoCliente (Lamina3)
+        this.elementoCliente = lamina.getElemento(); // proviene de la clase NuevoCliente (Lamina3)
 
     }
 
     private class Dashboard implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (elemento == null) {
+            if (elementoCliente == null) {
 
                 JOptionPane.showMessageDialog(null, "No ha cargado los datos todavia");
 
             } else {
-                DashboardClientes dashboard = new DashboardClientes(elemento); // pasa los elementos que proviene de CargaMasiva
+                DashboardClientes dashboard = new DashboardClientes(elementoCliente); // pasa los elementos que proviene de CargaMasiva
                 dashboard.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 dashboard.setVisible(true);
 
@@ -107,6 +108,7 @@ class Lamina extends JPanel {
 
     private class CargarClientes implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent e) {
 
             CargaMasivaClientes carga = new CargaMasivaClientes();
@@ -117,14 +119,15 @@ class Lamina extends JPanel {
 
     private class CrearClientes implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent e) {
 
-            NuevoCliente nuevo = new NuevoCliente();
+            CrearCliente nuevo = new CrearCliente();
             nuevo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             nuevo.setVisible(true);
 
             Lamina3 elementos = new Lamina3();
-            elementos.setElemento(elemento);
+            elementos.setElemento(elementoCliente);
             // pasa los valores ingresados por carga masiva (elemento) a NuevoCliente en clase Lamina3
 
         }
@@ -133,10 +136,11 @@ class Lamina extends JPanel {
 
     private class Consulta implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent w) {
 
-            Consultar consulta = new Consultar();
-            consulta.setElemento(elemento); // envia los elementos de la carga masiva + nuevos creados a la clase CONSULTAR
+            ConsultarCliente consulta = new ConsultarCliente();
+            consulta.setElemento(elementoCliente); // envia los elementos de la carga masiva + nuevos creados a la clase CONSULTAR
             consulta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             consulta.setVisible(true);
         }
@@ -145,10 +149,11 @@ class Lamina extends JPanel {
 
     private class Modificar implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent w) {
 
             ModificarCliente modifica = new ModificarCliente(); // envia todos los elementos CargaMasiva y NuevoCliente
-            modifica.setElemento(elemento);
+            modifica.setElemento(elementoCliente);
             modifica.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             modifica.setVisible(true);
 
