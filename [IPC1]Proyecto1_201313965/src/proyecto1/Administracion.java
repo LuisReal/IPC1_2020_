@@ -30,15 +30,15 @@ public class Administracion extends JFrame {
         clientes = new JButton("Administracion de Clientes");
         clientes.setBounds(100, 50, 300, 30);
         clientes.setFocusPainted(false);
-        clientes.setBackground(new Color(255, 255, 204));
-
+        clientes.setBackground(new Color(173, 216, 150));
+        clientes.setForeground(Color.WHITE);
         clientes.setFont(new Font("Arial", Font.BOLD, 16));
         add(clientes);
 
         productos = new JButton("Administracion de Productos");
         productos.setBounds(100, 100, 300, 30);
-        productos.setBackground(new Color(255, 255, 204));
-
+        productos.setBackground(new Color(173, 216, 150));
+        productos.setForeground(Color.WHITE);
         productos.setFont(new Font("Arial", Font.BOLD, 16));
 
         productos.setFocusPainted(false);
@@ -46,21 +46,21 @@ public class Administracion extends JFrame {
 
         ventas = new JButton("Administracion de Ventas");
         ventas.setBounds(100, 150, 300, 30);
-        ventas.setBackground(new Color(255, 255, 204));
-
+        ventas.setBackground(new Color(173, 216, 150));
+        ventas.setForeground(Color.WHITE);
         ventas.setFont(new Font("Arial", Font.BOLD, 16));
         add(ventas);
 
         reportes = new JButton("Reportes");
         reportes.setBounds(100, 200, 300, 30);
-        reportes.setBackground(new Color(0, 153, 0)); // azul claro personalizado
+        reportes.setBackground(new Color(0, 153, 0)); 
         reportes.setForeground(Color.WHITE);
         reportes.setFont(new Font("Arial", Font.BOLD, 16));
         add(reportes);
 
         boton_login = new JButton("Login");
         boton_login.setBounds(150, 250, 200, 30);
-        boton_login.setBackground(new Color(0, 153, 255)); // azul claro personalizado
+        boton_login.setBackground(new Color(0, 153, 255)); 
         boton_login.setForeground(Color.WHITE);
         boton_login.setFont(new Font("Arial", Font.BOLD, 16));
         add(boton_login);

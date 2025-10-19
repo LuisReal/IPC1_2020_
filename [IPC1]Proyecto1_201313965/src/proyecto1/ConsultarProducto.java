@@ -73,7 +73,7 @@ class DatosProductos extends JFrame {
 
     public DatosProductos(Object[][] elementoProducto, String nombre) {
 
-        setTitle("Datos de Cliente");
+        setTitle("Datos de Producto");
         setBounds(300, 200, 400, 500);
 
         LaminaDatosProductos laminaDatos = new LaminaDatosProductos(elementoProducto, nombre);
@@ -107,8 +107,8 @@ class LaminaDatosProductos extends JPanel{
     String[] cadenaCantidad = new String[100];
     
     
-    String[] foto = new String[100];
-    Icon[] iconos = new Icon[100];
+    String[] foto = new String[200];
+    Icon[] iconos = new Icon[200];
 
     String nombre = "";
     public Image imagen;
@@ -163,9 +163,11 @@ class LaminaDatosProductos extends JPanel{
 
                     //Icon aboutIcon = new ImageIcon(new ImageIcon("Luis.jpg").getImage().getScaledInstance(100, 70, Image.SCALE_DEFAULT));
                     // String prueba = ruta[0];
-                    File ruta = new File(foto[j]);
-
-                    imagen = ImageIO.read(ruta);
+                    
+                    //String ruta1 = foto[j].replaceFirst("^/", "");
+                    //File ruta = new File();
+                    
+                    imagen = ImageIO.read(getClass().getResource(foto[j]));
 
                     iconos[j] = new ImageIcon(new ImageIcon(imagen).getImage().getScaledInstance(200, 150, Image.SCALE_DEFAULT));
 
@@ -197,7 +199,7 @@ class LaminaDatosProductos extends JPanel{
 
                 
                 avatar_foto = new JLabel(iconos[i]);
-                avatar_foto.setBounds(150, 220, 200, 150);
+                avatar_foto.setBounds(100, 220, 200, 150);
                 add(avatar_foto);
 
             }

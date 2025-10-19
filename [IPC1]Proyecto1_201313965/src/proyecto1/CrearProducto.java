@@ -85,7 +85,7 @@ class LaminaCrearProducto extends JPanel {
 
         Seleccionar selecciona = new Seleccionar();
         seleccionar_imagen.addActionListener(selecciona);
-        
+
         Guardar guarda = new Guardar();
         guardar.addActionListener(guarda);
 
@@ -105,6 +105,7 @@ class LaminaCrearProducto extends JPanel {
             chooser.showOpenDialog(null);
 
             ruta_imagen = chooser.getSelectedFile().toString();
+            System.out.println("La ruta de la imagen del producto es: " + ruta_imagen);
 
         }
 
@@ -123,16 +124,17 @@ class LaminaCrearProducto extends JPanel {
                     System.out.println("El Producto ingresado ya existe en la posicion " + d + " " + elementoProducto[d][0]);
                     JOptionPane.showMessageDialog(null, "El Producto ingresado ya existe");
 
-                    contador++; // suma 1 al contador si ya existe el NIT
+                    contador++; // suma 1 al contador si ya existe el producto
                 }
 
             }
 
             int z = 0;
 
+            // ------------- Almacenando la informacion ingresada en elementoProducto -----------------------
             for (int j = 0; j < elementoProducto.length; j++) {
 
-                if (contador != 1) { // si ya existe el NIT el contador ==1 y nunca entra aca 
+                if (contador != 1) { // si ya existe el producto el contador ==1 y nunca entra aca 
 
                     if (elementoProducto[j][0] == null) { // evalua si el arreglo esta vacio para almacenar los datos
 
@@ -158,7 +160,16 @@ class LaminaCrearProducto extends JPanel {
                 }
 
             }//fin del for
-            
+
+            System.out.println("\nImprimiendo los valores de elementoProducto");
+            for (int i = 0; i < elementoProducto.length; i++) {
+                
+                if (elementoProducto[i][0] != null) {
+
+                    System.out.println("Producto: " + elementoProducto[i][0] + " Precio: " + elementoProducto[i][1] + " Cantidad: " + elementoProducto[i][2] + " Ruta imagen: " + elementoProducto[i][3]);
+                }
+            }
+
             campo_nombre_producto.setText(null);
             campo_precio_producto.setText(null);
             campo_cantidad_producto.setText(null);
