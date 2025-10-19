@@ -1,20 +1,29 @@
 package proyecto1;
 
-
 import javax.swing.*;
 import org.jfree.chart.ChartPanel;
-import org.jfree.data.category.DefaultCategoryDataset;
+
 
 public class DashboardVentas extends JFrame {
-
-    public DashboardVentas(Object[][] elementoVenta) {
+    
+    private LaminaDashboardVentas lamina_ventas;
+    
+    public DashboardVentas(Object[][] elementoVenta, Object[][] elementoProduco) {
 
         setTitle("Graficas Ventas");
         setBounds(150, 50, 1050, 670);
 
-        LaminaDashboardVentas laminadash = new LaminaDashboardVentas(elementoVenta);
-        add(laminadash);
+        lamina_ventas = new LaminaDashboardVentas(elementoVenta, elementoProduco);
+        add(lamina_ventas);
 
+    }
+    
+    public String[] getArregloProductoUnico() {
+        return lamina_ventas.getArregloProductoUnico();
+    }
+    
+    public int[] getArregloCantidadProductos() {
+        return lamina_ventas.getArregloCantidadProductos();
     }
 }
 
@@ -23,13 +32,14 @@ class LaminaDashboardVentas extends JPanel {
     JScrollPane scroll;
     ChartPanel Pie;
     ChartPanel barras;
-    
-    public static Object[][] elementoProducto;
 
     public String[] columnas = {"Codigo Venta", "NIT cliente", "Producto", "Cantidad"}; // para usar en la tabla
     public String[] columnas2 = {"Producto", "Cantidad Total"}; // para usar en la tabla
+    
+    String[] producto_unico2 = new String[200]; //contiene un arreglo de los productos SIN repetirse
+    int[] cantidad_producto_unico = new int[200]; //contiene un arreglo de los productos SIN repetirse
 
-    public LaminaDashboardVentas(Object[][] elementoVenta) {
+    public LaminaDashboardVentas(Object[][] elementoVenta, Object[][] elementoProducto) {
 
         setLayout(null);// para colocar los componentes en la posicion que queramos
 
@@ -45,20 +55,16 @@ class LaminaDashboardVentas extends JPanel {
         scroll.setBounds(200, 80, 500, 100);// modifica el tamano de la tabla junto con el scroll
         add(scroll);
 
-        DefaultCategoryDataset datos;
-
         int k = 0;
-        int[] cantidad_ventas = new int[200];
-        String[] nombre_productos = new String[200];
-        int cantidad_producto1 = 0;
-        int cantidad_producto2 = 0;
+
+        int cantidad_producto1;
+        int cantidad_producto2;
 
         System.out.println("\n----------------------ESTOY EN DASHBORAD VENTAS------------------------------");
         //System.out.println("El tamano de elementoVenta es: "+ elementoVenta.length);
 
         String[] producto_unico = new String[200];
-        String[] producto_unico2 = new String[200];
-        int[] cantidad_producto_unico = new int[200];
+        
         int producto_repetido = 0;
 
         for (int j = 0; j < elementoVenta.length; j++) { //el tamaño de elementoVenta es 200
@@ -102,13 +108,10 @@ class LaminaDashboardVentas extends JPanel {
                     }
                 }
 
-                cantidad_producto_unico[j] = cantidad_producto1;
-                producto_unico2[j] = producto1;
+                cantidad_producto_unico[j] = cantidad_producto1; //contiene un arreglo de la cantidad de los productos SIN repetirse
+                producto_unico2[j] = producto1;  //contiene un arreglo de los productos SIN repetirse
 
-                System.out.println("\nEl producto es: " + producto1 + " y la cantidad total es: " + cantidad_producto1);
-
-                cantidad_ventas[j] = Integer.parseInt(elementoVenta[j][3].toString());
-                nombre_productos[j] = String.valueOf(elementoVenta[j][2]);
+                //System.out.println("\nEl producto es: " + producto1 + " y la cantidad total es: " + cantidad_producto1);
                 //System.out.println("Productos "+cantidad_productos[j]);
                 k++;
 
@@ -147,22 +150,26 @@ class LaminaDashboardVentas extends JPanel {
             }
         }
 
+        System.out.println("\nLa cantidad mayor es " + mayor + " y el producto es: " + producto_unico2[posicion_mayor]);   //P13 Y P7 son los que mayor cantidad tienen con 16 cada uno
+        System.out.println("La cantidad menor es " + menor + " y el producto es: " + producto_unico2[posicion_menor]);
+        System.out.println("El total de cantidades es " + total_cantidades);
+
         String[][] productos_mayor_cantidad = new String[200][4];
         String[][] solo_productos_mayores = new String[200][2];
-        
+
         int rows = 0;
-        int rows2 =0;
+        int rows2 = 0;
 
-        for (int i = 0; i < producto_unico2.length; i++) {
+        for (int i = 0; i < producto_unico2.length; i++) {   //producto_unico2 contiene un arreglo de los productos SIN repetirse igual que cantidad_producto_unico
 
-            if (producto_unico2[i] != null && cantidad_producto_unico[i] == mayor) {
-                
+            if (producto_unico2[i] != null && cantidad_producto_unico[i] == mayor) { //cantidad_producto_unico contiene las cantidades de productos SIN repetirse
+
                 solo_productos_mayores[rows2][0] = producto_unico2[i];
                 solo_productos_mayores[rows2][1] = String.valueOf(cantidad_producto_unico[i]);
-                System.out.println("\nOBTENIENDO Y ANALIZANDO SEGUNDO RESULTAD0");
-                System.out.println("El producto es: "+solo_productos_mayores[i][0] + " y la cantidad total es: "+solo_productos_mayores[i][1]);
+                //System.out.println("\nOBTENIENDO Y ANALIZANDO SEGUNDO RESULTAD0");
+                //System.out.println("El producto es: " + solo_productos_mayores[i][0] + " y la cantidad total es: " + solo_productos_mayores[i][1]);
                 rows2++;
-                
+
                 for (int j = 0; j < elementoVenta.length; j++) {
 
                     if (elementoVenta[j][2] != null) {
@@ -172,46 +179,126 @@ class LaminaDashboardVentas extends JPanel {
                             for (int m = 0; m < 4; m++) {
                                 productos_mayor_cantidad[rows][m] = elementoVenta[j][m].toString();
                             }
-                            
+
                             rows++;
                         }
                     }
-                    
-                    
+
                 }
-                
-                
 
             }
 
         }
-        
 
+        // -------------------------  Calculando el valor total de las ventas ------------------------------------------
+        double total_venta = 0.0;
+        double[] array_total_ventas = new double[200];
+
+        for (int i = 0; i < producto_unico2.length; i++) {   //producto_unico2 contiene un arreglo de los productos SIN repetirse igual que cantidad_producto_unico
+
+            if (producto_unico2[i] != null) {
+
+                for (int j = 0; j < elementoProducto.length; j++) {
+
+                    if (elementoProducto[j][0] != null) {
+
+                        if (producto_unico2[i].equals(elementoProducto[j][0].toString())) {
+
+                            double precio = Double.parseDouble(elementoProducto[j][1].toString());
+                            double total = Double.valueOf(cantidad_producto_unico[i]) * precio;
+                            array_total_ventas[i] = Double.valueOf(cantidad_producto_unico[i]) * precio;
+
+                            total_venta += total;
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        total_venta = Math.round(total_venta * 100.0) / 100.0;
+
+        System.out.println("\n -------------------EL TOTAL DE VENTAS ES: " + total_venta + " ----------------------");
+
+        // -------------------------- FIN calculo del valor total de las ventas -----------------------------------------
+        
+// -------------------------- INICIO calculo del total del producto mas vendido  -----------------------------------------
+        double total_venta_mayor = array_total_ventas[0];
+        
+        int posicion_mayor2 = 0;
+
+        for (int i = 0; i < array_total_ventas.length; i++) {
+
+            if (array_total_ventas[i] != 0) {
+
+                if (array_total_ventas[i] > total_venta_mayor) {
+
+                    total_venta_mayor = array_total_ventas[i];
+                    posicion_mayor2 = i;
+                }
+
+            }
+        }
+        
+        System.out.println("\nLa cantidad VENTA mayor es " + total_venta_mayor + " y el producto es: " + producto_unico2[posicion_mayor2]);
+
+        // -------------------------- FIN calculo del total del producto mas vendido  -----------------------------------------
+        
+        /*
         for (int i = 0; i < productos_mayor_cantidad.length; i++) {
 
             if (productos_mayor_cantidad[i][2] != null) {
-                
+
                 System.out.println("\nCodigo Venta: " + productos_mayor_cantidad[i][0] + " NIT cliente: " + productos_mayor_cantidad[i][1] + " Producto: " + productos_mayor_cantidad[i][2] + " Cantidad: " + productos_mayor_cantidad[i][3]);
             }
 
-        }
-
-        System.out.println("\nLa cantidad mayor es " + mayor + " y el producto es: " + producto_unico2[posicion_mayor]);   //P13 Y P7 son los que mayor cantidad tienen con 16 cada uno
-        System.out.println("La cantidad menor es " + menor + " y el producto es: " + producto_unico2[posicion_menor]);
-        System.out.println("El total de cantidades es " + total_cantidades);
-
+        }*/
         JLabel cantidad_mayor = new JLabel("Cantidad Vendida Mayor: ");
         cantidad_mayor.setBounds(100, 550, 200, 30);
         add(cantidad_mayor);
-
+        
         JLabel valor_mayor = new JLabel(String.valueOf(mayor));
-        valor_mayor.setBounds(300, 550, 200, 30);
+        valor_mayor.setBounds(300, 550, 50, 30);
         add(valor_mayor);
+
         
-        JLabel titulo_table2 = new JLabel("DETALLE PRODUCTOS MAS VENDIDOS");
-        titulo_table2.setBounds(350, 200, 300, 30);
+        JLabel etiqueta_total_venta = new JLabel("Total ventas: ");
+        etiqueta_total_venta.setBounds(350, 550, 100, 30);
+        add(etiqueta_total_venta);
+
+        JLabel valor_total_venta = new JLabel(String.valueOf(total_venta));
+        valor_total_venta.setBounds(450, 550, 200, 30);
+        add(valor_total_venta);
+        
+        
+        JLabel cantidad_venta_mayor = new JLabel("Total Venta Mayor: ");
+        cantidad_venta_mayor.setBounds(550, 550, 200, 30);
+        add(cantidad_venta_mayor);
+        
+        JLabel valor_venta_mayor = new JLabel(String.valueOf(total_venta_mayor));
+        valor_venta_mayor.setBounds(670, 550, 50, 30);
+        add(valor_venta_mayor);
+        
+        
+        // ------ INICIO Total Producto Mayor Venta --------------------
+        JLabel etiqueta_venta_mayor = new JLabel("Producto de Mayor Venta: ");
+        etiqueta_venta_mayor.setBounds(770, 550, 200, 30);
+        add(etiqueta_venta_mayor);
+        
+        JLabel total_producto_mayor = new JLabel(String.valueOf(producto_unico2[posicion_mayor2]));
+        total_producto_mayor.setBounds(970, 550, 50, 30);
+        add(total_producto_mayor);
+        // ------ FIN Total Producto Mayor Venta --------------------
+        
+        
+        
+        JLabel titulo_table2 = new JLabel("DETALLE DE LA VENTA MAS GRANDE SEGUN CANTIDAD PRODUCTOS VENDIDOS");
+        titulo_table2.setBounds(150, 200, 500, 30);
         add(titulo_table2);
-        
+
         JTable table2 = new JTable(productos_mayor_cantidad, columnas);
 
         table2.setRowHeight(30);
@@ -219,11 +306,11 @@ class LaminaDashboardVentas extends JPanel {
         scroll = new JScrollPane(table2);
         scroll.setBounds(200, 250, 500, 100);// modifica el tamano de la tabla junto con el scroll
         add(scroll);
-        
+
         JLabel titulo_table3 = new JLabel("PRODUCTOS MAS VENDIDOS");
         titulo_table3.setBounds(350, 400, 200, 30);
         add(titulo_table3);
-        
+
         JTable table3 = new JTable(solo_productos_mayores, columnas2);
 
         table3.setRowHeight(30);
@@ -234,6 +321,15 @@ class LaminaDashboardVentas extends JPanel {
 
     }// fin constructor LaminaDashboardVentas
     
+    public String[] getArregloProductoUnico() {
+        
+        // ------------- ORDENANDO el arreglo producto_unico2 y el arreglo  cantidad_producto_unico --------------------------
+        
+        
+        return producto_unico2;
+    }
     
-
+    public int[] getArregloCantidadProductos(){
+        return cantidad_producto_unico;
+    }
 }

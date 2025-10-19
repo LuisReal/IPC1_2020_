@@ -54,7 +54,7 @@ class Lamina extends JPanel {
         modificar.setBounds(100, 250, 200, 30);
         add(modificar);
 
-        Cargar cargar1 = new Cargar();
+        CargarClientes cargar1 = new CargarClientes();
         carga.addActionListener(cargar1);
 
         Dashboard dash = new Dashboard();
@@ -105,11 +105,11 @@ class Lamina extends JPanel {
 
     }
 
-    private class Cargar implements ActionListener {
+    private class CargarClientes implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
 
-            CargaMasiva carga = new CargaMasiva();
+            CargaMasivaClientes carga = new CargaMasivaClientes();
 
         }
 

@@ -1,27 +1,25 @@
 package proyecto1;
 
 import javax.swing.*;
-import java.awt.*;
-import javax.swing.event.*;
+
 import java.awt.event.*;
 
 public class CrearVenta extends JFrame {
 
-    public CrearVenta(Object[][] elementoVenta) {
+    public CrearVenta(Object[][] elementoVenta, Object[][] elementoProducto, String[] producto_unico, int[] cantidad_producto_unico) {
 
         setTitle("Crear Venta");
 
         setBounds(400, 100, 400, 500);
 
-        LaminaCrearVenta crearV = new LaminaCrearVenta(elementoVenta);
+        LaminaCrearVenta crearV = new LaminaCrearVenta(elementoVenta, elementoProducto, producto_unico, cantidad_producto_unico);
         add(crearV);
     }
 }
 
 class LaminaCrearVenta extends JPanel {
 
-    public static Object[][] elementoVenta = new Object[500][4];
-
+    //public static Object[][] elementoVenta = new Object[500][4];
     public int x = 0;
 
     JLabel nit_cliente;
@@ -38,13 +36,23 @@ class LaminaCrearVenta extends JPanel {
     JButton agregar;
 
     String ruta_imagen;
-    
-    int cantidad_maxima=0;
-    int cantidad_sumada=0;
+
+    int cantidad_maxima = 0;
+    int cantidad_sumada = 0;
+
+    private Object[][] elementoVenta;
+    private Object[][] elementoProducto;
+    private int[] cantidad_producto_unico;
+    private String[] producto_unico;
 
     JFileChooser chooser;
 
-    public LaminaCrearVenta(Object[][] elementoVenta) {
+    public LaminaCrearVenta(Object[][] elementoVenta, Object[][] elementoProducto, String[] producto_unico, int[] cantidad_producto_unico) {
+
+        this.elementoVenta = elementoVenta;
+        this.elementoProducto = elementoProducto;
+        this.cantidad_producto_unico = cantidad_producto_unico;
+        this.producto_unico = producto_unico;
 
         setLayout(null);
 
@@ -69,18 +77,21 @@ class LaminaCrearVenta extends JPanel {
 
         nombre_producto = new String[200];
 
-        for (int i = 0; i < elementoVenta.length; i++) {
+        System.out.println("\n\n");
+        for (int i = 0; i < producto_unico.length; i++) {
 
-            if (elementoVenta[i][2] != null) {
+            if (producto_unico[i] != null) {
 
-                //System.out.println("El elemento Venta " + elementoVenta[i][2]);
-                nombre_producto[i] = String.valueOf(elementoVenta[i][2]);
+                //System.out.println("**********************El elemento Venta es: " + elementoVenta[i]);
+                nombre_producto[i] = producto_unico[i];
             }
         }
 
         for (int j = 0; j < nombre_producto.length; j++) {
 
-            elegir_producto.addItem(nombre_producto[j]);
+            if (nombre_producto[j] != null) {
+                elegir_producto.addItem(nombre_producto[j]);
+            }
 
         }
 
@@ -94,160 +105,153 @@ class LaminaCrearVenta extends JPanel {
         campo_cantidad_producto.setBounds(200, 180, 150, 30);
         add(campo_cantidad_producto);
 
-        agregar = new JButton("Agregar");
-        agregar.setBounds(250, 230, 100, 30);
-        add(agregar);
-
         ingresados_venta = new JLabel("Ingresados en la venta");
         ingresados_venta.setBounds(130, 280, 150, 30);
         add(ingresados_venta);
+
+        agregar = new JButton("Agregar");
+        agregar.setBounds(250, 230, 100, 30);
+        add(agregar);
 
         Agregar agrega = new Agregar();
         agregar.addActionListener(agrega);
 
     }
 
-    public void setElemento(Object[][] elementoVenta) {
-
-        this.elementoVenta = elementoVenta; // proviene de la clase VentanaVentas
-
-    }
-
     private class Agregar implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent e) {
 
             int contador = 0;
 
             for (int d = 0; d < elementoVenta.length; d++) {
 
-                if (campo_nit_cliente.getText().equals(elementoVenta[d][1])) {
+                if (elementoVenta[d][1] != null && campo_nit_cliente.getText().equals(elementoVenta[d][1].toString())) {
 
-                    // System.out.println("El NIT ingresado ya existe  en la posicion " + d + " " + elementoVenta[d][0]);
-                    //JOptionPane.showMessageDialog(null, "El Producto ingresado ya existe");
+                    contador++; // suma 1 al contador si existe el NIT
+
                 }
-                contador++; // suma 1 al contador si ya existe el NIT
 
-                if (contador == 1) {
-                    if (campo_nit_cliente.getText().equals(elementoVenta[d][1]) == false) {
+            }
 
-                        JOptionPane.showMessageDialog(null, "El NIT ingresado no existe");
+            if (contador == 0) {
 
+                JOptionPane.showMessageDialog(null, "El NIT ingresado no existe");
+
+            } else { //aunque el valor de contador sea mayor > 0 el metodo productosExistencia() se llamara una sola vez
+                productosExistencia();
+            }
+
+        }
+
+        public void productosExistencia() {
+
+            int mayor;
+
+            mayor = Integer.parseInt(elementoVenta[0][0].toString());
+            int posicion_mayor = 0;
+
+            for (int i = 0; i < elementoVenta.length; i++) {
+
+                if (elementoVenta[i][0] != null) {
+
+                    if (Integer.parseInt(elementoVenta[i][0].toString()) > mayor) {
+
+                        mayor = Integer.parseInt(elementoVenta[i][0].toString());
+                        posicion_mayor = i;
                     }
+
                 }
             }
 
-            int contador1 = 0;
+            System.out.println("\nEl ID mayor es " + mayor + " En la posicion: " + posicion_mayor);
 
-            String[] cantidad_productos = new String[500];
-            int[] cantidades = new int[500];
-            
+            String producto_seleccionado = (String) elegir_producto.getSelectedItem();
+            //producto_unico
+            int contador = 0;
+            int cantidad_ingresada = Integer.parseInt(campo_cantidad_producto.getText());
 
-            for (int b = 0; b < cantidad_productos.length; b++) {
+            for (int d = 0; d < elementoProducto.length; d++) {
 
-                if (elementoVenta[b][3] != null) {
+                if (elementoProducto[d][0] != null && producto_seleccionado.equals(elementoProducto[d][0].toString())) {
 
-                    cantidad_productos[b] = String.valueOf(elementoVenta[b][3]);
+                    if (elementoProducto[d][2] != null && cantidad_ingresada <= Integer.parseInt(elementoProducto[d][2].toString())) {
+                        
+                        JOptionPane.showMessageDialog(null, "SI hay suficientes productos");
+                        
+                        elementoProducto[d][2] = Integer.parseInt(elementoProducto[d][2].toString()) - cantidad_ingresada;
+                    
+                        contador++; // suma 1 al contador para verificar que hayan productos en existencia
 
-                    //System.out.println("El valor de cantidad_productos es " + b + " = " + cantidad_productos[b]);
+                        crearNuevaVenta(mayor, campo_nit_cliente.getText(), producto_seleccionado, cantidad_ingresada);
+                    }
+
                 }
+
             }
 
-            for (int c = 0; c < cantidades.length; c++) {
+            if (contador == 0) {
 
-                if (cantidad_productos[c] != null) { // colocar esto sino dara error
+                JOptionPane.showMessageDialog(null, "No hay suficientes productos");
 
-                    cantidades[c] = Integer.valueOf(cantidad_productos[c]);
-
-                    // System.out.println("El valor de cantidades " + c + " = " + cantidades[c]);
-                }
             }
 
-            int contador2 = 0;
-            int contador3 = 0;
-            
-            int campo_cantidades = Integer.parseInt(campo_cantidad_producto.getText());
-            
-           // System.out.println("El valor de la cantidad sumada ANTES de ingresar al if (cantidad_sumada<=5) "+cantidad_sumada);
-            
-           /* if(cantidad_sumada<=5){
-            
-             cantidad_sumada = (cantidad_sumada+cantidad_maxima);
-             System.out.println("El valor (dentro del if) de la cantidad_sumada = "+cantidad_sumada);
-            
+            /*
+            for (int i = 0; i < elementoVenta.length; i++) {
+
+                if (elementoVenta[i][0] != null) {
+                    System.out.println("El id de la venta es: " + elementoVenta[i][0].toString() + " y la posicion es: " + i);
+                } else {
+                    System.out.println("El elemento esta vacio en la posicion: " + i);
+                }
+
             }*/
-            
-            cantidad_sumada =(cantidad_sumada + campo_cantidades);
-            System.out.println("El valor de la cantidad_sumada ANTES de entrar al if es " + cantidad_sumada);
-            
-            
-            
-            for (int a = 0; a < elementoVenta.length; a++) {
+        }
 
-                if (elementoVenta[a][2] != null) {
+        public void crearNuevaVenta(int idMayor, String nit_cliente, String producto_seleccionado, int cantidad_ingresada) {
 
-                    if (elegir_producto.getSelectedItem().equals(elementoVenta[a][2])) {
+            for (int i = 0; i < elementoVenta.length; i++) {
 
-                        //System.out.println("El producto elegido es " + elegir_producto.getSelectedItem());
+                if (elementoVenta[i][0] == null) {
 
-                        for (int b = 0; b < cantidades.length; b++) {
+                    elementoVenta[i][0] = idMayor+1;
+                    elementoVenta[i][1] = nit_cliente;
+                    elementoVenta[i][2] = producto_seleccionado;
+                    elementoVenta[i][3] = cantidad_ingresada;
 
-                            //System.out.println("La cantidad ingresada es " + campo_cantidad_producto.getText() + " o "
-                            // + campo_cantidades);
-                            if (contador3 < 5) {
-
-                                if (contador2 == 0) { // para que imprime una sola vez el mensaje "La cantidad ingresa x existe"
-                                    // if (cantidades[b] != 0) {
-                                    if (campo_cantidades <= cantidades[a]) {
-
-                                        if (cantidad_sumada <= 5) {
-
-                                            System.out.println("La cantidad ingresada campo_cantidades " + campo_cantidades + " SI existe " + b+"\n");
-                                           
-                                            cantidad_sumada = (cantidad_sumada+campo_cantidades);
-                                             System.out.println("El valor (dentro del if) de la cantidad_sumada es = "+cantidad_sumada);
-                                        }  
-                                        
-                                        if(cantidad_sumada>5){
-
-                                            System.out.println("No puede ingresar mas de 5 productos, Porfavor vuelva a ingresar la informacion" );
-                                            JOptionPane.showMessageDialog(null, "No puede ingresar mas de 5 productos, vuelva a ingresar la informacion");
-                                           
-                                            cantidad_sumada = 0;
-                                            System.out.println("El valor de la cantidad_sumada reseteada es "+cantidad_sumada+"\n");
-                                            campo_cantidad_producto.setText("");
-                                            campo_nit_cliente.setText("");
-                                         }
-
-                                        
-
-                                    } else {
-
-                                        System.out.println("La cantidad ingresada NO existe " + b);
-                                        JOptionPane.showMessageDialog(null, "La cantidad ingresada NO existe");
-
-                                    }
-
-                                    contador2++;
-                                }
-                            }
-                            //System.out.println("El valor de contador3 es "+contador3);
-                            contador3++;
-                        }
-                    }
+                    break;
 
                 }
-                contador1++;
-
-                /* if (contador == 1) {
-                    if (campo_cantidad_producto.getText().equals(elementoVenta[a][3]) == false) {
-
-                        JOptionPane.showMessageDialog(null, "La cantidad ingresada no existe");
-
-                    }
-                }*/
             }
+            
+            System.out.println("El array elementoVenta con la nueva venta es: ");
+            
+            for (int i = 0; i < elementoVenta.length; i++) {
 
+                if (elementoVenta[i][0] != null) {
+                    System.out.println("El id de la venta es: " + elementoVenta[i][0].toString() + " NIT cliente: " + elementoVenta[i][1] + 
+                            " Producto: "+elementoVenta[i][2]+ " Cantidad: "+elementoVenta[i][3]);
+                } 
+
+            }
+            
+            //----------- Restando la cantidad de productos Disponibles -------------------------
+            
+            for (int i = 0; i < elementoProducto.length; i++) {
+
+                if (elementoProducto[i][0] != null && (elementoProducto[i][0].toString()).equals(producto_seleccionado)) {
+                    
+                    //elementoProducto[i][2] = Integer.parseInt(elementoProducto[i][2].toString()) - cantidad_ingresada;
+                    
+                    System.out.println("\nProducto: "+elementoProducto[i][0]+ " Cantidad: "+elementoProducto[i][2]);
+                    
+                    JOptionPane.showMessageDialog(null, "productos en existencia " + elementoProducto[i][2]);
+                } 
+
+            }
+            
+            
         }
 
     }

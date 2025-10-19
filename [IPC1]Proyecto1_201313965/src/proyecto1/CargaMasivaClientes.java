@@ -5,13 +5,13 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class CargaMasiva {
+public class CargaMasivaClientes {
 
     public String[] campos;
     public Object[][] elemento;
 
     // public String texto = "";
-    public CargaMasiva() {
+    public CargaMasivaClientes() {
         int i = 0;
         elemento = new Object[100][5];
 
