@@ -140,7 +140,7 @@ class Lamina3 extends JPanel {
 
             for (int d = 0; d < elemento.length; d++) {
 
-                if (campo_nit.getText().equals(elemento[d][3])) {
+                if (elemento[d][3] != null && campo_nit.getText().equals(elemento[d][3])) {
 
                     System.out.println("El NIT ingresado ya existe en la posicion " + d + " " + elemento[d][3]);
                     JOptionPane.showMessageDialog(null, "El NIT ingresado ya existe");

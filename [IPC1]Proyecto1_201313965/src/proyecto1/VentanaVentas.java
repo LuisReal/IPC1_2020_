@@ -58,6 +58,9 @@ class LaminaVentanaVentas extends JPanel {
 
         CrearVentas nuevav = new CrearVentas();
         creacion_ventas.addActionListener(nuevav);
+        
+        ConsultarVentas consultar = new ConsultarVentas();
+        consulta.addActionListener(consultar);
 
     }
 
@@ -106,5 +109,19 @@ class LaminaVentanaVentas extends JPanel {
             }
 
         }
+    }
+    
+    private class ConsultarVentas implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent w) {
+
+            ConsultarVenta miConsulta = new ConsultarVenta();
+            miConsulta.setElementos(elementoVenta, elementoProducto);
+            miConsulta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            miConsulta.setVisible(true);
+
+        }
+
     }
 }

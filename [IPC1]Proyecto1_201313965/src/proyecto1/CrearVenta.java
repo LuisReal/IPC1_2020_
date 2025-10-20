@@ -147,15 +147,21 @@ class LaminaCrearVenta extends JPanel {
 
         public void productosExistencia() {
 
-            int mayor;
-
-            mayor = Integer.parseInt(elementoVenta[0][0].toString());
+            int mayor = 0;
+            
             int posicion_mayor = 0;
+            int contador_mayor = 0;
 
             for (int i = 0; i < elementoVenta.length; i++) {
 
                 if (elementoVenta[i][0] != null) {
-
+                    
+                    if(contador_mayor == 0){
+                        mayor = Integer.parseInt(elementoVenta[i][0].toString());
+                        contador_mayor++;
+                    }
+                    
+                    
                     if (Integer.parseInt(elementoVenta[i][0].toString()) > mayor) {
 
                         mayor = Integer.parseInt(elementoVenta[i][0].toString());
