@@ -22,7 +22,7 @@ public class ConsultarProducto extends JFrame {
         setBounds(300, 200, 350, 220);
 
         consulta = new JLabel("Consulta de Producto (Ingrese NOMBRE)");
-        consulta.setBounds(60, 20, 200, 30);
+        consulta.setBounds(60, 20, 250, 30);
         add(consulta);
 
         campo_consulta = new JTextField();

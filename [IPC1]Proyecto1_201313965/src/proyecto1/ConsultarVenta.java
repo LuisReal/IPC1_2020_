@@ -78,7 +78,7 @@ class DatosVentas extends JFrame {
 
     public DatosVentas(Object[][] elementoVenta, Object[][] elementoProducto, String idVenta) {
 
-        setTitle("Datos de Producto");
+        setTitle("Datos de la Venta");
         setBounds(300, 200, 400, 500);
 
         LaminaDatosVentas laminaDatos = new LaminaDatosVentas(elementoVenta, elementoProducto, idVenta);
