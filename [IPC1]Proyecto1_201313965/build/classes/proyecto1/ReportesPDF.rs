@@ -1,0 +1,10 @@
+proyecto1.ConsultarIDVenta$Buscar
+proyecto1.ConsultarIDVenta
+proyecto1.ConsultarVenta.Buscar
+proyecto1.LaminaReportesPDF
+proyecto1.ConsultarVenta
+proyecto1.LaminaReportesPDF$GenerarFactura
+proyecto1.LaminaReportesPDF$CreacionProductos
+proyecto1.ReportesPDF
+proyecto1.LaminaReportesPDF$CargarProductos
+proyecto1.LaminaReportesPDF$VentasMayorTotal

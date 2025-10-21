@@ -44,6 +44,7 @@ class LaminaCrearVenta extends JPanel {
     private Object[][] elementoProducto;
     private int[] cantidad_producto_unico;
     private String[] producto_unico;
+    private int mayor = 0;
 
     JFileChooser chooser;
 
@@ -116,6 +117,33 @@ class LaminaCrearVenta extends JPanel {
         Agregar agrega = new Agregar();
         agregar.addActionListener(agrega);
 
+        
+
+        int posicion_mayor = 0;
+        int contador_mayor = 0;
+
+        for (int i = 0; i < elementoVenta.length; i++) {
+
+            if (elementoVenta[i][0] != null) {
+
+                if (contador_mayor == 0) {
+                    mayor = Integer.parseInt(elementoVenta[i][0].toString());
+                    contador_mayor++;
+                }
+
+                if (Integer.parseInt(elementoVenta[i][0].toString()) > mayor) {
+
+                    mayor = Integer.parseInt(elementoVenta[i][0].toString());
+                    posicion_mayor = i;
+                }
+
+            }
+        }
+        
+        mayor++; //Importante aumentar el ID de la venta aca
+
+        System.out.println("\nEl ID mayor es " + mayor + " En la posicion: " + posicion_mayor);
+
     }
 
     private class Agregar implements ActionListener {
@@ -147,32 +175,6 @@ class LaminaCrearVenta extends JPanel {
 
         public void productosExistencia() {
 
-            int mayor = 0;
-            
-            int posicion_mayor = 0;
-            int contador_mayor = 0;
-
-            for (int i = 0; i < elementoVenta.length; i++) {
-
-                if (elementoVenta[i][0] != null) {
-                    
-                    if(contador_mayor == 0){
-                        mayor = Integer.parseInt(elementoVenta[i][0].toString());
-                        contador_mayor++;
-                    }
-                    
-                    
-                    if (Integer.parseInt(elementoVenta[i][0].toString()) > mayor) {
-
-                        mayor = Integer.parseInt(elementoVenta[i][0].toString());
-                        posicion_mayor = i;
-                    }
-
-                }
-            }
-
-            System.out.println("\nEl ID mayor es " + mayor + " En la posicion: " + posicion_mayor);
-
             String producto_seleccionado = (String) elegir_producto.getSelectedItem();
             //producto_unico
             int contador = 0;
@@ -183,11 +185,11 @@ class LaminaCrearVenta extends JPanel {
                 if (elementoProducto[d][0] != null && producto_seleccionado.equals(elementoProducto[d][0].toString())) {
 
                     if (elementoProducto[d][2] != null && cantidad_ingresada <= Integer.parseInt(elementoProducto[d][2].toString())) {
-                        
+
                         JOptionPane.showMessageDialog(null, "SI hay suficientes productos");
-                        
+
                         elementoProducto[d][2] = Integer.parseInt(elementoProducto[d][2].toString()) - cantidad_ingresada;
-                    
+
                         contador++; // suma 1 al contador para verificar que hayan productos en existencia
 
                         crearNuevaVenta(mayor, campo_nit_cliente.getText(), producto_seleccionado, cantidad_ingresada);
@@ -221,7 +223,7 @@ class LaminaCrearVenta extends JPanel {
 
                 if (elementoVenta[i][0] == null) {
 
-                    elementoVenta[i][0] = idMayor+1;
+                    elementoVenta[i][0] = idMayor;
                     elementoVenta[i][1] = nit_cliente;
                     elementoVenta[i][2] = producto_seleccionado;
                     elementoVenta[i][3] = cantidad_ingresada;
@@ -230,34 +232,31 @@ class LaminaCrearVenta extends JPanel {
 
                 }
             }
-            
+
             System.out.println("El array elementoVenta con la nueva venta es: ");
-            
+
             for (int i = 0; i < elementoVenta.length; i++) {
 
                 if (elementoVenta[i][0] != null) {
-                    System.out.println("El id de la venta es: " + elementoVenta[i][0].toString() + " NIT cliente: " + elementoVenta[i][1] + 
-                            " Producto: "+elementoVenta[i][2]+ " Cantidad: "+elementoVenta[i][3]);
-                } 
+                    System.out.println("El id de la venta es: " + elementoVenta[i][0].toString() + " NIT cliente: " + elementoVenta[i][1]
+                            + " Producto: " + elementoVenta[i][2] + " Cantidad: " + elementoVenta[i][3]);
+                }
 
             }
-            
+
             //----------- Restando la cantidad de productos Disponibles -------------------------
-            
             for (int i = 0; i < elementoProducto.length; i++) {
 
                 if (elementoProducto[i][0] != null && (elementoProducto[i][0].toString()).equals(producto_seleccionado)) {
-                    
+
                     //elementoProducto[i][2] = Integer.parseInt(elementoProducto[i][2].toString()) - cantidad_ingresada;
-                    
-                    System.out.println("\nProducto: "+elementoProducto[i][0]+ " Cantidad: "+elementoProducto[i][2]);
-                    
+                    System.out.println("\nProducto: " + elementoProducto[i][0] + " Cantidad: " + elementoProducto[i][2]);
+
                     JOptionPane.showMessageDialog(null, "productos en existencia " + elementoProducto[i][2]);
-                } 
+                }
 
             }
-            
-            
+
         }
 
     }

@@ -2,6 +2,7 @@ package proyecto1;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -183,7 +184,7 @@ class ConsultarIDVenta extends JFrame {
                 //JOptionPane.showMessageDialog(null, "El ID de la venta es: " + idVenta);
 
                 setData(idVenta);
-                
+
                 JOptionPane.showMessageDialog(null, "Factura Generada con exito en carpeta reportes");
 
             }
@@ -225,8 +226,6 @@ class ConsultarIDVenta extends JFrame {
                 cs.beginText(); //abre el documento para empezar a trabajar
                 cs.newLineAtOffset(100, 700); //indica las coordenadas de donde debe empezar a escribir en la pagina
 
-                
-
                 cs.showText("Id Venta: " + idVenta);
 
                 cs.newLineAtOffset(0, -20); //en donde se quedo el cursor(en X=100) le suma 0, X=100 y (en Y=680)
@@ -262,7 +261,7 @@ class ConsultarIDVenta extends JFrame {
                                 System.out.println("La cantidad de productos es: " + cantidad_productos);
 
                                 cs.newLineAtOffset(150, 0); //en donde se quedo el cursor(en 100) le sumo 150, X=250 y (en Y=640)
-                                cs.showText(String.valueOf((int)cantidad_productos));
+                                cs.showText(String.valueOf((int) cantidad_productos));
 
                                 cs.newLineAtOffset(150, 0); //en donde se quedo el cursor(en 250) le sumo 150, X=400 y (en Y=640)
                                 cs.showText(String.valueOf(precio));
@@ -308,12 +307,12 @@ class ConsultarIDVenta extends JFrame {
 
                 cs.showText(linea.toString());
                 cs.newLineAtOffset(0, -20);*/
-                
+
                 total_venta = Math.round(total_venta * 100.0) / 100.0;
-                
+
                 cs.newLineAtOffset(-300, -20); //en donde se quedo el cursor(en 400) le resto 300, X=100 y (en Y=depende de las iteraciones del ciclo for y se le resta 20)
                 cs.showText("Total Venta");
-                
+
                 cs.newLineAtOffset(300, 0); //en donde se quedo el cursor(en 100) le sumo 300, X=300 y (en en Y=depende de las iteraciones del ciclo for y se le resta 20)
                 cs.showText(String.valueOf(total_venta));
 
@@ -321,7 +320,12 @@ class ConsultarIDVenta extends JFrame {
                 cs.endText();
                 cs.close();
 
-                document.save("src/reportes/factura" + idVenta + ".pdf");
+                File dir = new File("reportes"); //crea una carpeta donde se encuentre el jar
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                document.save("reportes/factura" + idVenta + ".pdf");
                 document.close();
 
             } catch (Exception e) {
