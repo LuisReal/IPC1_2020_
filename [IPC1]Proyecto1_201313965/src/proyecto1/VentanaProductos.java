@@ -38,7 +38,7 @@ class LaminaVentanaProductos extends JPanel {
 
     public LaminaVentanaProductos() {
 
-        setLayout(null);
+        setLayout(null); //para poder controlar la posicion de los elementos manualmente
         
         carga = new JButton("Cargar Productos");
         carga.setBounds(100, 50, 200, 30);

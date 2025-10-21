@@ -4,15 +4,21 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class VentanaVentas extends JFrame {
-
+    
+    private LaminaVentanaVentas lamina_ventas;
+    
     public VentanaVentas(Object[][] elementoProducto) {
 
         setTitle("Administracion de Ventas");
         setBounds(200, 200, 400, 400);
         setResizable(false);
 
-        LaminaVentanaVentas lamina_ventas = new LaminaVentanaVentas(elementoProducto);
+        lamina_ventas = new LaminaVentanaVentas(elementoProducto);
         add(lamina_ventas);
+    }
+    
+    public Object[][] getElementoVentas() {
+        return lamina_ventas.getElementoVentas();
     }
 
 }
@@ -62,6 +68,10 @@ class LaminaVentanaVentas extends JPanel {
         ConsultarVentas consultar = new ConsultarVentas();
         consulta.addActionListener(consultar);
 
+    }
+    
+    public Object[][] getElementoVentas() {
+        return elementoVenta;
     }
 
     private class CargarVentas implements ActionListener {

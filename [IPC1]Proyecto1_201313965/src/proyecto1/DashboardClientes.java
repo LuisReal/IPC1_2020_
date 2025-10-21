@@ -1,15 +1,13 @@
 package proyecto1;
 
-import java.awt.*;
-import java.io.*;
-import javax.imageio.ImageIO;
+
 import javax.swing.*;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
+
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
@@ -46,7 +44,7 @@ class Lamina2 extends JPanel {
 
     public Lamina2(Object[][] elemento) {
 
-        setLayout(null);// para colocar los componentes en la posicion que queramos
+        setLayout(null);//para poder controlar la posicion de los elementos manualmente
 
         JLabel etiqueta = new JLabel("GRAFICAS");
         etiqueta.setBounds(400, 20, 100, 30);

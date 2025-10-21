@@ -36,7 +36,7 @@ class LaminaDashboardProductos extends JPanel {
 
     public LaminaDashboardProductos(Object[][] elementoProducto) {
 
-        setLayout(null);// para colocar los componentes en la posicion que queramos
+        setLayout(null);//para poder controlar la posicion de los elementos manualmente
 
         JLabel etiqueta = new JLabel("GRAFICAS PRODUCTOS");
         etiqueta.setBounds(400, 20, 200, 30);

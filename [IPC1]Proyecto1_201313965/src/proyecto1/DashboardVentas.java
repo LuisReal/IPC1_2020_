@@ -38,10 +38,13 @@ class LaminaDashboardVentas extends JPanel {
     
     String[] producto_unico2 = new String[200]; //contiene un arreglo de los productos SIN repetirse
     int[] cantidad_producto_unico = new int[200]; //contiene un arreglo de los productos SIN repetirse
+    
+    
 
     public LaminaDashboardVentas(Object[][] elementoVenta, Object[][] elementoProducto) {
-
-        setLayout(null);// para colocar los componentes en la posicion que queramos
+        
+        
+        setLayout(null);//para poder controlar la posicion de los elementos manualmente
 
         JLabel etiqueta = new JLabel("DATOS VENTAS");
         etiqueta.setBounds(400, 20, 200, 30);

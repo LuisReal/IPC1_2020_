@@ -157,7 +157,8 @@ class LaminaDatosVentas extends JPanel {
         add(mostrar_nit_cliente);
 
         int distanciaX = 50;
-        System.out.println("****************** ESTOY AQUI 1 ****************************");
+        
+        //Obteniendo los nombres de los productos
         for (int i = 0; i < elementoVenta.length; i++) {
 
             if (elementoVenta[i][0] != null && idVenta.equals(elementoVenta[i][0].toString())) {
@@ -167,15 +168,12 @@ class LaminaDatosVentas extends JPanel {
                 add(mostrar_nombre_producto);
 
                 distanciaX += 30;
-                /*
-                mostrar_cantidad_producto = new JLabel(cadenaCantidad[i]);
-                mostrar_cantidad_producto.setBounds(150, 120, 100, 30);
-                add(mostrar_cantidad_producto);*/
+                
             }
 
         } // fin del for
         
-        System.out.println("****************** ESTOY AQUI 2 ****************************");
+        
 
         double total_venta = 0;
 
