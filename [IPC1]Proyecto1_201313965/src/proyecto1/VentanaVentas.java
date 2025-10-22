@@ -20,6 +20,10 @@ public class VentanaVentas extends JFrame {
     public Object[][] getElementoVentas() {
         return lamina_ventas.getElementoVentas();
     }
+    
+    public String[][] getArregloProductos() {
+        return lamina_ventas.getArregloProductos();
+    }
 
 }
 
@@ -34,6 +38,7 @@ class LaminaVentanaVentas extends JPanel {
     public static Object[][] elementoProducto;
     private DashboardVentas dash2;
     public static ImageIcon icono;
+    public String[][] arregloProductos;
 
     public LaminaVentanaVentas(Object[][] elementoProducto) {
         LaminaVentanaVentas.elementoProducto = elementoProducto;
@@ -73,6 +78,10 @@ class LaminaVentanaVentas extends JPanel {
     public Object[][] getElementoVentas() {
         return elementoVenta;
     }
+    
+    public String[][] getArregloProductos() {
+        return arregloProductos;
+    }
 
     private class CargarVentas implements ActionListener {
 
@@ -96,6 +105,7 @@ class LaminaVentanaVentas extends JPanel {
 
             } else {
                 dash2 = new DashboardVentas(elementoVenta, elementoProducto);
+                arregloProductos = dash2.getArregloProductos();
                 dash2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 dash2.setVisible(true);
 

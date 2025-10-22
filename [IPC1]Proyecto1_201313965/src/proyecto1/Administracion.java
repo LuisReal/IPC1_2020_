@@ -17,6 +17,7 @@ public class Administracion extends JFrame {
     private VentanaProductos ventana_productos;
     private VentanaVentas ventana_ventas;
     private ReportesPDF ventana_reportes;
+    private String[][] arregloProductosMayores;
 
     public Administracion(Login login) {
         this.loginRef = login;
@@ -128,9 +129,10 @@ public class Administracion extends JFrame {
 
             if (ventana_productos != null) {
                 Object[][] elementoProducto = ventana_productos.getElementoProducto();
-
+                
                 if (elementoProducto != null) {
                     ventana_ventas = new VentanaVentas(elementoProducto);
+                    
                     ventana_ventas.setVisible(true);
                 } else {
                     System.out.println("Todavia no existen productos");
@@ -152,7 +154,8 @@ public class Administracion extends JFrame {
                 
                 Object[][] elementoProducto = ventana_productos.getElementoProducto();
                 Object[][] elementoVentas = ventana_ventas.getElementoVentas();
-                ventana_reportes = new ReportesPDF(elementoVentas, elementoProducto);
+                arregloProductosMayores = ventana_ventas.getArregloProductos();
+                ventana_reportes = new ReportesPDF(elementoVentas, elementoProducto, arregloProductosMayores);
 
                 ventana_reportes.setVisible(true);
             } else {

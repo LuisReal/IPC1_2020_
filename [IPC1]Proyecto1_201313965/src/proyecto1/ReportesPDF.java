@@ -20,13 +20,13 @@ public class ReportesPDF extends JFrame {
 
     private LaminaReportesPDF lamina_reportes;
 
-    public ReportesPDF(Object[][] elementoVenta, Object[][] elementoProducto) {
+    public ReportesPDF(Object[][] elementoVenta, Object[][] elementoProducto, String[][] arregloProductosMayores) {
 
         setTitle("Reportes");
         setBounds(200, 200, 400, 400);
         setResizable(false);
 
-        lamina_reportes = new LaminaReportesPDF(elementoVenta, elementoProducto);
+        lamina_reportes = new LaminaReportesPDF(elementoVenta, elementoProducto, arregloProductosMayores);
         add(lamina_reportes);
 
     }
@@ -51,13 +51,15 @@ class LaminaReportesPDF extends JPanel {
 
     public static Object[][] elementoProducto;
     public static Object[][] elementoVenta;
+    public static String[][] arregloProductosMayores; //se obtiene de VentanaVentas y de dashboardVentas
 
     public static ImageIcon icono;
 
-    public LaminaReportesPDF(Object[][] elementoVenta, Object[][] elementoProducto) {
+    public LaminaReportesPDF(Object[][] elementoVenta, Object[][] elementoProducto, String[][] arregloProductosMayores) {
 
         LaminaReportesPDF.elementoVenta = elementoVenta;
         LaminaReportesPDF.elementoProducto = elementoProducto;
+        LaminaReportesPDF.arregloProductosMayores = arregloProductosMayores;
 
         setLayout(null); //para poder controlar la posicion de los elementos manualmente
 
@@ -75,6 +77,9 @@ class LaminaReportesPDF extends JPanel {
 
         GenerarFactura factura1 = new GenerarFactura();
         factura.addActionListener(factura1);
+
+        ProductosMasVendidos masVendidos = new ProductosMasVendidos();
+        mas_vendidos.addActionListener(masVendidos);
 
         VentasMayorTotal miVenta = new VentasMayorTotal();
         ventas_mayor.addActionListener(miVenta);
@@ -99,17 +104,64 @@ class LaminaReportesPDF extends JPanel {
 
     }
 
+    private class ProductosMasVendidos implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent w) {
+
+            PDDocument document = new PDDocument();
+            PDPage page = new PDPage();
+
+            document.addPage(page);
+            try {
+                PDPageContentStream cs = new PDPageContentStream(document, page);
+                cs.setFont(PDType1Font.COURIER_BOLD_OBLIQUE, 14);
+                cs.beginText(); //abre el documento para empezar a trabajar
+                cs.newLineAtOffset(100, 700); //indica las coordenadas de donde debe empezar a escribir en la pagina
+
+                cs.showText("Producto");
+
+                cs.newLineAtOffset(150, 0);
+                cs.showText("Cantidad");
+
+                //String texto = "Productos: " + productos;
+                for (int i = 0; i < 10; i++) {
+
+                    if (arregloProductosMayores[i][0] != null) {
+
+                        cs.newLineAtOffset(-150, -20);
+                        cs.showText(arregloProductosMayores[i][0]);
+
+                        cs.newLineAtOffset(150, 0);
+                        cs.showText(arregloProductosMayores[i][1]);
+
+                    }
+
+                } // fin del for
+
+                //cs.showText("Id Venta: " + idVenta + " NIT cliente: " + nitCliente + " Productos: " + productos + " Total Venta: " + total_venta);
+                cs.endText();
+                cs.close();
+
+                File dir = new File("reportes"); //crea una carpeta donde se encuentre el jar
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                document.save("reportes/productos_mas_vendidos.pdf");
+                document.close();
+
+            } catch (Exception e) {
+                System.out.println("Error: " + e);
+            }
+        }
+    }
+
     private class VentasMayorTotal implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent w) {
 
-            CrearProducto nuevo_producto = new CrearProducto();
-            nuevo_producto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            nuevo_producto.setVisible(true);
-
-            LaminaCrearProducto crear1 = new LaminaCrearProducto();
-            crear1.setElemento(elementoProducto); // envia a la clase CrearProducto (a la Lamina)
         }
 
     }
