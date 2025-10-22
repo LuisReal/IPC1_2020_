@@ -9,7 +9,7 @@ public class CrearVenta extends JFrame {
     public CrearVenta(Object[][] elementoVenta, Object[][] elementoProducto, String[] producto_unico, int[] cantidad_producto_unico) {
 
         setTitle("Crear Venta");
-
+        setResizable(false);
         setBounds(400, 100, 400, 500);
 
         LaminaCrearVenta crearV = new LaminaCrearVenta(elementoVenta, elementoProducto, producto_unico, cantidad_producto_unico);

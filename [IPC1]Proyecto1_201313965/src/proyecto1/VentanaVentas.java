@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class VentanaVentas extends JFrame {
-    
+
     private LaminaVentanaVentas lamina_ventas;
-    
+
     public VentanaVentas(Object[][] elementoProducto) {
 
         setTitle("Administracion de Ventas");
@@ -16,7 +16,7 @@ public class VentanaVentas extends JFrame {
         lamina_ventas = new LaminaVentanaVentas(elementoProducto);
         add(lamina_ventas);
     }
-    
+
     public Object[][] getElementoVentas() {
         return lamina_ventas.getElementoVentas();
     }
@@ -64,12 +64,12 @@ class LaminaVentanaVentas extends JPanel {
 
         CrearVentas nuevav = new CrearVentas();
         creacion_ventas.addActionListener(nuevav);
-        
+
         ConsultarVentas consultar = new ConsultarVentas();
         consulta.addActionListener(consultar);
 
     }
-    
+
     public Object[][] getElementoVentas() {
         return elementoVenta;
     }
@@ -111,7 +111,7 @@ class LaminaVentanaVentas extends JPanel {
         public void actionPerformed(ActionEvent e) {
             //Object[][] elementoVenta, String[] producto_unico
             if (dash2 != null) {
-                CrearVenta nueva = new CrearVenta(elementoVenta , elementoProducto, dash2.getArregloProductoUnico(), dash2.getArregloCantidadProductos());
+                CrearVenta nueva = new CrearVenta(elementoVenta, elementoProducto, dash2.getArregloProductoUnico(), dash2.getArregloCantidadProductos());
                 nueva.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 nueva.setVisible(true);
             } else {
@@ -120,17 +120,20 @@ class LaminaVentanaVentas extends JPanel {
 
         }
     }
-    
+
     private class ConsultarVentas implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent w) {
 
-            ConsultarVenta miConsulta = new ConsultarVenta();
-            miConsulta.setElementos(elementoVenta, elementoProducto);
-            miConsulta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            miConsulta.setVisible(true);
-
+            if (dash2 != null) {
+                ConsultarVenta miConsulta = new ConsultarVenta();
+                miConsulta.setElementos(elementoVenta, elementoProducto);
+                miConsulta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                miConsulta.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Tiene que dar click en dashboard primero");
+            }
         }
 
     }

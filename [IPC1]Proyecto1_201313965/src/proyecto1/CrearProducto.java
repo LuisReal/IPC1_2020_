@@ -9,7 +9,7 @@ public class CrearProducto extends JFrame {
     public CrearProducto() {
 
         setTitle("Crear Producto");
-
+        setResizable(false);
         setBounds(400, 100, 350, 350);
 
         LaminaCrearProducto lamina_crear = new LaminaCrearProducto();

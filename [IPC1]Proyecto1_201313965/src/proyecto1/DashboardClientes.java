@@ -1,6 +1,9 @@
 package proyecto1;
 
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.swing.*;
 
 import org.jfree.chart.ChartFactory;
@@ -44,19 +47,25 @@ class Lamina2 extends JPanel {
 
     public Lamina2(Object[][] elemento) {
 
-        setLayout(null);//para poder controlar la posicion de los elementos manualmente
+        setLayout(new BorderLayout(10, 10));
 
-        JLabel etiqueta = new JLabel("GRAFICAS");
-        etiqueta.setBounds(400, 20, 100, 30);
-        add(etiqueta);
+        //JLabel etiqueta = new JLabel("GRAFICAS");
+        //etiqueta.setBounds(400, 20, 100, 30);
+        //add(etiqueta);
 
         JTable table = new JTable(elemento, columnas);
 
         table.setRowHeight(30);
 
         scroll = new JScrollPane(table);
-        scroll.setBounds(200, 80, 500, 100);// modifica el tamano de la tabla junto con el scroll
-        add(scroll);
+        JPanel panelTabla = new JPanel(new BorderLayout());
+        panelTabla.add(new JLabel("GRAFICAS", SwingConstants.CENTER), BorderLayout.NORTH);
+        panelTabla.add(scroll, BorderLayout.CENTER);
+        panelTabla.setPreferredSize(new Dimension(100, 200));
+        add(panelTabla, BorderLayout.NORTH);
+        
+        //scroll.setBounds(200, 80, 500, 100);// modifica el tamano de la tabla junto con el scroll
+        //add(scroll);
 
         // AQUI INICIA EL CALCULO DE PORCENTAJES PARA LA GRAFICA DE PIE
         System.out.println("El tamano del arreglo elemento es: " + elemento.length);
@@ -98,7 +107,9 @@ class Lamina2 extends JPanel {
 
         Double porcentajeM = (100 * contadorM) / (13);
         //System.out.println("El porcentaje masculino es "+porcentajeM);
-
+        
+        JPanel panelGraficas = new JPanel(new GridLayout(1, 2, 10, 10)); // 1 fila, 2 columnas
+        
         //AQUI INICIA EL CODIGO DE LA GRAFIA DE PIE
         DefaultPieDataset pie = new DefaultPieDataset();
 
@@ -108,9 +119,9 @@ class Lamina2 extends JPanel {
         JFreeChart graficaPie = ChartFactory.createPieChart("Grafica de Pie", pie);
 
         Pie = new ChartPanel(graficaPie);
-
-        Pie.setBounds(20, 200, 400, 400);
-        add(Pie);
+        panelGraficas.add(Pie);
+        //Pie.setBounds(20, 200, 400, 400);
+        //add(Pie);
 
         // AQUI INICIA EL CODIGO PARA LA GRAFICA DE BARRAS ***********************************************
         String[] cadena = new String[100];
@@ -308,9 +319,12 @@ class Lamina2 extends JPanel {
                 PlotOrientation.VERTICAL, true, true, false);
 
         barras = new ChartPanel(chart);
+        
+        panelGraficas.add(barras);
 
-        barras.setBounds(450, 200, 400, 400);
-        add(barras);
+        add(panelGraficas, BorderLayout.CENTER); 
+        //barras.setBounds(450, 200, 400, 400);
+        //add(barras);
 
     }// FIN DEL CONSTRUCTOR LAMINA2
 

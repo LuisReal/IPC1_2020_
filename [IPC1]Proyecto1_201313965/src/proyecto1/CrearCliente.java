@@ -10,7 +10,7 @@ public class CrearCliente extends JFrame {
     public CrearCliente() {
 
         setTitle("Nuevo Cliente");
-
+        setResizable(false);
         setBounds(400, 100, 450, 400);
 
         Lamina3 lamina = new Lamina3();

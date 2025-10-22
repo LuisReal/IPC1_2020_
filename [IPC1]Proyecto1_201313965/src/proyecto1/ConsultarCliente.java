@@ -17,7 +17,7 @@ public class ConsultarCliente extends JFrame {
     public ConsultarCliente() {
 
         setLayout(null);
-
+        setResizable(false);
         setTitle("Consulta Cliente");
         setBounds(300, 200, 350, 220);
 
@@ -79,6 +79,7 @@ class DatosClientes extends JFrame {
     public DatosClientes(Object[][] elemento, String nit) {
 
         setTitle("Datos de Cliente");
+        setResizable(false);
         setBounds(300, 200, 400, 500);
 
         LaminaDatosClientes miLamina = new LaminaDatosClientes(elemento, nit);

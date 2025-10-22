@@ -17,8 +17,9 @@ public class ConsultarProducto extends JFrame {
     public ConsultarProducto() {
 
         setLayout(null);
-
+        
         setTitle("Consulta Producto");
+        setResizable(false);
         setBounds(300, 200, 350, 220);
 
         consulta = new JLabel("Consulta de Producto (Ingrese NOMBRE)");
@@ -80,6 +81,7 @@ class DatosProductos extends JFrame {
     public DatosProductos(Object[][] elementoProducto, String nombre) {
 
         setTitle("Datos de Producto");
+        setResizable(false);
         setBounds(300, 200, 400, 500);
 
         LaminaDatosProductos laminaDatos = new LaminaDatosProductos(elementoProducto, nombre);

@@ -3,7 +3,7 @@ package proyecto1;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
+
 import javax.swing.*;
 
 public class ModificarProducto extends JFrame{
@@ -18,7 +18,7 @@ public class ModificarProducto extends JFrame{
     
     
         setTitle("Modificar Producto");
-
+        setResizable(false);
         setBounds(300, 200, 350, 220);
 
         setLayout(null);
@@ -71,6 +71,7 @@ class ModificaProducto extends JFrame {
     public ModificaProducto(Object[][] elementoProducto, String nombre) {
 
         setTitle("Modificar Producto");
+        setResizable(false);
         setBounds(300, 200, 440, 370);
 
         LaminaModificaProducto mi_lamina = new LaminaModificaProducto(elementoProducto, nombre);

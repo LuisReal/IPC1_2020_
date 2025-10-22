@@ -15,7 +15,7 @@ public class ConsultarVenta extends JFrame {
     public ConsultarVenta() {
 
         setLayout(null);
-
+        setResizable(false);
         setTitle("Consulta Venta");
         setBounds(300, 200, 350, 220);
 
@@ -50,9 +50,9 @@ public class ConsultarVenta extends JFrame {
             int contador = 0;
             String idVenta = "";
             for (int i = 0; i < elementoVenta.length; i++) {
-                
+
                 if (elementoVenta[i][0] != null && (campo_consulta.getText()).equals(elementoVenta[i][0].toString())) {
-                    System.out.println("El ID del elementoVenta es: "+elementoVenta[i][0]+ " Producto: "+elementoVenta[i][2]+ " Cantidad: "+elementoVenta[i][3]);
+                    System.out.println("El ID del elementoVenta es: " + elementoVenta[i][0] + " Producto: " + elementoVenta[i][2] + " Cantidad: " + elementoVenta[i][3]);
                     idVenta = campo_consulta.getText();
 
                     contador++;
@@ -79,6 +79,7 @@ class DatosVentas extends JFrame {
     public DatosVentas(Object[][] elementoVenta, Object[][] elementoProducto, String idVenta) {
 
         setTitle("Datos de la Venta");
+        setResizable(false);
         setBounds(300, 200, 400, 500);
 
         LaminaDatosVentas laminaDatos = new LaminaDatosVentas(elementoVenta, elementoProducto, idVenta);
@@ -127,7 +128,7 @@ class LaminaDatosVentas extends JPanel {
         add(etiqueta_productos_venta);
 
         etiqueta_total_venta = new JLabel("Total de la venta: ");
-        etiqueta_total_venta.setBounds(30, 150, 150, 30);
+        etiqueta_total_venta.setBounds(30, 300, 150, 30);
         add(etiqueta_total_venta);
 
         eliminar = new JButton("Eliminar");
@@ -137,7 +138,6 @@ class LaminaDatosVentas extends JPanel {
         Eliminar elimina = new Eliminar();
         eliminar.addActionListener(elimina);
 
-        
         for (int j = 0; j < elementoVenta.length; j++) {
 
             if (elementoVenta[j][0] != null && idVenta.equals(elementoVenta[j][0].toString())) {
@@ -150,53 +150,65 @@ class LaminaDatosVentas extends JPanel {
 
         } // fin del for
 
-        
-
         mostrar_nit_cliente = new JLabel(nitCliente);
         mostrar_nit_cliente.setBounds(180, 20, 100, 30);
         add(mostrar_nit_cliente);
 
+        mostrar_nombre_producto = new JLabel("Producto");
+        mostrar_nombre_producto.setBounds(50, 100, 100, 30);
+        add(mostrar_nombre_producto);
+        
+        mostrar_nombre_producto = new JLabel("Cantidad");
+        mostrar_nombre_producto.setBounds(150, 100, 100, 30);
+        add(mostrar_nombre_producto);
+        
+        mostrar_nombre_producto = new JLabel("Precio");
+        mostrar_nombre_producto.setBounds(250, 100, 100, 30);
+        add(mostrar_nombre_producto);
+        
         int distanciaX = 50;
-        
-        //Obteniendo los nombres de los productos
-        for (int i = 0; i < elementoVenta.length; i++) {
-
-            if (elementoVenta[i][0] != null && idVenta.equals(elementoVenta[i][0].toString())) {
-
-                mostrar_nombre_producto = new JLabel(cadenaNombresProductos[i] + " ; ");
-                mostrar_nombre_producto.setBounds(distanciaX, 100, 100, 30);
-                add(mostrar_nombre_producto);
-
-                distanciaX += 30;
-                
-            }
-
-        } // fin del for
-        
-        
+        int distanciaY = 120;
 
         double total_venta = 0;
 
         for (int i = 0; i < elementoVenta.length; i++) {
 
-            if ( elementoVenta[i][0] != null && idVenta.equals(elementoVenta[i][0].toString())) {
-                System.out.println("El ID de la venta es: "+idVenta);
-                
+            if (elementoVenta[i][0] != null && idVenta.equals(elementoVenta[i][0].toString())) {
+                System.out.println("El ID de la venta es: " + idVenta);
+
                 for (int j = 0; j < elementoProducto.length; j++) {
-                    
+
                     if (elementoProducto[j][0] != null && (elementoVenta[i][2]).equals(elementoProducto[j][0])) { //si el nombre del producto coincide
-                        System.out.println("El Producto es: "+elementoVenta[i][2]);
+                        System.out.println("El Producto es: " + elementoVenta[i][2]);
+                        
+                        mostrar_nombre_producto = new JLabel(elementoVenta[i][2].toString());
+                        mostrar_nombre_producto.setBounds(distanciaX, distanciaY, 100, 30);
+                        add(mostrar_nombre_producto);
+                        distanciaX += 100;
+                         
+                        double cantidad_productos = Double.parseDouble(elementoVenta[i][3].toString()); // obtiene cantidad de productos vendidos
+                        System.out.println("La cantidad de productos es: " + cantidad_productos);
+
+                        mostrar_nombre_producto = new JLabel(elementoVenta[i][3].toString());
+                        mostrar_nombre_producto.setBounds(distanciaX, distanciaY, 100, 30);
+                        add(mostrar_nombre_producto);
+                        distanciaX += 100;
                         
                         double precio = Double.parseDouble(elementoProducto[j][1].toString()); // obtiene el precio del producto
-                        System.out.println("El precio es: "+precio);
+                        System.out.println("El precio es: " + precio);
                         
-                        double cantidad_productos = Double.parseDouble(elementoVenta[i][3].toString()); // obtiene cantidad de productos vendidos
-                        System.out.println("La cantidad de productos es: "+cantidad_productos);
+                        mostrar_nombre_producto = new JLabel(elementoProducto[j][1].toString());
+                        mostrar_nombre_producto.setBounds(distanciaX, distanciaY, 100, 30);
+                        add(mostrar_nombre_producto);
                         
+
+                        distanciaX = 50;
+                        distanciaY +=20;
+
                         double venta = precio * cantidad_productos;
                         total_venta += venta;
-                        
-                        System.out.println("El total venta es: "+total_venta);
+
+                        System.out.println("El total venta es: " + total_venta);
                     }
                 }
 
@@ -204,7 +216,7 @@ class LaminaDatosVentas extends JPanel {
 
         } // fin del for
         mostrar_total_venta = new JLabel(String.valueOf(total_venta));
-        mostrar_total_venta.setBounds(200, 150, 50, 30);  
+        mostrar_total_venta.setBounds(200, 300, 50, 30);
         add(mostrar_total_venta);
 
     }// fin constructor LaminaDatosProductos
@@ -217,9 +229,9 @@ class LaminaDatosVentas extends JPanel {
             mostrar_nombre_producto.setText("");
             mostrar_nit_cliente.setText("");
             //mostrar_cantidad_producto.setText("");
-            
+
             int contador = 0;
-            
+
             for (int i = 0; i < elementoVenta.length; i++) {
 
                 if (elementoVenta[i][0] != null && idVenta.equals(elementoVenta[i][0])) { // busca el ID de la venta ingresado 
@@ -229,7 +241,7 @@ class LaminaDatosVentas extends JPanel {
                         if ((elementoVenta[i][j]) != null) {
 
                             elementoVenta[i][j] = null;
-                            
+
                             //System.out.println("Eliminando dato de la venta " + i + " " + j + " " + elementoVenta[i][j]);
                             contador++;
                         }
@@ -237,10 +249,10 @@ class LaminaDatosVentas extends JPanel {
                     }// fin del for int j=0
                 }
             } // fin del for int i=0
-            
-            if(contador == 0){
+
+            if (contador == 0) {
                 JOptionPane.showMessageDialog(null, "El ID de la venta no existe");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Venta eliminada con exito");
             }
             /*
@@ -253,7 +265,7 @@ class LaminaDatosVentas extends JPanel {
                 }
 
             }*/
-            
+
         } // fin del metodo actionPerformed
 
     }// fin clase Eliminar

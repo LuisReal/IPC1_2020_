@@ -1,6 +1,9 @@
 package proyecto1;
 
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.text.DecimalFormat;
 import javax.swing.*;
 
@@ -36,19 +39,25 @@ class LaminaDashboardProductos extends JPanel {
 
     public LaminaDashboardProductos(Object[][] elementoProducto) {
 
-        setLayout(null);//para poder controlar la posicion de los elementos manualmente
+        setLayout(new BorderLayout(10, 10));
 
-        JLabel etiqueta = new JLabel("GRAFICAS PRODUCTOS");
+        /*JLabel etiqueta = new JLabel("GRAFICAS PRODUCTOS");
         etiqueta.setBounds(400, 20, 200, 30);
-        add(etiqueta);
+        add(etiqueta);*/
 
         JTable table = new JTable(elementoProducto, columnas);
 
         table.setRowHeight(30);
 
         scroll = new JScrollPane(table);
-        scroll.setBounds(200, 80, 500, 100);// modifica el tamano de la tabla junto con el scroll
-        add(scroll);
+        JPanel panelTabla = new JPanel(new BorderLayout());
+        panelTabla.add(new JLabel("GRAFICAS PRODUCTOS", SwingConstants.CENTER), BorderLayout.NORTH);
+        panelTabla.add(scroll, BorderLayout.CENTER);
+        panelTabla.setPreferredSize(new Dimension(100, 200));
+        add(panelTabla, BorderLayout.NORTH);
+        
+        //scroll.setBounds(200, 80, 500, 100);// modifica el tamano de la tabla junto con el scroll
+        //add(scroll);
 
         DefaultCategoryDataset datos;
 
@@ -231,14 +240,18 @@ class LaminaDashboardProductos extends JPanel {
             datos.addValue(frecuencia_precios[i], "1", rangos_finales[i]);
 
         }
-
+        
+        JPanel panelGraficas = new JPanel(new GridLayout(1, 2, 10, 10)); // 1 fila, 2 columnas
+        
         JFreeChart chart = ChartFactory.createBarChart("Grafica de Barras", "Cantidad Productos", "Precio", datos,
                 PlotOrientation.VERTICAL, true, true, false);
 
         barras = new ChartPanel(chart);
+        panelGraficas.add(barras);
 
-        barras.setBounds(450, 200, 550, 400);
-        add(barras);
+        add(panelGraficas, BorderLayout.CENTER); 
+        //barras.setBounds(450, 200, 550, 400);
+        //add(barras);
 
         //--------- INICIA GRAFICA DE PIE-----------------------------------------------------------------
         int[] cantidad = new int[100];
@@ -288,6 +301,10 @@ class LaminaDashboardProductos extends JPanel {
         }
 
 //--------------*********-----CONTIENE SOLUCION PARA GRAFICA DE PIE------------***************-------------
+        
+
+        
+        
         DefaultPieDataset pie = new DefaultPieDataset();
 
         for (int c = 0; c < 5; c++) {   // solo muestra 5 productos en la grafica
@@ -298,9 +315,9 @@ class LaminaDashboardProductos extends JPanel {
         JFreeChart graficaPie = ChartFactory.createPieChart("Grafica de Pie", pie);
 
         Pie = new ChartPanel(graficaPie);
-
-        Pie.setBounds(20, 200, 400, 400);
-        add(Pie);
+        panelGraficas.add(Pie);
+        //Pie.setBounds(20, 200, 400, 400);
+        //add(Pie);
 
     }// fin constructor LaminaDashboardProductos
 

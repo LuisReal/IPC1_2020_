@@ -2,7 +2,7 @@ package proyecto1;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
+
 import javax.swing.*;
 
 public class ModificarCliente extends JFrame {
@@ -16,7 +16,7 @@ public class ModificarCliente extends JFrame {
     public ModificarCliente() { // proviene de la clase VentanaCliente
 
         setTitle("Modificar Cliente");
-
+        setResizable(false);
         setBounds(300, 200, 350, 220);
 
         setLayout(null);
@@ -78,6 +78,7 @@ class ModificaClientes extends JFrame {
     public ModificaClientes(Object[][] elemento, String nit) {
 
         setTitle("Modificar Cliente");
+        setResizable(false);
         setBounds(300, 200, 440, 370);
 
         LaminaModificaCliente mi_lamina = new LaminaModificaCliente(elemento, nit);
