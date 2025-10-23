@@ -37,10 +37,7 @@ public class ReportesPDF extends JFrame {
 
 }
 
-/*      ConsultarVenta miConsulta = new ConsultarVenta();
-            miConsulta.setElementos(elementoVenta, elementoProducto);
-            miConsulta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            miConsulta.setVisible(true);*/
+
 class LaminaReportesPDF extends JPanel {
 
     JButton mas_vendidos;
@@ -150,7 +147,7 @@ class LaminaReportesPDF extends JPanel {
 
                 document.save("reportes/productos_mas_vendidos.pdf");
                 document.close();
-
+                JOptionPane.showMessageDialog(null, "PDF generado con exito en carpeta reportes");
             } catch (Exception e) {
                 System.out.println("Error: " + e);
             }

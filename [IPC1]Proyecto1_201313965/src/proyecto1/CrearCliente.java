@@ -1,9 +1,9 @@
 package proyecto1;
 
 import javax.swing.*;
-import java.awt.*;
+
 import java.awt.event.*;
-import java.io.*;
+
 
 public class CrearCliente extends JFrame {
 
@@ -48,11 +48,7 @@ class Lamina3 extends JPanel {
 
         setLayout(null);
 
-        /*elemento[0][0]="a";
-        elemento[0][1]="1";
-        elemento[0][2]="m";
-        elemento[0][3]="150";
-        elemento[0][4]="a";*/
+        
         label_nombre = new JLabel("Nombre");
         label_nombre.setBounds(100, 50, 150, 30);
         add(label_nombre);
@@ -102,7 +98,7 @@ class Lamina3 extends JPanel {
         Guardar guardarDatos = new Guardar();
         guardar.addActionListener(guardarDatos);
 
-        Seleccionar chooser = new Seleccionar();
+        Seleccionar chooser = new Seleccionar(); //automaticamente se abre en Documents
         seleccionar.addActionListener(chooser);
 
     }
@@ -117,7 +113,7 @@ class Lamina3 extends JPanel {
 
         public void actionPerformed(ActionEvent e) {
 
-            chooser = new JFileChooser("C:\\Users\\Fernando\\Desktop\\IPC1_2020_\\[IPC1]Proyecto1_201313965\\Archivos de Carga");
+            chooser = new JFileChooser(); //automaticamente se abre en Documents
             chooser.showOpenDialog(null);
 
             avatar = chooser.getSelectedFile().toString();
@@ -128,6 +124,8 @@ class Lamina3 extends JPanel {
             if (posicion != -1) {
                 avatar = rutaCorregida.substring(posicion + 3); // incluye la barra inicial de esta forma /clientes/C0.jpg
             }
+            
+            System.out.println("La ruta de la imagen del cliente es: " + avatar);
         }
 
     }// FIN DE LA CLASE Seleccionar
@@ -175,6 +173,7 @@ class Lamina3 extends JPanel {
                             System.out.println("La posicion elemento " + j + "," + (x + 3) + " = " + elemento[j][x + 3]);
 
                             elemento[j][x + 4] = avatar; // se almacena la ruta de la foto seleccionada
+                            System.out.println("\n*****************Estoy mostrando la ruta en CrearCliente");
                             JOptionPane.showMessageDialog(null, "La ruta de la imagen es: " + avatar);
 
                             System.out.println("La posicion elemento " + j + "," + (x + 4) + " = " + elemento[j][x + 4]);

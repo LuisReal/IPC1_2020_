@@ -249,7 +249,7 @@ class LaminaModificaCliente extends JPanel {
 
         public void actionPerformed(ActionEvent e) {
 
-            JFileChooser chooser = new JFileChooser("C:\\Users\\Fernando\\Desktop\\IPC1_2020_\\[IPC1]Proyecto1_201313965\\Archivos de Carga");
+            JFileChooser chooser = new JFileChooser(); //automaticamente se abre en Documents
             chooser.showOpenDialog(null);
             foto_seleccionada = chooser.getSelectedFile().toString();
 

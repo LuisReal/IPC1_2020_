@@ -16,7 +16,7 @@ public class CargaMasivaProductos extends JFrame {
         elementoProducto = new Object[100][4];
 
         File archivo;
-        JFileChooser seleccionar = new JFileChooser("C:\\Users\\Fernando\\Desktop\\IPC1_2020_\\[IPC1]Proyecto1_201313965\\Archivos de Carga");
+        JFileChooser seleccionar = new JFileChooser(); //automaticamente se abre en Documents
         seleccionar.showOpenDialog(null);
 
         archivo = seleccionar.getSelectedFile();

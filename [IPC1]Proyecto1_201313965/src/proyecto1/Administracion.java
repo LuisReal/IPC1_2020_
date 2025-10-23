@@ -19,14 +19,17 @@ public class Administracion extends JFrame {
     private ReportesPDF ventana_reportes;
     private String[][] arregloProductosMayores;
 
+    private Object[][] elementoProducto;
+    private Object[][] elementoVentas;
+
     public Administracion(Login login) {
         this.loginRef = login;
 
         getContentPane().setBackground(new Color(173, 216, 230));
 
-        setLayout(null); //para poder controlar la posicion de los elementos manualmente
+        setLayout(null); //para poder controlar la posicion de los elementos manualmente con setBounds
         setBounds(250, 300, 500, 400);
-        setTitle("ADMINISTRACION"); //hoLA
+        setTitle("ADMINISTRACION"); 
         setResizable(false);
 
         clientes = new JButton("Administracion de Clientes");
@@ -115,8 +118,8 @@ public class Administracion extends JFrame {
         public void actionPerformed(ActionEvent e) {
 
             ventana_productos = new VentanaProductos();
-
             ventana_productos.setVisible(true);
+            //System.out.println("Obteniendo elementoProducto");
 
         }
 
@@ -128,11 +131,11 @@ public class Administracion extends JFrame {
         public void actionPerformed(ActionEvent v) {
 
             if (ventana_productos != null) {
-                Object[][] elementoProducto = ventana_productos.getElementoProducto();
-                
+                elementoProducto = ventana_productos.getElementoProducto();
+
                 if (elementoProducto != null) {
                     ventana_ventas = new VentanaVentas(elementoProducto);
-                    
+
                     ventana_ventas.setVisible(true);
                 } else {
                     System.out.println("Todavia no existen productos");
@@ -150,11 +153,11 @@ public class Administracion extends JFrame {
         @Override
         public void actionPerformed(ActionEvent v) {
 
+            elementoVentas = ventana_ventas.getElementoVentas();
+            arregloProductosMayores = ventana_ventas.getArregloProductos();
+
             if (ventana_productos != null && ventana_ventas != null) {
-                
-                Object[][] elementoProducto = ventana_productos.getElementoProducto();
-                Object[][] elementoVentas = ventana_ventas.getElementoVentas();
-                arregloProductosMayores = ventana_ventas.getArregloProductos();
+
                 ventana_reportes = new ReportesPDF(elementoVentas, elementoProducto, arregloProductosMayores);
 
                 ventana_reportes.setVisible(true);

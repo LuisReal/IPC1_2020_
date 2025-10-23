@@ -46,7 +46,7 @@ class LaminaCrearVenta extends JPanel {
     private String[] producto_unico;
     private int mayor = 0;
 
-    JFileChooser chooser;
+    
 
     public LaminaCrearVenta(Object[][] elementoVenta, Object[][] elementoProducto, String[] producto_unico, int[] cantidad_producto_unico) {
 

@@ -88,7 +88,7 @@ class Panel extends JPanel {
         
         
 
-        Listener oyente = new Listener();
+        RegistrarUsuarios oyente = new RegistrarUsuarios();
         registrar.addActionListener(oyente);
 
         Ingresar oyente_ingresar = new Ingresar();
@@ -134,6 +134,8 @@ class Panel extends JPanel {
                     Administracion administracion = new Administracion(loginRef);
 
                     administracion.setVisible(true);
+                    administracion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
                     
                     loginRef.setVisible(false);
                     
@@ -194,7 +196,7 @@ class Panel extends JPanel {
     
     
 
-    private class Listener implements ActionListener {
+    private class RegistrarUsuarios implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
 

@@ -100,7 +100,7 @@ class LaminaCrearProducto extends JPanel {
 
         public void actionPerformed(ActionEvent e) {
 
-            chooser = new JFileChooser("C:\\Users\\Fernando\\Desktop\\IPC1_2020_\\[IPC1]Proyecto1_201313965\\src\\productos");
+            chooser = new JFileChooser(); //automaticamente se abre en Documents
             chooser.showOpenDialog(null);
             
             ruta_imagen = chooser.getSelectedFile().toString();
