@@ -3,6 +3,7 @@ package proyecto1;
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.io.File;
 
 
 public class CrearCliente extends JFrame {
@@ -43,6 +44,7 @@ class Lamina3 extends JPanel {
     JButton guardar;
 
     JFileChooser chooser;
+    
 
     public Lamina3() {
 
@@ -117,7 +119,7 @@ class Lamina3 extends JPanel {
             chooser.showOpenDialog(null);
 
             avatar = chooser.getSelectedFile().toString();
-
+            
             String rutaCorregida = avatar.replace("\\", "/");
             int posicion = rutaCorregida.indexOf("src/");
 

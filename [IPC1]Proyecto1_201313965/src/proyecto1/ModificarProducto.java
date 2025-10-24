@@ -1,4 +1,3 @@
-
 package proyecto1;
 
 import java.awt.*;
@@ -6,23 +5,22 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-public class ModificarProducto extends JFrame{
-    
+public class ModificarProducto extends JFrame {
+
     JLabel consulta;
     JTextField campo_consulta;
     JButton buscar;
-    
+
     public static Object[][] elementoProducto = new Object[100][4];
-    
-    public ModificarProducto(){
-    
-    
+
+    public ModificarProducto() {
+
         setTitle("Modificar Producto");
         setResizable(false);
         setBounds(300, 200, 350, 220);
 
         setLayout(null);
-        
+
         consulta = new JLabel("Modificar Producto (Ingrese Nombre)");
         consulta.setBounds(60, 20, 250, 30);
         add(consulta);
@@ -34,21 +32,23 @@ public class ModificarProducto extends JFrame{
         buscar = new JButton("Buscar");
         buscar.setBounds(160, 120, 100, 30);
         add(buscar);
-        
+
         Buscar busquedaP = new Buscar();
         buscar.addActionListener(busquedaP);
-        
+
     }
-    
+
     public void setElemento(Object[][] elementoProducto) {
 
         this.elementoProducto = elementoProducto; // proviene de la clase VentanaClientes
 
     }
-    
+
     private class Buscar implements ActionListener {
 
         public void actionPerformed(ActionEvent w) {
+
+            boolean existe = false;
 
             for (int i = 0; i < elementoProducto.length; i++) {
 
@@ -59,7 +59,13 @@ public class ModificarProducto extends JFrame{
                     ModificaProducto modifica = new ModificaProducto(elementoProducto, nombre);
                     modifica.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     modifica.setVisible(true);
+
+                    existe = true;
                 }
+            }
+
+            if (existe == false) { //El producto no existe
+                JOptionPane.showMessageDialog(null, "El Producto no existe");
             }
 
         }// fin metodo actionPerformed
@@ -81,18 +87,18 @@ class ModificaProducto extends JFrame {
 
 }
 
-class LaminaModificaProducto extends JPanel{
+class LaminaModificaProducto extends JPanel {
 
     JLabel etiqueta_nombre_producto;
     JLabel etiqueta_precio_producto;
     JLabel etiqueta_cantidad_producto;
-    
+
     JLabel etiqueta_avatar;
 
     JTextField campo_nombre_producto;
     JTextField campo_precio_producto;
     JTextField campo_cantidad_producto;
-   
+
     JButton seleccionar;
     JButton guardar;
 
@@ -101,7 +107,7 @@ class LaminaModificaProducto extends JPanel{
     String[] nombres = new String[100];
     String[] precios = new String[100];
     String[] cantidades = new String[100];
-    
+
     String[] foto = new String[100];
     Icon[] iconos = new Icon[100];
 
@@ -112,20 +118,20 @@ class LaminaModificaProducto extends JPanel{
 
     public Image imagen;
     public Icon icono;
-    
-    public LaminaModificaProducto(Object[][] elementoProducto, String nombre){
-    
+
+    public LaminaModificaProducto(Object[][] elementoProducto, String nombre) {
+
         setLayout(null);
 
         this.nombre = nombre;
 
         this.elementoProducto = elementoProducto;
-        
+
         etiqueta_nombre_producto = new JLabel("Ingrese Nombre ");
         etiqueta_nombre_producto.setBounds(30, 20, 100, 30);
         add(etiqueta_nombre_producto);
 
-        campo_nombre_producto = new JTextField();
+        campo_nombre_producto = new JTextField(nombre);
         campo_nombre_producto.setBounds(200, 20, 150, 30);
         add(campo_nombre_producto);
 
@@ -136,7 +142,7 @@ class LaminaModificaProducto extends JPanel{
         campo_precio_producto = new JTextField();
         campo_precio_producto.setBounds(200, 70, 150, 30);
         add(campo_precio_producto);
-        
+
         etiqueta_cantidad_producto = new JLabel("Ingrese Cantidad ");
         etiqueta_cantidad_producto.setBounds(30, 120, 100, 30);
         add(etiqueta_cantidad_producto);
@@ -144,7 +150,7 @@ class LaminaModificaProducto extends JPanel{
         campo_cantidad_producto = new JTextField();
         campo_cantidad_producto.setBounds(200, 120, 150, 30);
         add(campo_cantidad_producto);
-        
+
         etiqueta_avatar = new JLabel("Seleccione Avatar ");
         etiqueta_avatar.setBounds(30, 180, 150, 30);
         add(etiqueta_avatar);
@@ -156,61 +162,67 @@ class LaminaModificaProducto extends JPanel{
         guardar = new JButton("Guardar");
         guardar.setBounds(150, 270, 100, 30);
         add(guardar);
-        
+
         Guardar guarda = new Guardar();
         guardar.addActionListener(guarda);
 
         Seleccionar seleccion = new Seleccionar();
         seleccionar.addActionListener(seleccion);
-    
-    
+
     }
-    
-    private class Guardar implements ActionListener{
-    
-    
-        public void actionPerformed(ActionEvent e){
-        
-            int contador = 0;
 
-            //System.out.println("Guardar");
-            for (int d = 0; d < elementoProducto.length; d++) {
+    private class Guardar implements ActionListener {
 
-                if (campo_nombre_producto.getText().equals(elementoProducto[d][0])) {
+        public void actionPerformed(ActionEvent e) {
 
-                    System.out.println("El Producto ingresado ya existe en la posicion " + d + " " + elementoProducto[d][0]);
-                    JOptionPane.showMessageDialog(null, "El Producto ingresado ya existe");
+            if (nombre.equals(campo_nombre_producto.getText())) {
 
-                    contador++; // suma 1 al contador si ya existe el NIT
+                for (int i = 0; i < elementoProducto.length; i++) {
+
+                    if (elementoProducto[i][0] != null && nombre.equals(elementoProducto[i][0])) {
+
+                        elementoProducto[i][0] = campo_nombre_producto.getText();
+                        elementoProducto[i][1] = campo_precio_producto.getText();
+                        elementoProducto[i][2] = campo_cantidad_producto.getText();
+                        elementoProducto[i][3] = foto_seleccionada;
+
+                    }
+
+                } // fin for
+            } else {
+
+                boolean existe = false;
+
+                for (int d = 0; d < elementoProducto.length; d++) {
+
+                    if (campo_nombre_producto.getText().equals(elementoProducto[d][0])) {
+
+                        System.out.println("El Producto ingresado ya existe en la posicion " + d + " " + elementoProducto[d][0]);
+                        JOptionPane.showMessageDialog(null, "El Producto ingresado ya existe");
+
+                        existe = true;
+                    }
+
                 }
 
-            }
-            
-            int z = 0;
+                if (existe == false) { // si el producto no existe
 
-            for (int i = 0; i < elementoProducto.length; i++) {
+                    for (int i = 0; i < elementoProducto.length; i++) {
 
-                if (contador != 1) { // si ya existe el NIT el contador ==1 y nunca entra aca
-
-                    if (nombre.equals(elementoProducto[i][0])) {
-
-                        if (elementoProducto[i][0] != null) {
+                        if (elementoProducto[i][0] != null && nombre.equals(elementoProducto[i][0])) {
 
                             elementoProducto[i][0] = campo_nombre_producto.getText();
                             elementoProducto[i][1] = campo_precio_producto.getText();
                             elementoProducto[i][2] = campo_cantidad_producto.getText();
-                            
                             elementoProducto[i][3] = foto_seleccionada;
 
-                            /* System.out.println("El nombre " + i + " = " + elemento[i][0] + "\n"
-                                    + "La edad " + i + " = " + elemento[i][1] + "\n" + "El sexo " + i + " = " + elemento[i][2] + "\n"
-                                    + "El nit " + i + " = " + elemento[i][3]);*/
                         }
-                    }
 
-                } // fin if (contador!= 1)
-            } // fin for
-            
+                    } // fin for
+                }
+
+            }
+
             campo_nombre_producto.setText(null);
             campo_precio_producto.setText(null);
             campo_cantidad_producto.setText(null);
@@ -221,16 +233,16 @@ class LaminaModificaProducto extends JPanel{
 
                     if ((elementoProducto[j][m]) != null) {
 
-                        System.out.println("El elemento " + j + " " + m + " = " + elementoProducto[j][m]);
+                        System.out.println("El elemento en la posicion: " + j + "," + m + " es: " + elementoProducto[j][m]);
                     }
                 }
             }
-            
+
         }// fin del metodo actionPerformed
-    
+
     }
-    
-     private class Seleccionar implements ActionListener {
+
+    private class Seleccionar implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
 
@@ -244,11 +256,10 @@ class LaminaModificaProducto extends JPanel{
             if (posicion != -1) {
                 foto_seleccionada = rutaCorregida.substring(posicion + 3); // incluye la barra inicial de esta forma /producto/P0.jpg
             }
-            
+
             System.out.println("la ruta de la foto seleccionada " + foto_seleccionada);
         }
 
     }
-
 
 }// fin clase LaminaModificaProducto

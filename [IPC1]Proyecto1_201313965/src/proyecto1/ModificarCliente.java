@@ -158,7 +158,7 @@ class LaminaModificaCliente extends JPanel {
         etiqueta_nit.setBounds(30, 170, 100, 30);
         add(etiqueta_nit);
 
-        campo_nit = new JTextField();
+        campo_nit = new JTextField(nit);
         campo_nit.setBounds(200, 170, 150, 30);
         add(campo_nit);
 
@@ -186,30 +186,43 @@ class LaminaModificaCliente extends JPanel {
 
         public void actionPerformed(ActionEvent w) {
 
-            int contador = 0;
+            if (nit.equals(campo_nit.getText())) {
 
-            //System.out.println("Guardar");
-            for (int d = 0; d < elemento.length; d++) {
+                for (int i = 0; i < elemento.length; i++) {
 
-                if (campo_nit.getText().equals(elemento[d][3])) {
+                    if (elemento[i][3] != null && nit.equals(elemento[i][3])) {
 
-                    System.out.println("El NIT ingresado ya existe en la posicion " + d + " " + elemento[d][3]);
-                    JOptionPane.showMessageDialog(null, "El NIT ingresado ya existe");
+                        elemento[i][0] = campo_nombre.getText();
+                        elemento[i][1] = campo_edad.getText();
+                        elemento[i][2] = combo_sexo.getSelectedItem();
+                        elemento[i][3] = campo_nit.getText();
+                        elemento[i][4] = foto_seleccionada;
 
-                    contador++; // suma 1 al contador si ya existe el NIT
+                    }
+
+                } // fin for
+
+            } else {
+
+                boolean existe = false;
+
+                for (int d = 0; d < elemento.length; d++) {
+
+                    if (campo_nit.getText().equals(elemento[d][3])) {
+
+                        System.out.println("El NIT ingresado ya existe en la posicion " + d + " " + elemento[d][3]);
+                        JOptionPane.showMessageDialog(null, "El NIT ingresado ya existe");
+
+                        existe = true;
+                    }
+
                 }
 
-            }
+                if (existe == false) { // si el producto no existe
+                    
+                    for (int i = 0; i < elemento.length; i++) {
 
-            int z = 0;
-
-            for (int i = 0; i < elemento.length; i++) {
-
-                if (contador != 1) { // si ya existe el NIT el contador ==1 y nunca entra aca
-
-                    if (nit.equals(elemento[i][3])) {
-
-                        if (elemento[i][0] != null) {
+                        if (elemento[i][3] != null && nit.equals(elemento[i][3])) {
 
                             elemento[i][0] = campo_nombre.getText();
                             elemento[i][1] = campo_edad.getText();
@@ -217,14 +230,14 @@ class LaminaModificaCliente extends JPanel {
                             elemento[i][3] = campo_nit.getText();
                             elemento[i][4] = foto_seleccionada;
 
-                            /* System.out.println("El nombre " + i + " = " + elemento[i][0] + "\n"
-                                    + "La edad " + i + " = " + elemento[i][1] + "\n" + "El sexo " + i + " = " + elemento[i][2] + "\n"
-                                    + "El nit " + i + " = " + elemento[i][3]);*/
                         }
-                    }
 
-                } // fin if (contador!= 1)
-            } // fin for
+                    } // fin for
+                }
+
+            }
+
+           
 
             campo_nombre.setText(null);
             campo_edad.setText(null);
